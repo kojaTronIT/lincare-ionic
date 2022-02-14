@@ -13,7 +13,7 @@ export class HomePage {
 
   constructor() { }
 
-  dateValue = 'Click to select your date of birth';
+  dateValue = '';
 
   formatDate(value: string) {
     return format(parseISO(value), 'MM/dd/yyyy');
