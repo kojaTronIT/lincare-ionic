@@ -1,20 +1,27 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Blank
+      TronIT Lincare project
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-item button="true" id="open-date-input">
+    <ion-label slot="end">
+      <ion-icon icon="calendar"></ion-icon>
+    </ion-label>
+    <ion-text>{{ dateValue }}</ion-text>
+    <ion-popover trigger="open-date-input" alignment="center" show-backdrop="true">
+      <ng-template>
+        <ion-datetime #popoverDatetime presentation="date" (ionChange)="dateValue = formatDate(popoverDatetime.value)">
+        </ion-datetime>
+      </ng-template>
+    </ion-popover>
+  </ion-item>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-item>
+    <ion-label>Zipcode</ion-label>
+    <ion-input placeholder="Enter your zipcode" slot="end"></ion-input>
+  </ion-item>
 </ion-content>
