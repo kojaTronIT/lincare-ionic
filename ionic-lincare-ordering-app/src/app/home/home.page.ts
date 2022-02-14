@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { IonDatetime } from '@ionic/angular';
+import { format, parseISO } from 'date-fns';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,14 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  @ViewChild(IonDatetime, { static: true }) datetime: IonDatetime;
+
+  constructor() { }
+
+  dateValue = 'Click to select your date of birth';
+
+  formatDate(value: string) {
+    return format(parseISO(value), 'MM/dd/yyyy');
+  }
 
 }
