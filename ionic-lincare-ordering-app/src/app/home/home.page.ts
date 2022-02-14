@@ -11,9 +11,9 @@ export class HomePage {
 
   @ViewChild(IonDatetime, { static: true }) datetime: IonDatetime;
 
-  constructor() { }
-
   dateValue = '';
+
+  constructor() { }
 
   formatDate(value: string) {
     return format(parseISO(value), 'MM/dd/yyyy');
