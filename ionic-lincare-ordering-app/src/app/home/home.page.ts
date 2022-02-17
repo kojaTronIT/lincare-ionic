@@ -14,17 +14,15 @@ export class HomePage {
   public errorMessages = {
     dateOfBirth: [
       { type: 'required', message: 'Date of birth is a mandatory field' },
-      { type: 'pattern', message: 'Date should be in mm/dd/yyyy format (example: 05/19/1998)' },
-      { errorMessage: 'We were not able to verify the date of birth' }
+      { type: 'pattern', message: 'Date should be in dd/mm/yyyy format (example: 19/05/1998)' }
     ],
     zipcode: [
       { type: 'required', message: 'Zipcode is a mandatory field' },
-      { type: 'pattern', message: 'Zipcode should be 5 numbers long (example: 11000)' },
-      { errorMessage: 'We were not able to verify the zipcode' }
+      { type: 'pattern', message: 'Zipcode should be 5 numbers long (example: 11000)' }
     ]
   }
 
-  private dateOfBirthPattern = RegExp(/^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/g);
+  private dateOfBirthPattern = RegExp(/^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/g);
   private zipcodePattern = RegExp(/^[0-9]{5}$/g);
 
   // @ViewChild(IonDatetime, { static: true }) datetime: IonDatetime;
@@ -50,9 +48,9 @@ export class HomePage {
     console.log(this.registrationForm.value);
   }
 
-  async confirmCancel() {
+  async onCancel() {
     let alert = await this.alertController.create({
-      header: 'Exiting website !',
+      header: 'Exiting the page !',
       message: 'Are you sure you want to continue ?',
       buttons: [
         {
@@ -65,7 +63,7 @@ export class HomePage {
         {
           text: 'Confirm',
           handler: () => {
-            this.router.navigate(['/item-select'])
+            this.router.navigate(['/error'])
             console.log('Confirm clicked');
           }
         }
