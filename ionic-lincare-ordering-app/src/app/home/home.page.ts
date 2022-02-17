@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { IonDatetime } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { IonDatetime, AlertController } from '@ionic/angular';
 import { format, parseISO } from 'date-fns';
 
 @Component({
@@ -28,7 +29,7 @@ export class HomePage {
 
   // dateValue = '';
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private alertController: AlertController, private router: Router) { }
 
   get dateOfBirth() {
     return this.registrationForm.get('dateOfBirth');
@@ -45,6 +46,30 @@ export class HomePage {
 
   onSubmit() {
     console.log(this.registrationForm.value);
+  }
+
+  async confirmCancel() {
+    let alert = await this.alertController.create({
+      header: 'Exiting website !',
+      message: 'Are you sure you want to continue ?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Confirm',
+          handler: () => {
+            this.router.navigate(['/item-select'])
+            console.log('Confirm clicked');
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   // formatDate(value: string) {

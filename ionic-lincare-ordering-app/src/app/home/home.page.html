@@ -48,11 +48,11 @@
       </ion-card>
       
       <div id="buttons">
-        <ion-button expand="block" class="form-action-button" type="submit" [disabled]="!registrationForm.valid">
+        <ion-button expand="block" class="form-action-button" type="submit" [disabled]="!registrationForm.valid" [routerLink]="['/item-select']">
           Submit
         </ion-button>
       
-        <ion-button color="danger" class="form-action-button">
+        <ion-button color="danger" class="form-action-button" type="reset" (click)="confirmCancel()">
           Cancel
         </ion-button>
       </div>
