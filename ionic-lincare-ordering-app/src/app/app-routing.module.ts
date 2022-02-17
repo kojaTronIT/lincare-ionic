@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AmountPickerComponent } from './amount-picker/amount-picker.component';
+import { ErrorComponent } from './error/error.component';
 import { ItemSelectComponent } from './item-select/item-select.component';
 
 const routes: Routes = [
@@ -15,6 +17,14 @@ const routes: Routes = [
   {
     path: 'item-select',
     component: ItemSelectComponent
+  },
+  {
+    path: 'error',
+    component: ErrorComponent
+  },
+  {
+    path: 'amount-picker',
+    component: AmountPickerComponent
   }
 ];
 
