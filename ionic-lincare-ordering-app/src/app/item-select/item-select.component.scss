@@ -1,0 +1,27 @@
+#subtitle {
+  align-self: center;
+}
+
+// #buttons {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }
+
+// .form-action-button {
+//   width: 95%;
+//   color: white;
+// }
+
+.form-container {
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  gap: 6vh;
+}
+
+.item-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10vh;
+}

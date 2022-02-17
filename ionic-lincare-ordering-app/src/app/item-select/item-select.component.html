@@ -1,3 +1,54 @@
-<p>
-  item-select works!
-</p>
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        <h1>
+          <ion-icon icon="medkit-outline"></ion-icon> Lincare
+        </h1>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <form class="form-container" [formGroup]="" (ngSubmit)="onSubmit()">
+    <div id="subtitle">
+      <h2>Select the items you need: </h2>
+    </div>
+
+    <ion-list>
+      <ion-radio-group class="item-options">
+        <ion-card>
+          <ion-item>
+            <ion-label>Oxygen Cylinders</ion-label>
+            <ion-radio value="oxygen cylinders" checked></ion-radio>
+          </ion-item>
+        </ion-card>
+        
+        <ion-card>
+          <ion-item>
+            <ion-label>Cannulas</ion-label>
+            <ion-radio value="cannulas"></ion-radio>
+          </ion-item>
+        </ion-card>
+
+        <ion-card>
+          <ion-item>
+            <ion-label>Tubing</ion-label>
+            <ion-radio value="tubing"></ion-radio>
+          </ion-item>
+        </ion-card>
+      </ion-radio-group>
+    </ion-list>
+
+    <div id="buttons">
+      <ion-button expand="block" class="form-action-button" type="submit">
+        Submit
+      </ion-button>
+
+      <ion-button expand="block" color="danger" class="form-action-button" type="reset">
+        Cancel
+      </ion-button>
+    </div>
+
+  </form>
+
+</ion-content>
