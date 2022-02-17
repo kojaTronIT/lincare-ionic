@@ -6,57 +6,57 @@
         </ion-title>
       </ion-toolbar>
     </ion-header>
-
-        
       
-        <form class="form-container" [formGroup]="">
-          <div id="subtitle">
-            <h2>Help us verify your information</h2>
-          </div>
+    <form class="form-container" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <div id="subtitle">
+        <h2>Help us verify your information</h2>
+      </div>
 
-          <ion-card>
-            <ion-item>
-              <ion-input [value]="dateValue" placeholder="Please enter your date of birth" ngModel maxlength="10" required pattern="^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$"></ion-input>
-              <ion-button fill="clear" id="open-date-input">
-                <ion-icon icon="calendar"></ion-icon>
-              </ion-button>
-              <ion-popover trigger="open-date-input" show-backdrop="false">
-                <ng-template>
-                  <ion-datetime #popoverDatetime presentation="date" (ionChange)="dateValue = formatDate(popoverDatetime.value)">
-                  </ion-datetime>
-                </ng-template>
-              </ion-popover>
-            </ion-item>
-
-            <ion-item class="input-error" hidden>
-             <ion-label> Date example: 05/19/1998 (mm/dd/yyy) </ion-label>
-            </ion-item>
-          </ion-card>
+      <ion-card>
+        <ion-item>
+          <ion-input placeholder="Please enter your date of birth" formControlName="dateOfBirth"></ion-input>
+          <ion-label><ion-icon icon="calendar"></ion-icon></ion-label>
+          <!-- <ion-button fill="clear" id="open-date-input">
+            <ion-icon icon="calendar"></ion-icon>
+          </ion-button> -->
+          <!-- <ion-popover trigger="open-date-input" show-backdrop="false">
+            <ng-template>
+              <ion-datetime #popoverDatetime presentation="date" (ionChange)="dateValue = formatDate(popoverDatetime.value)">
+              </ion-datetime>
+            </ng-template>
+          </ion-popover> -->
+        </ion-item>
+      
+        <div class="error-field" *ngFor="let error of errorMessages.dateOfBirth">
+          <ng-container *ngIf="dateOfBirth.hasError(error.type) && (dateOfBirth.dirty || dateOfBirth.touched)">
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+      </ion-card>
+      
+      <ion-card>
+        <ion-item id="zipcode">
+          <ion-input placeholder="Please enter your zipcode" formControlName="zipcode"></ion-input>
+          <ion-label><ion-icon name="barcode"></ion-icon></ion-label>
+        </ion-item>
+      
+        <div class="error-field" *ngFor="let error of errorMessages.zipcode">
+          <ng-container *ngIf="zipcode.hasError(error.type) && (zipcode.dirty || zipcode.touched)">
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+      </ion-card>
+      
+      <div id="buttons">
+        <ion-button expand="block" class="form-action-button" type="submit" [disabled]="!registrationForm.valid">
+          Submit
+        </ion-button>
+      
+        <ion-button color="danger" class="form-action-button">
+          Cancel
+        </ion-button>
+      </div>
           
-          
-          
-          
-          <ion-card>
-            <ion-item id="zipcode">
-              <ion-input placeholder="Please enter your zipcode" ngModel maxlength="5" required pattern="^[0-9]{5}$"></ion-input>
-              <ion-label>Zipcode</ion-label>
-            </ion-item>
-
-            <ion-item class="input-error" hidden>
-              <ion-label> Zipcode must be between 3 and 5 numbers </ion-label>
-            </ion-item>
-          </ion-card>
-          
-          <div id="buttons">
-            <ion-button expand="block" class="form-action-button">
-              Submit
-            </ion-button>
-          
-            <ion-button color="danger" class="form-action-button">
-              Cancel
-            </ion-button>
-          </div>
-          
-        </form>
+    </form>
     
 </ion-content>
