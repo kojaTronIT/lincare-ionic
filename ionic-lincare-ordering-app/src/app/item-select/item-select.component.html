@@ -9,31 +9,17 @@
     </ion-toolbar>
   </ion-header>
 
-  <form class="form-container" [formGroup]="" (ngSubmit)="onSubmit()">
+  <form class="form-container" (ngSubmit)="onSubmit()">
     <div id="subtitle">
       <h2>Select the items you need: </h2>
     </div>
 
     <ion-list>
-      <ion-radio-group class="item-options">
-        <ion-card>
+      <ion-radio-group class="item-options" allow-empty-selection="true" name="radio-group" (ionChange)="radioGroupChange($event)" #radioGroup>
+        <ion-card *ngFor="let item of radio_list" (ionFocus)="radioFocus()" (ionBlur)="radioBlur()">
           <ion-item>
-            <ion-label>Oxygen Cylinders</ion-label>
-            <ion-radio value="oxygen cylinders" checked></ion-radio>
-          </ion-item>
-        </ion-card>
-        
-        <ion-card>
-          <ion-item>
-            <ion-label>Cannulas</ion-label>
-            <ion-radio value="cannulas"></ion-radio>
-          </ion-item>
-        </ion-card>
-
-        <ion-card>
-          <ion-item>
-            <ion-label>Tubing</ion-label>
-            <ion-radio value="tubing"></ion-radio>
+            <ion-label>{{item.text}}</ion-label>
+            <ion-radio name="value" name="{{item.name}}" value="{{item.value}}" color="{{item.color}}" disabled="{{item.disabled}}"></ion-radio>
           </ion-item>
         </ion-card>
       </ion-radio-group>
@@ -44,7 +30,7 @@
         Submit
       </ion-button>
 
-      <ion-button expand="block" color="danger" class="form-action-button" type="reset">
+      <ion-button expand="block" color="danger" class="form-action-button" (click)="onCancel()">
         Cancel
       </ion-button>
     </div>

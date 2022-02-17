@@ -1,16 +1,75 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-item-select',
   templateUrl: './item-select.component.html',
   styleUrls: ['./item-select.component.scss'],
 })
-export class ItemSelectComponent implements OnInit {
+export class ItemSelectComponent {
 
-  constructor() {}
+  constructor(private router: Router) {}
+  
+  selectedRadioGroup: any;
 
-  ngOnInit() {} 
+  radio_list = [
+    {
+      id: '1',
+      name: 'radio_list',
+      value: 'cylinders',
+      text: 'Oxygen cylinders',
+      disabled: false,
+      color: 'secondary'
+    }, 
+    {
+      id: '2',
+      name: 'radio_list',
+      value: 'cannuals',
+      text: 'Cannuals',
+      disabled: false,
+      color: 'secondary'
+    }, 
+    {
+      id: '3',
+      name: 'radio_list',
+      value: 'tubing',
+      text: 'Tubing',
+      disabled: false,
+      color: 'secondary'
+    },
+  ];
+
+  radioGroupChange(event) {
+    console.log("radioGroupChange", event.detail);
+    this.selectedRadioGroup = event.detail;
+  }
+
+  radioFocus() {
+    console.log("radioFocus");
+  }
+
+  radioBlur() {
+    console.log("radioBlur");
+  }
+
+  onSubmit() {
+    switch (this.selectedRadioGroup.value) {
+      case "cylinders":
+        this.router.navigate(['/amount-picker']);
+        break;
+        
+      case "cannuals":
+        console.log("cannuals");
+        break;
+
+      case "tubing":
+        console.log("tubing");
+        break;
+    }
+  }
+
+  onCancel() {
+    this.router.navigate(['/home'])
+  }
 
 }
