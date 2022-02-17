@@ -1,0 +1,20 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+#message {
+  text-align: center;
+  height: fit-content;
+  margin-top: 35vh;
+}
+
+h3 {
+  color: black;
+}
+
+
+ion-icon {
+  vertical-align: top;
+  color: black;
+}
