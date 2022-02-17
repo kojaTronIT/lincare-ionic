@@ -13,12 +13,14 @@ export class HomePage {
 
   public errorMessages = {
     dateOfBirth: [
-      {type: 'required', message: 'Date of birth is a mandatory field'},
-      { type: 'pattern', message: 'Date should be in mm/dd/yyyy format (example: 05/19/1998)' }
+      { type: 'required', message: 'Date of birth is a mandatory field' },
+      { type: 'pattern', message: 'Date should be in mm/dd/yyyy format (example: 05/19/1998)' },
+      { errorMessage: 'We were not able to verify the date of birth' }
     ],
     zipcode: [
       { type: 'required', message: 'Zipcode is a mandatory field' },
-      { type: 'pattern', message: 'Zipcode should be 5 numbers long (example: 11000)' }
+      { type: 'pattern', message: 'Zipcode should be 5 numbers long (example: 11000)' },
+      { errorMessage: 'We were not able to verify the zipcode' }
     ]
   }
 
