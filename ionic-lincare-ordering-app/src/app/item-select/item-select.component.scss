@@ -1,33 +1,41 @@
-#subtitle {
-  align-self: center;
+* {
+  font-size: large;
 }
 
-// #buttons {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-// }
+ion-title {
+  font-size: 4vh;
+}
 
-// .form-action-button {
-//   width: 95%;
-//   color: white;
-// }
+ion-title ion-icon{
+  font-size: 4vh;
+}
+
+#subtitle {
+  margin-top: 12vh;
+}
+
+#subtitle p {
+  font-size: 3.5vh;
+}
 
 .form-container {
-  margin-top: 5vh;
+  margin-top: 8vh;
   display: flex;
   flex-direction: column;
-  gap: 6vh;
+  gap: 4vh;
 }
 
 .item-options {
     display: flex;
     flex-direction: column;
-    gap: 10vh;
+    gap: 3vh;
 }
-
 
 ion-icon {
   vertical-align: top;
   color: black;
+}
+
+#buttons {
+  margin-top: 4vh;
 }

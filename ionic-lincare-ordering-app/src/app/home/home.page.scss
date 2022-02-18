@@ -1,23 +1,28 @@
+* {
+  font-size: large;
+}
+
+ion-title {
+  font-size: 4vh;
+}
+
+ion-title ion-icon{
+  font-size: 4vh;
+}
+
 #subtitle {
-  align-self: center;
-  margin-top: 5vh;
+  margin-top: 12vh;
 }
 
-#buttons {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.form-action-button {
-  width: 95%;
-  color: white;
+#subtitle p {
+  font-size: 3.5vh;
 }
 
 .form-container {
+  margin-top: 8vh;
   display: flex;
   flex-direction: column;
-  gap: 14vh;
+  gap: 5vh
 }
 
 ion-icon {
@@ -31,4 +36,8 @@ ion-icon {
 
 .error-field {
   margin-left: 3vh;
+}
+
+#buttons {
+  margin-top: 7vh;
 }

@@ -2,18 +2,16 @@
   <ion-header>
     <ion-toolbar>
       <ion-title>
-        <h1>
           <ion-icon icon="medkit-outline"></ion-icon> Lincare
-        </h1>
       </ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <form class="form-container" (ngSubmit)="onSubmit()">
-    <div id="subtitle">
-      <h2>Select the items you need: </h2>
-    </div>
+  <div id="subtitle" align="center">
+    <p>Select the item you need: </p>
+  </div>
 
+  <form class="form-container" (ngSubmit)="onSubmit()">
     <ion-list>
       <ion-radio-group class="item-options" allow-empty-selection="true" name="radio-group" (ionChange)="radioGroupChange($event)" #radioGroup>
         <ion-card *ngFor="let item of radio_list" (ionFocus)="radioFocus()" (ionBlur)="radioBlur()">
@@ -30,7 +28,7 @@
         Submit
       </ion-button>
 
-      <ion-button expand="block" color="danger" class="form-action-button" (click)="onCancel()">
+      <ion-button expand="block" color="danger" class="form-action-button" (click)="onCancel()" type="reset">
         Cancel
       </ion-button>
     </div>
