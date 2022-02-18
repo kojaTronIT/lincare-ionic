@@ -36,7 +36,7 @@ export class ItemSelectComponent {
       text: 'Tubing',
       disabled: false,
       color: 'secondary'
-    },
+    }
   ];
 
   radioGroupChange(event) {
@@ -53,19 +53,28 @@ export class ItemSelectComponent {
   }
 
   onSubmit() {
-    switch (this.selectedRadioGroup.value) {
-      case "cylinders":
-        this.router.navigate(['/amount-picker']);
-        break;
-        
-      case "cannuals":
-        console.log("cannuals");
-        break;
+    if (this.selectedRadioGroup === undefined) {
+      alert("No products selected" + "\nPlease select at least one item")
+    } else {
+      switch (this.selectedRadioGroup.value) {
+        case "cylinders":
+          this.router.navigate(['/amount-picker']);
+          break;
 
-      case "tubing":
-        console.log("tubing");
-        break;
+        case "cannuals":
+          console.log("cannuals");
+          break;
+
+        case "tubing":
+          console.log("tubing");
+          break;
+
+        case undefined:
+          alert("No products selected" + "\nPlease select at least one item")
+          break;  
+      }
     }
+    
   }
 
   onCancel() {
