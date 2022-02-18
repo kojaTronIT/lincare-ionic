@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-item-select',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ItemSelectComponent {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private alertController: AlertController) {}
   
   selectedRadioGroup: any;
 
@@ -77,8 +78,28 @@ export class ItemSelectComponent {
     
   }
 
-  onCancel() {
-    this.router.navigate(['/home'])
+  async onCancel() {
+    let alert = await this.alertController.create({
+      header: 'Exiting the page !',
+      message: 'Are you sure you want to continue ?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Confirm',
+          handler: () => {
+            this.router.navigate(['/error'])
+            console.log('Confirm clicked');
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }
