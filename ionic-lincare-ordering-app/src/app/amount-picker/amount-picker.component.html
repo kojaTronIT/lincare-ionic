@@ -1,3 +1,36 @@
-<p>
-  amount-picker works!
-</p>
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        <ion-icon icon="medkit-outline"></ion-icon> Lincare
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="subtitle" align="center">
+    <p> How many full cylinders do you have ? </p>
+  </div>
+
+  <form class="form-container" (ngSubmit)="onSubmit()">
+    
+
+
+    <div id="buttons">
+      <ion-button expand="block" class="form-action-button" type="submit">
+        Submit
+      </ion-button>
+    
+      <div id="cancel-buttons">
+        <ion-button expand="block" color="danger" class="form-action-button" (click)="onBack()">
+          Back
+        </ion-button>
+
+        <ion-button expand="block" color="danger" class="form-action-button" (click)="onCancel()" type="reset">
+          Cancel
+        </ion-button>
+      </div>
+    </div>
+  </form>
+
+</ion-content>
+
