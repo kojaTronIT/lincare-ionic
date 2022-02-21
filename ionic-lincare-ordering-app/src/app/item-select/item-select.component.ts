@@ -7,11 +7,9 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './item-select.component.html',
   styleUrls: ['./item-select.component.scss'],
 })
-export class ItemSelectComponent implements OnInit{
+export class ItemSelectComponent {
 
   constructor(private router: Router, private alertController: AlertController) {}
-
-  
   
   selectedRadioGroup: any;
 
@@ -21,37 +19,35 @@ export class ItemSelectComponent implements OnInit{
       name: 'radio_list',
       value: 'cylinders',
       checked: false,
-      text: 'Oxygen cylinders',
-      disabled: false,
-      color: 'secondary'
+      text: 'Oxygen cylinders'
     }, 
     {
       id: '2',
       name: 'radio_list',
       value: 'cannuals',
       checked: false,
-      text: 'Cannuals',
-      disabled: false,
-      color: 'secondary'
+      text: 'Cannuals'
     }, 
     {
       id: '3',
       name: 'radio_list',
       value: 'tubing',
       checked: false,
-      text: 'Tubing',
-      disabled: false,
-      color: 'secondary'
+      text: 'Tubing'
     }
   ];
 
-  ngOnInit() {
-    console.log(this.radio_list);
+  indexTracker(index: number, value: any) {
+    return index;
   }
 
-  radioGroupChange(event) {
-    console.log("radioGroupChange", event.detail);
-    this.radio_list[0].checked = true;
+  radioGroupChange(event, index: number) {
+    console.log("radioGroupChange", event.detail)
+    if(event.detail.checked == true) {
+      this.radio_list[index].checked = true;
+    } else {
+      this.radio_list[index].checked = false;
+    }
     this.selectedRadioGroup = event.detail;
   }
 
@@ -64,26 +60,15 @@ export class ItemSelectComponent implements OnInit{
   }
 
   onSubmit() {
-    if (this.selectedRadioGroup === undefined) {
+    const result = this.radio_list.filter(obj => obj.checked == true).map(obj => obj.value);
+
+    if (this.selectedRadioGroup == undefined || result.length == 0) {
       alert("No products selected" + "\nPlease select at least one item")
+    } else if (result[0] == "cylinders") {
+      this.router.navigate(['/amount-picker']);
+      console.log(result);
     } else {
-      switch (this.selectedRadioGroup.value) {
-        case "cylinders":
-          this.router.navigate(['/amount-picker']);
-          break;
-
-        case "cannuals":
-          console.log("cannuals");
-          break;
-
-        case "tubing":
-          console.log("tubing");
-          break;
-
-        case undefined:
-          alert("No products selected" + "\nPlease select at least one item")
-          break;  
-      }
+      console.log(result)
     }
     
   }
@@ -109,6 +94,7 @@ export class ItemSelectComponent implements OnInit{
         }
       ]
     });
+    
     alert.present();
   }
 
