@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
@@ -7,9 +7,11 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './item-select.component.html',
   styleUrls: ['./item-select.component.scss'],
 })
-export class ItemSelectComponent {
+export class ItemSelectComponent implements OnInit{
 
   constructor(private router: Router, private alertController: AlertController) {}
+
+  
   
   selectedRadioGroup: any;
 
@@ -18,6 +20,7 @@ export class ItemSelectComponent {
       id: '1',
       name: 'radio_list',
       value: 'cylinders',
+      checked: false,
       text: 'Oxygen cylinders',
       disabled: false,
       color: 'secondary'
@@ -26,6 +29,7 @@ export class ItemSelectComponent {
       id: '2',
       name: 'radio_list',
       value: 'cannuals',
+      checked: false,
       text: 'Cannuals',
       disabled: false,
       color: 'secondary'
@@ -34,14 +38,20 @@ export class ItemSelectComponent {
       id: '3',
       name: 'radio_list',
       value: 'tubing',
+      checked: false,
       text: 'Tubing',
       disabled: false,
       color: 'secondary'
     }
   ];
 
+  ngOnInit() {
+    console.log(this.radio_list);
+  }
+
   radioGroupChange(event) {
     console.log("radioGroupChange", event.detail);
+    this.radio_list[0].checked = true;
     this.selectedRadioGroup = event.detail;
   }
 
