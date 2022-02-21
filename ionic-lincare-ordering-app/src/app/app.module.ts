@@ -8,12 +8,13 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ItemSelectComponent } from './item-select/item-select.component';
+import { AmountPickerComponent } from './amount-picker/amount-picker.component';
 
 @NgModule({
-  declarations: [AppComponent, ItemSelectComponent],
+  declarations: [AppComponent, ItemSelectComponent, AmountPickerComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ReactiveFormsModule, FormsModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ItemSelectComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
