@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { __values } from 'tslib';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-amount-picker',
@@ -9,9 +11,11 @@ import { AlertController } from '@ionic/angular';
 })
 export class AmountPickerComponent implements OnInit {
 
-  constructor(private router: Router, private alertController: AlertController) { }
+  constructor(private router: Router, private alertController: AlertController, private appComponent: AppComponent) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.appComponent.item_select_list);
+  }
 
   selectedAmount: any;
 
@@ -78,13 +82,17 @@ export class AmountPickerComponent implements OnInit {
     }
   ];
 
+  data_list: Array<Object> = [];
+
   selectChange(event) {
     console.log("selectChange", event.detail);
     this.selectedAmount = event.detail.value;
   }
 
   onSubmit() {
-    console.log(this.selectedAmount);
+    const result = this.appComponent.item_select_list.filter(obj => obj.checked == true).map(obj => obj.value);
+    this.data_list.push(result, this.selectedAmount);
+    console.log(this.data_list);
   }
 
   onBack() {
@@ -115,7 +123,5 @@ export class AmountPickerComponent implements OnInit {
     
     alert.present();
   }
-
-  
 
 }

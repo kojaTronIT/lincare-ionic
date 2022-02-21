@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-item-select',
@@ -9,44 +10,16 @@ import { AlertController } from '@ionic/angular';
 })
 export class ItemSelectComponent {
 
-  constructor(private router: Router, private alertController: AlertController) {}
+  constructor(private router: Router, private alertController: AlertController, private appComponent: AppComponent) {}
   
   selectedRadioGroup: any;
-
-  radio_list = [
-    {
-      id: '1',
-      name: 'radio_list',
-      value: 'cylinders',
-      checked: false,
-      text: 'Oxygen cylinders'
-    }, 
-    {
-      id: '2',
-      name: 'radio_list',
-      value: 'cannuals',
-      checked: false,
-      text: 'Cannuals'
-    }, 
-    {
-      id: '3',
-      name: 'radio_list',
-      value: 'tubing',
-      checked: false,
-      text: 'Tubing'
-    }
-  ];
-
-  indexTracker(index: number, value: any) {
-    return index;
-  }
 
   radioGroupChange(event, index: number) {
     console.log("radioGroupChange", event.detail)
     if(event.detail.checked == true) {
-      this.radio_list[index].checked = true;
+      this.appComponent.item_select_list[index].checked = true;
     } else {
-      this.radio_list[index].checked = false;
+      this.appComponent.item_select_list[index].checked = false;
     }
     this.selectedRadioGroup = event.detail;
   }
@@ -60,7 +33,7 @@ export class ItemSelectComponent {
   }
 
   onSubmit() {
-    const result = this.radio_list.filter(obj => obj.checked == true).map(obj => obj.value);
+    const result = this.appComponent.item_select_list.filter(obj => obj.checked == true).map(obj => obj.value);
 
     if (this.selectedRadioGroup == undefined || result.length == 0) {
       alert("No products selected" + "\nPlease select at least one item")

@@ -14,7 +14,7 @@
   <form class="form-container" (ngSubmit)="onSubmit()">
     <ion-list>
       <ion-radio-group class="item-options" allow-empty-selection="true" name="radio-group"  #radioGroup>
-        <ion-card *ngFor="let item of radio_list; let i = index; trackBy:indexTracker;" (ionFocus)="radioFocus()" (ionBlur)="radioBlur()" (ionChange)="radioGroupChange($event, i)">
+        <ion-card *ngFor="let item of this.appComponent.item_select_list; let i = index; trackBy:this.appComponent.indexTracker;" (ionFocus)="radioFocus()" (ionBlur)="radioBlur()" (ionChange)="radioGroupChange($event, i)">
           <ion-item>
             <ion-label>{{item.text}}</ion-label>
             <ion-checkbox name="{{item.name}}" value="{{item.value}}"></ion-checkbox>
