@@ -1,7 +1,43 @@
+* {
+  font-size: large;
+}
+
+ion-title {
+  font-size: 4vh;
+}
+
+ion-title ion-icon{
+  font-size: 4vh;
+}
+
+#subtitle {
+  margin-top: 12vh;
+}
+
+#subtitle p {
+  font-size: 3.5vh;
+}
+
+.form-container {
+  margin-top: 16vh;
+  display: flex;
+  flex-direction: column;
+  gap: 8vh
+}
+
+ion-icon {
+  vertical-align: top;
+  color: black;
+}
+
 #cancel-buttons {
     display: flex;
 }
 
 #cancel-buttons ion-button {
      width: 50%;
+}
+
+#buttons {
+  margin-top: 10vh;
 }
