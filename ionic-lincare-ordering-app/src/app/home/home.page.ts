@@ -25,9 +25,9 @@ export class HomePage {
   private dateOfBirthPattern = RegExp(/^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/g);
   private zipcodePattern = RegExp(/^[0-9]{5}$/g);
 
-  // @ViewChild(IonDatetime, { static: true }) datetime: IonDatetime;
+  @ViewChild(IonDatetime, { static: true }) datetime: IonDatetime;
 
-  // dateValue = '';
+  dateValue = '';
 
   constructor(private formBuilder: FormBuilder, private alertController: AlertController, private router: Router) { }
 
@@ -72,8 +72,8 @@ export class HomePage {
     alert.present();
   }
 
-  // formatDate(value: string) {
-  //   return format(parseISO(value), 'MM/dd/yyyy');
-  // }
+  formatDate(value: string) {
+    return format(parseISO(value), 'dd/mm/yyyy');
+  }
 
 }

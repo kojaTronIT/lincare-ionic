@@ -14,17 +14,16 @@
     <form class="form-container" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
       <ion-card>
         <ion-item>
-          <ion-input placeholder="Please enter your date of birth" formControlName="dateOfBirth"></ion-input>
-          <ion-label><ion-icon icon="calendar"></ion-icon></ion-label>
-          <!-- <ion-button fill="clear" id="open-date-input">
+          <ion-input placeholder="Please enter your date of birth" formControlName="dateOfBirth" [value]="dateValue"></ion-input>
+          <ion-button fill="clear" id="open-date-input">
             <ion-icon icon="calendar"></ion-icon>
-          </ion-button> -->
-          <!-- <ion-popover trigger="open-date-input" show-backdrop="false">
+          </ion-button>
+          <ion-popover trigger="open-date-input" show-backdrop="false">
             <ng-template>
               <ion-datetime #popoverDatetime presentation="date" (ionChange)="dateValue = formatDate(popoverDatetime.value)">
               </ion-datetime>
             </ng-template>
-          </ion-popover> -->
+          </ion-popover>
         </ion-item>
       
         <div class="error-field" *ngFor="let error of errorMessages.dateOfBirth">
