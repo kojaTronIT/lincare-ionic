@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { ItemSelectComponent } from '../item-select/item-select.component';
 
 @Component({
   selector: 'app-amount-picker',
@@ -10,15 +9,9 @@ import { ItemSelectComponent } from '../item-select/item-select.component';
 })
 export class AmountPickerComponent implements OnInit {
 
-  constructor(private router: Router, private alertController: AlertController, private itemselect: ItemSelectComponent) { }
+  constructor(private router: Router, private alertController: AlertController) { }
 
   ngOnInit() {}
-
-  onBack() {
-    this.router.navigate(['/item-select'])
-    console.log(this.itemselect.radio_list[0].checked)
-   
-  }
 
   selectedAmount: any;
 
@@ -90,6 +83,14 @@ export class AmountPickerComponent implements OnInit {
     this.selectedAmount = event.detail.value;
   }
 
+  onSubmit() {
+    console.log(this.selectedAmount);
+  }
+
+  onBack() {
+    this.router.navigate(['/item-select'])
+  }
+
   async onCancel() {
     let alert = await this.alertController.create({
       header: 'Exiting the page !',
@@ -111,6 +112,7 @@ export class AmountPickerComponent implements OnInit {
         }
       ]
     });
+    
     alert.present();
   }
 
