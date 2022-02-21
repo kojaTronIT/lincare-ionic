@@ -3,6 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonDatetime, AlertController } from '@ionic/angular';
 import { format, parseISO } from 'date-fns';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { th } from 'date-fns/locale';
 
 @Component({
   selector: 'app-home',
@@ -26,13 +28,18 @@ export class HomePage {
 
   dateValue = '';
 
-  private dateOfBirthPattern = RegExp(/^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/g);
+  private dateOfBirthPattern = RegExp(/^(0[1-9]|1\d|2\d|3[0-1])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/g);
   private zipcodePattern = RegExp(/^[0-9]{5}$/g);
 
   constructor(private formBuilder: FormBuilder, private alertController: AlertController, private router: Router) { }
 
   formatDate(value: string) {
     return format(parseISO(value), "dd/MM/yyyy");
+  }
+
+  onChange(value) {
+    this.dateValue = value;
+    
   }
 
   logDate() {
@@ -53,6 +60,7 @@ export class HomePage {
   });
 
   onSubmit() {
+    this.router.navigate(['/item-select'])
     console.log(this.registrationForm.value);
   }
 
