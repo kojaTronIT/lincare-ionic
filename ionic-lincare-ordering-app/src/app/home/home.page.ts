@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonDatetime, AlertController } from '@ionic/angular';
 import { format, parseISO } from 'date-fns';
@@ -22,14 +22,22 @@ export class HomePage {
     ]
   }
 
-  private dateOfBirthPattern = RegExp(/^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/g);
-  private zipcodePattern = RegExp(/^[0-9]{5}$/g);
-
   @ViewChild(IonDatetime, { static: true }) datetime: IonDatetime;
 
   dateValue = '';
 
+  private dateOfBirthPattern = RegExp(/^(0[1-9]|1[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/g);
+  private zipcodePattern = RegExp(/^[0-9]{5}$/g);
+
   constructor(private formBuilder: FormBuilder, private alertController: AlertController, private router: Router) { }
+
+  formatDate(value: string) {
+    return format(parseISO(value), "dd/MM/yyyy");
+  }
+
+  logDate() {
+    console.log(this.dateValue);
+  }
 
   get dateOfBirth() {
     return this.registrationForm.get('dateOfBirth');
@@ -40,8 +48,8 @@ export class HomePage {
   }
 
   registrationForm = this.formBuilder.group({
-    dateOfBirth: [null, [Validators.required, Validators.pattern(this.dateOfBirthPattern)]],
-    zipcode: [null, [Validators.required, Validators.pattern(this.zipcodePattern)]]
+    dateOfBirth: ['', [Validators.required, Validators.pattern(this.dateOfBirthPattern)]],
+    zipcode: ['', [Validators.required, Validators.pattern(this.zipcodePattern)]]
   });
 
   onSubmit() {
@@ -70,10 +78,6 @@ export class HomePage {
       ]
     });
     alert.present();
-  }
-
-  formatDate(value: string) {
-    return format(parseISO(value), 'dd/mm/yyyy');
   }
 
 }

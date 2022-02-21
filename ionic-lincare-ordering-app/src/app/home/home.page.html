@@ -15,12 +15,12 @@
       <ion-card>
         <ion-item>
           <ion-input placeholder="Please enter your date of birth" formControlName="dateOfBirth" [value]="dateValue"></ion-input>
-          <ion-button fill="clear" id="open-date-input">
+          <ion-button id="open-date-input">
             <ion-icon icon="calendar"></ion-icon>
           </ion-button>
-          <ion-popover trigger="open-date-input" show-backdrop="false">
+          <ion-popover trigger="open-date-input" show-backdrop="true">
             <ng-template>
-              <ion-datetime #popoverDatetime presentation="date" (ionChange)="dateValue = formatDate(popoverDatetime.value)">
+              <ion-datetime min="1900" max="2000" value="1940-01-01" presentation="date" (ionChange)="dateValue = formatDate(popoverDatetime.value); logDate()" #popoverDatetime>
               </ion-datetime>
             </ng-template>
           </ion-popover>
@@ -36,7 +36,10 @@
       <ion-card>
         <ion-item id="zipcode">
           <ion-input placeholder="Please enter your zipcode" formControlName="zipcode"></ion-input>
-          <ion-label><ion-icon name="barcode"></ion-icon></ion-label>
+          <ion-button fill="clear">
+            <ion-icon name="barcode"></ion-icon>
+          </ion-button>
+          
         </ion-item>
       
         <div class="error-field" *ngFor="let error of errorMessages.zipcode">
