@@ -22,11 +22,11 @@ export class HomePage {
     ]
   }
 
-  @ViewChild(IonDatetime, { static: true }) datetime: IonDatetime;
+  @ViewChild(IonDatetime, { static: false }) datetime: IonDatetime;
 
   dateValue = '';
 
-  private dateOfBirthPattern = RegExp(/^(0[1-9]|1\d|2\d|3[0-1])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/g);
+  // private dateOfBirthPattern = RegExp(/^(0[1-9]|1\d|2\d|3[0-1])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/g);
   private zipcodePattern = RegExp(/^[0-9]{5}$/g);
 
   constructor(private formBuilder: FormBuilder, private alertController: AlertController, private router: Router) { }
@@ -34,6 +34,17 @@ export class HomePage {
   formatDate(value: string) {
     console.log(format(parseISO(value), "dd/MM/yyyy"));
     return format(parseISO(value), "dd/MM/yyyy");
+  }
+
+  confirm() {
+    if(this.dateValue == '') {
+      this.dateValue = "01/01/1940"
+    }
+    this.datetime.confirm(true);
+  }
+
+  close() {
+    this.datetime.cancel(true);
   }
 
   onChange(value) {
@@ -49,7 +60,7 @@ export class HomePage {
   }
 
   registrationForm = this.formBuilder.group({
-    dateOfBirth: [this.dateValue, [Validators.required, Validators.pattern(this.dateOfBirthPattern)]],
+    dateOfBirth: ['', [Validators.required]],
     zipcode: ['', [Validators.required, Validators.pattern(this.zipcodePattern)]]
   });
 
