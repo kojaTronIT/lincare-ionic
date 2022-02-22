@@ -37,4 +37,6 @@ export class AppComponent {
     return index;
   }
 
+  public message: string = " ";
+
 }
