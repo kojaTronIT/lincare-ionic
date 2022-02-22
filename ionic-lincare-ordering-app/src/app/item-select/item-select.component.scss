@@ -2,6 +2,12 @@
   font-size: large;
 }
 
+.wrapper {
+  height: 100%;
+  background-image: url("../../assets/images/background.jpg");
+  background-size: cover; 
+}
+
 ion-title {
   font-size: 4vh;
 }
@@ -23,6 +29,10 @@ ion-title ion-icon{
   display: flex;
   flex-direction: column;
   gap: 4vh;
+}
+
+ion-list {
+  background-color: rgba(255, 255, 255, 0.01);
 }
 
 .item-options {

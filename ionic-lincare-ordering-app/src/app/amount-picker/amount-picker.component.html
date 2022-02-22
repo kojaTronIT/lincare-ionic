@@ -1,42 +1,44 @@
 <ion-content>
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>
-        <ion-icon icon="medkit-outline"></ion-icon> Lincare
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="subtitle" align="center">
-    <p> How many full cylinders do you have ? </p>
-  </div>
-
-  <form class="form-container" (ngSubmit)="onSubmit()">
-    <ion-card >
-      <ion-item id="dropdown">
-        <ion-label >Click to select the number</ion-label>
-        <ion-select interface="action-sheet" name="numbers-dropdown" (ionChange)="selectChange($event)" placeholder="0">
-          <ion-select-option *ngFor="let number of amount_list" value="{{number.value}}">{{number.text}}</ion-select-option>
-        </ion-select>
-      </ion-item>
-    </ion-card>
+  <div class="wrapper">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>
+          <ion-icon icon="medkit-outline"></ion-icon> Lincare
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
     
-    <div id="buttons">
-      <ion-button expand="block" class="form-action-button" type="submit">
-        Submit
-      </ion-button>
-    
-      <div id="cancel-buttons">
-        <ion-button expand="block" color="danger" class="form-action-button" (click)="onBack()">
-          Back
-        </ion-button>
-
-        <ion-button expand="block" color="danger" class="form-action-button" (click)="onCancel()" type="reset">
-          Cancel
-        </ion-button>
-      </div>
+    <div id="subtitle" align="center">
+      <p> How many full cylinders do you have ? </p>
     </div>
-  </form>
-
+    
+    <form class="form-container" (ngSubmit)="onSubmit()">
+      <ion-card>
+        <ion-item id="dropdown">
+          <ion-label>Click to select the number</ion-label>
+          <ion-select interface="action-sheet" name="numbers-dropdown" (ionChange)="selectChange($event)" placeholder="0">
+            <ion-select-option *ngFor="let number of amount_list" value="{{number.value}}">{{number.text}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-card>
+    
+      <div id="buttons">
+        <ion-button expand="block" class="form-action-button" type="submit">
+          Submit
+        </ion-button>
+    
+        <div id="cancel-buttons">
+          <ion-button expand="block" color="danger" class="form-action-button" (click)="onBack()">
+            Back
+          </ion-button>
+    
+          <ion-button expand="block" color="danger" class="form-action-button" (click)="onCancel()" type="reset">
+            Cancel
+          </ion-button>
+        </div>
+      </div>
+    </form>
+  </div>
 </ion-content>
 

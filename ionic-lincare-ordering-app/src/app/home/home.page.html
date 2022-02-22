@@ -1,4 +1,5 @@
 <ion-content>
+  <div class="wrapper">
     <ion-header>
       <ion-toolbar>
         <ion-title>
@@ -6,59 +7,61 @@
         </ion-title>
       </ion-toolbar>
     </ion-header>
-
+    
     <div id="subtitle" align="center">
       <p>Help us verify your information</p>
     </div>
-      
+    
     <form class="form-container" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
       <ion-card>
         <ion-item>
-          <ion-input placeholder="Please enter your date of birth" formControlName="dateOfBirth" [value]="dateValue"></ion-input>
+          <ion-input placeholder="Please enter your date of birth" formControlName="dateOfBirth" [value]="dateValue">
+          </ion-input>
           <ion-button id="open-date-input">
             <ion-icon icon="calendar"></ion-icon>
           </ion-button>
           <ion-popover trigger="open-date-input" show-backdrop="true">
             <ng-template>
-              <ion-datetime min="1900" max="2000" value="1940-01-01" presentation="date" (ionChange)="onChange(formatDate(popoverDatetime.value)); logDate()" #popoverDatetime>
+              <ion-datetime min="1900" max="2000" value="1940-01-01" presentation="date"
+                (ionChange)="onChange(formatDate(popoverDatetime.value))" #popoverDatetime>
               </ion-datetime>
             </ng-template>
           </ion-popover>
         </ion-item>
-      
+    
         <div class="error-field" *ngFor="let error of errorMessages.dateOfBirth">
-          <ng-container *ngIf="dateOfBirth.hasError(error.type) && (dateOfBirth.dirty || dateOfBirth.touched)">
+          <ng-container *ngIf="dateOfBirth.hasError(error.type) && (dateOfBirth.touched)">
             <small class="error-message">{{error.message}}</small>
           </ng-container>
         </div>
       </ion-card>
-      
+    
       <ion-card>
         <ion-item id="zipcode">
           <ion-input placeholder="Please enter your zipcode" formControlName="zipcode"></ion-input>
           <ion-button fill="clear">
             <ion-icon name="barcode"></ion-icon>
           </ion-button>
-          
+    
         </ion-item>
-      
+    
         <div class="error-field" *ngFor="let error of errorMessages.zipcode">
           <ng-container *ngIf="zipcode.hasError(error.type) && (zipcode.dirty || zipcode.touched)">
             <small class="error-message">{{error.message}}</small>
           </ng-container>
         </div>
       </ion-card>
-      
+    
       <div id="buttons">
         <ion-button expand="block" class="form-action-button" type="submit" [disabled]="!registrationForm.valid">
           Submit
         </ion-button>
-      
+    
         <ion-button expand="block" color="danger" class="form-action-button" (click)="onCancel()">
           Cancel
         </ion-button>
       </div>
-          
-    </form>
     
+    </form>
+  </div>
 </ion-content>

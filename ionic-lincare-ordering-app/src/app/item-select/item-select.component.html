@@ -1,38 +1,40 @@
 <ion-content>
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>
+  <div class="wrapper">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>
           <ion-icon icon="medkit-outline"></ion-icon> Lincare
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="subtitle" align="center">
-    <p>Select the items you need: </p>
-  </div>
-
-  <form class="form-container" (ngSubmit)="onSubmit()">
-    <ion-list>
-      <ion-radio-group class="item-options" allow-empty-selection="true" name="radio-group"  #radioGroup>
-        <ion-card *ngFor="let item of this.appComponent.item_select_list; let i = index; trackBy:this.appComponent.indexTracker;" (ionFocus)="radioFocus()" (ionBlur)="radioBlur()" (ionChange)="radioGroupChange($event, i)">
-          <ion-item>
-            <ion-label>{{item.text}}</ion-label>
-            <ion-checkbox name="{{item.name}}" value="{{item.value}}"></ion-checkbox>
-          </ion-item>
-        </ion-card>
-      </ion-radio-group>
-    </ion-list>
-
-    <div id="buttons">
-      <ion-button expand="block" class="form-action-button" type="submit">
-        Submit
-      </ion-button>
-
-      <ion-button expand="block" color="danger" class="form-action-button" (click)="onCancel()" type="reset">
-        Cancel
-      </ion-button>
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+    
+    <div id="subtitle" align="center">
+      <p>Select the items you need: </p>
     </div>
-
-  </form>
-
+    
+    <form class="form-container" (ngSubmit)="onSubmit()">
+      <ion-list>
+        <ion-radio-group class="item-options" allow-empty-selection="true" name="radio-group" #radioGroup>
+          <ion-card
+            *ngFor="let item of this.appComponent.item_select_list; let i = index; trackBy:this.appComponent.indexTracker;"
+            (ionFocus)="radioFocus()" (ionBlur)="radioBlur()" (ionChange)="radioGroupChange($event, i)">
+            <ion-item>
+              <ion-label>{{item.text}}</ion-label>
+              <ion-checkbox name="{{item.name}}" value="{{item.value}}"></ion-checkbox>
+            </ion-item>
+          </ion-card>
+        </ion-radio-group>
+      </ion-list>
+    
+      <div id="buttons">
+        <ion-button expand="block" class="form-action-button" type="submit">
+          Submit
+        </ion-button>
+    
+        <ion-button expand="block" color="danger" class="form-action-button" (click)="onCancel()" type="reset">
+          Cancel
+        </ion-button>
+      </div>
+    </form>
+  </div>
 </ion-content>
