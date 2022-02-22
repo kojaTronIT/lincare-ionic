@@ -3,8 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonDatetime, AlertController } from '@ionic/angular';
 import { format, parseISO } from 'date-fns';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { th } from 'date-fns/locale';
 
 @Component({
   selector: 'app-home',
@@ -34,16 +32,12 @@ export class HomePage {
   constructor(private formBuilder: FormBuilder, private alertController: AlertController, private router: Router) { }
 
   formatDate(value: string) {
+    console.log(format(parseISO(value), "dd/MM/yyyy"));
     return format(parseISO(value), "dd/MM/yyyy");
   }
 
   onChange(value) {
     this.dateValue = value;
-    
-  }
-
-  logDate() {
-    console.log(this.dateValue);
   }
 
   get dateOfBirth() {
@@ -55,7 +49,7 @@ export class HomePage {
   }
 
   registrationForm = this.formBuilder.group({
-    dateOfBirth: ['', [Validators.required, Validators.pattern(this.dateOfBirthPattern)]],
+    dateOfBirth: [this.dateValue, [Validators.required, Validators.pattern(this.dateOfBirthPattern)]],
     zipcode: ['', [Validators.required, Validators.pattern(this.zipcodePattern)]]
   });
 
@@ -79,7 +73,7 @@ export class HomePage {
         {
           text: 'Confirm',
           handler: () => {
-            this.router.navigate(['/error'])
+            this.router.navigate(['/message'])
             console.log('Confirm clicked');
           }
         }

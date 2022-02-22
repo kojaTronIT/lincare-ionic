@@ -114,7 +114,7 @@ export class AmountPickerComponent implements OnInit {
         {
           text: 'Confirm',
           handler: () => {
-            this.router.navigate(['/error'])
+            this.router.navigate(['/message'])
             console.log('Confirm clicked');
           }
         }

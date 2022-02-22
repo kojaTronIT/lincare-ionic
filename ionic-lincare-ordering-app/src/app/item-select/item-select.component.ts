@@ -61,7 +61,8 @@ export class ItemSelectComponent {
         {
           text: 'Confirm',
           handler: () => {
-            this.router.navigate(['/error'])
+            this.appComponent.message = "You have canceled your request";
+            this.router.navigate(['/message'])
             console.log('Confirm clicked');
           }
         }
