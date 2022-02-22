@@ -19,7 +19,7 @@ const routes: Routes = [
     component: ItemSelectComponent
   },
   {
-    path: 'error',
+    path: 'message',
     component: ErrorComponent
   },
   {
