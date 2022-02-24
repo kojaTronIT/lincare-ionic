@@ -2,35 +2,31 @@
   font-size: large;
 }
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+#main-content {
+  --background: none;
   background-image: url("../../assets/images/background.jpg");
-  background-size: cover; 
+  background-size: cover;
 }
 
 ion-title {
-  font-size: 4vh;
+  font-size: 4ch;
 }
 
 ion-title ion-icon{
-  font-size: 4vh;
+  font-size: 1.8ch;
 }
 
 #subtitle {
-  margin-top: 12vh;
+  margin-top: 6.5vh;
 }
 
 #subtitle p {
-  font-size: 3.5vh;
+  font-size: 4ch;
 }
 
 .form-container {
-  margin-top: 16vh;
   display: flex;
   flex-direction: column;
-  gap: 8vh
 }
 
 ion-icon {
@@ -38,14 +34,38 @@ ion-icon {
   color: black;
 }
 
+.form-action-button {
+  margin-bottom: 1ch;
+  font-size: 2ch;
+  height: 5ch;
+}
+
 #cancel-buttons {
-    display: flex;
+  display: flex;
 }
 
 #cancel-buttons ion-button {
-     width: 50%;
+   width: 50%;
 }
 
 #buttons {
   margin-top: 10vh;
+}
+
+ion-card {
+  display: flex;
+  flex-direction: column;
+  height: 17ch;
+}
+
+#dropdown {
+  margin-top: 3.5ch;
+}
+
+#dropdown ion-select {
+    margin-top: 1ch;
+}
+
+#dropdown ion-label, ion-select {
+   font-size: 2.5ch;
 }
