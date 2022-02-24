@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonDatetime, AlertController } from '@ionic/angular';
+import { IonDatetime, AlertController, LoadingController } from '@ionic/angular';
 import { format, parseISO } from 'date-fns';
 import { AppComponent } from '../app.component';
 import { HomeServiceService } from './home-service.service';
@@ -12,6 +12,14 @@ import { HomeServiceService } from './home-service.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+
+  @ViewChild(IonDatetime, { static: false }) datetime: IonDatetime;
+
+  dateValue = '';
+  zipValue = '';
+  submitted = false;
+
+  private zipcodePattern = RegExp(/^[0-9]{5}$/g);
 
   public errorMessages = {
     dateOfBirth: [
@@ -24,48 +32,22 @@ export class HomePage {
     ]
   }
 
-  @ViewChild(IonDatetime, { static: false }) datetime: IonDatetime;
+  constructor(
+    private formBuilder: FormBuilder, private alertController: AlertController, 
+    private router: Router, private homeService: HomeServiceService, private appComponent: AppComponent, 
+    private loadingController: LoadingController
+    ) { }
 
-  dateValue = '';
-  zipValue = '';
-  submitted = false;
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'loading',
+      message: 'Confirming user data, please wait...',
+      duration: 3000
+    });
+    await loading.present();
 
-  // date regex dd/mm/yyyy 1900-2999
-  // private dateOfBirthPattern = RegExp(/^(0[1-9]|1\d|2\d|3[0-1])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/g);
-  private zipcodePattern = RegExp(/^[0-9]{5}$/g);
-
-  constructor(private formBuilder: FormBuilder, private alertController: AlertController, private router: Router, private homeService: HomeServiceService, private appComponent: AppComponent) { }
-
-  formatDate(value: string) {
-    console.log(format(parseISO(value), "dd/MM/yyyy"));
-    return format(parseISO(value), "dd/MM/yyyy");
-  }
-
-  confirm() {
-    if(this.dateValue == '') {
-      this.dateValue = "01/01/1940"
-    }
-    this.datetime.confirm(true);
-  }
-
-  //.find first in list that matches
-  // checkZip(value) {
-  //   // if (this.check_zipcode.find((code) => {
-  //   //   return code === value
-  //   // })) {
-  //   //   alert("OK")
-  //   // } else {
-  //   //   alert("NOT OK")
-  //   // }
-    
-  // }
-
-  close() {
-    this.datetime.cancel(true);
-  }
-
-  onChange(value) {
-    this.dateValue = value;
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!');
   }
 
   get dateOfBirth() {
@@ -81,19 +63,40 @@ export class HomePage {
     zipcode: ['', [Validators.required, Validators.pattern(this.zipcodePattern)]]
   });
 
-  onSubmit(value) {
+  formatDate(value: string) {
+    console.log(format(parseISO(value), "dd/MM/yyyy"));
+    return format(parseISO(value), "dd/MM/yyyy");
+  }
+
+  confirmDate() {
+    if (this.dateValue == '') {
+      this.dateValue = "01/01/1940"
+    }
+    this.datetime.confirm(true);
+  }
+
+  closeDatePicker() {
+    this.datetime.cancel(true);
+  }
+
+  onDateChange(value) {
+    this.dateValue = value;
+  }
+
+  onSubmit(value: string) {
     this.submitted = true;
     this.zipValue = value;
-    console.log(this.zipValue);
+
+    this.presentLoading();
+
     this.homeService.validateZip(this.dateValue).subscribe({
       next: (data) => {if (data) {this.homeService.validateDobAndZip(this.dateValue, this.zipValue).subscribe({
-        next: () => console.log("ok"),
-        error: (data) => console.log(data)
+        next: () => this.router.navigate(['/item-select']),
+        error: (error) => {console.log(error), this.appComponent.message = error.error}
       })}},
-      error: (error) => error.message
+      error: (error) => { console.log(error), this.appComponent.message = error.error, this.router.navigate(['/message']) }
     })
     console.log(this.registrationForm.value);
-    alert("Submit clicked, waiting for further logic to be implemented")
   }
 
   async onCancel() {
