@@ -12,16 +12,16 @@
       <p>Help us verify your information</p>
     </div>
     
-    <form class="form-container" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <form class="form-container" [formGroup]="registrationForm">
 
-      <ion-card id="open-modal">
+      <ion-card id="open-modal" class="form-elements">
 
-        <div>
+        <div class="form-element">
           <ion-modal trigger="open-modal">
             <ng-template>
               <ion-content id="date-select">
-                <ion-datetime value="1940-01-01" presentation="date" #popoverDatetime (ionChange)="onChange(formatDate(popoverDatetime.value))">
-                  <div slot="title">Select your date of birth</div>
+                <ion-datetime min="1892-01-01" max="2000-01-01" value="1940-01-01" presentation="date" #popoverDatetime (ionChange)="onChange(formatDate(popoverDatetime.value))">
+                  <!-- <div slot="title">Select your date of birth</div> -->
                   <ion-buttons slot="buttons">
                     <ion-button  color="primary" (click)="confirm()">Confirm</ion-button>
                     <ion-button  color="danger" (click)="close()">Close</ion-button>
@@ -31,21 +31,26 @@
             </ng-template>
           </ion-modal>
 
-          <ion-input align="center" placeholder="Click to select your date of birth" formControlName="dateOfBirth" [value]="dateValue" readonly>
+          <ion-input align="center" placeholder="Click to select date of birth" formControlName="dateOfBirth" [value]="dateValue" readonly>
           </ion-input>
         </div>
 
         <div align="center" class="error-field" *ngFor="let error of errorMessages.dateOfBirth">
-          <ng-container *ngIf="dateOfBirth.hasError(error.type) && (dateOfBirth.touched)">
+          <ng-container *ngIf="submitted && dateOfBirth.hasError(error.type)">
             <small class="error-message">{{error.message}}</small>
           </ng-container>
         </div>
 
       </ion-card>
     
-      <ion-card id="zipcode">
-        <div>
-          <ion-input align="center" placeholder="Please enter your zipcode" formControlName="zipcode"></ion-input>
+      <ion-card id="zipcode" class="form-elements">
+
+        <div class="zip-input">
+          <ion-input align="center" placeholder="Please enter your zipcode" readonly></ion-input>
+          
+          <div align="center">
+            <ion-input align="start" maxlength="5" id="zip-underline" formControlName="zipcode" #zip></ion-input>
+          </div>        
         </div>
     
         <div align="center" class="error-field" *ngFor="let error of errorMessages.zipcode">
@@ -56,7 +61,7 @@
       </ion-card>
     
       <div id="buttons">
-        <ion-button expand="block" class="form-action-button" type="submit" [disabled]="!registrationForm.valid">
+        <ion-button expand="block" class="form-action-button" type="submit" (click)="onSubmit(zip.value)">
           Submit
         </ion-button>
     

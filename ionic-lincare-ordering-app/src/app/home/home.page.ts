@@ -3,6 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonDatetime, AlertController } from '@ionic/angular';
 import { format, parseISO } from 'date-fns';
+import { AppComponent } from '../app.component';
+import { HomeServiceService } from './home-service.service';
 
 @Component({
   selector: 'app-home',
@@ -18,18 +20,21 @@ export class HomePage {
     ],
     zipcode: [
       { type: 'required', message: 'Zipcode is a mandatory field' },
-      { type: 'pattern', message: 'Zipcode should be 5 numbers long (example: 11000)' }
+      { type: 'pattern', message: 'Zipcode must be 5 numbers long (example: 11000)' }
     ]
   }
 
   @ViewChild(IonDatetime, { static: false }) datetime: IonDatetime;
 
   dateValue = '';
+  zipValue = '';
+  submitted = false;
 
+  // date regex dd/mm/yyyy 1900-2999
   // private dateOfBirthPattern = RegExp(/^(0[1-9]|1\d|2\d|3[0-1])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/g);
   private zipcodePattern = RegExp(/^[0-9]{5}$/g);
 
-  constructor(private formBuilder: FormBuilder, private alertController: AlertController, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private alertController: AlertController, private router: Router, private homeService: HomeServiceService, private appComponent: AppComponent) { }
 
   formatDate(value: string) {
     console.log(format(parseISO(value), "dd/MM/yyyy"));
@@ -42,6 +47,18 @@ export class HomePage {
     }
     this.datetime.confirm(true);
   }
+
+  //.find first in list that matches
+  // checkZip(value) {
+  //   // if (this.check_zipcode.find((code) => {
+  //   //   return code === value
+  //   // })) {
+  //   //   alert("OK")
+  //   // } else {
+  //   //   alert("NOT OK")
+  //   // }
+    
+  // }
 
   close() {
     this.datetime.cancel(true);
@@ -64,9 +81,19 @@ export class HomePage {
     zipcode: ['', [Validators.required, Validators.pattern(this.zipcodePattern)]]
   });
 
-  onSubmit() {
-    this.router.navigate(['/item-select'])
+  onSubmit(value) {
+    this.submitted = true;
+    this.zipValue = value;
+    console.log(this.zipValue);
+    this.homeService.validateZip(this.dateValue).subscribe({
+      next: (data) => {if (data) {this.homeService.validateDobAndZip(this.dateValue, this.zipValue).subscribe({
+        next: () => console.log("ok"),
+        error: (data) => console.log(data)
+      })}},
+      error: (error) => error.message
+    })
     console.log(this.registrationForm.value);
+    alert("Submit clicked, waiting for further logic to be implemented")
   }
 
   async onCancel() {
@@ -84,6 +111,7 @@ export class HomePage {
         {
           text: 'Confirm',
           handler: () => {
+            this.appComponent.message = "You have canceled your request";
             this.router.navigate(['/message'])
             console.log('Confirm clicked');
           }
