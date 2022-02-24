@@ -20,11 +20,11 @@
           <ion-modal trigger="open-modal">
             <ng-template>
               <ion-content id="date-select">
-                <ion-datetime min="1892-01-01" max="2000-01-01" value="1940-01-01" presentation="date" #popoverDatetime (ionChange)="onChange(formatDate(popoverDatetime.value))">
+                <ion-datetime min="1892-01-01" max="2000-01-01" value="1940-01-01" presentation="date" #popoverDatetime (ionChange)="onDateChange(formatDate(popoverDatetime.value))">
                   <!-- <div slot="title">Select your date of birth</div> -->
                   <ion-buttons slot="buttons">
-                    <ion-button  color="primary" (click)="confirm()">Confirm</ion-button>
-                    <ion-button  color="danger" (click)="close()">Close</ion-button>
+                    <ion-button  color="primary" (click)="confirmDate()">Confirm</ion-button>
+                    <ion-button  color="danger" (click)="closeDatePicker()">Close</ion-button>
                   </ion-buttons>
                 </ion-datetime>
               </ion-content>
@@ -47,7 +47,7 @@
 
         <div class="zip-input">
           <ion-input align="center" placeholder="Please enter your zipcode" readonly></ion-input>
-          
+
           <div align="center">
             <ion-input align="start" maxlength="5" id="zip-underline" formControlName="zipcode" #zip></ion-input>
           </div>        
