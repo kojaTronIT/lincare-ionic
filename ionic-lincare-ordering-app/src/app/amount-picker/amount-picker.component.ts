@@ -114,6 +114,7 @@ export class AmountPickerComponent implements OnInit {
         {
           text: 'Confirm',
           handler: () => {
+            this.appComponent.message = "You have canceled your request";
             this.router.navigate(['/message'])
             console.log('Confirm clicked');
           }
