@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController  } from '@ionic/angular';
 import { AppComponent } from '../app.component';
 
 @Component({
@@ -10,9 +10,31 @@ import { AppComponent } from '../app.component';
 })
 export class ItemSelectComponent {
 
-  constructor(private router: Router, private alertController: AlertController, private appComponent: AppComponent) {}
+  constructor(private router: Router, private alertController: AlertController, private appComponent: AppComponent,
+    private toastController: ToastController) {}
   
   selectedRadioGroup: any;
+
+  async presentToastWithOptions() {
+    const toast = await this.toastController.create({
+      message: 'Atleast one item needs to be selected',
+      icon: 'information-circle',
+      position: 'middle',
+      color: 'primary',
+      cssClass: 'item-select-toast',
+      buttons: [
+        {
+          text: 'Continue',
+          cssClass: 'toast-button',
+          handler: () => {
+            toast.dismiss;
+            console.log('Okay clicked');
+          }
+        }
+      ]
+    });
+    await toast.present();
+  }
 
   radioGroupChange(event, index: number) {
     console.log("radioGroupChange", event.detail)
@@ -36,7 +58,8 @@ export class ItemSelectComponent {
     const result = this.appComponent.item_select_list.filter(obj => obj.checked == true).map(obj => obj.value);
 
     if (this.selectedRadioGroup == undefined || result.length == 0) {
-      alert("No products selected" + "\nPlease select at least one item")
+      this.presentToastWithOptions();
+      // alert("No products selected" + "\nPlease select at least one item")
     } else if (result[0] == "cylinders") {
       this.router.navigate(['/amount-picker']);
       console.log(result);
@@ -48,14 +71,14 @@ export class ItemSelectComponent {
 
   async onCancel() {
     let alert = await this.alertController.create({
-      header: 'Exiting the page !',
-      message: 'Are you sure you want to continue ?',
+      message: 'Are you sure you want to cancel ?',
+      cssClass: 'item-select-alert',
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Deny',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
+            console.log('Deny clicked');
           }
         },
         {
