@@ -32,3 +32,21 @@
   font-size: 2.5ch;
   justify-content: center;
 }
+
+.item-select-toast {
+   font-size: 2.5ch;
+   background-color: rgba(0, 0, 0, 0.4);
+   background-image: url("assets/images/background.jpg") rgba(0, 0, 0);
+   background-size: cover;
+}
+
+ion-toast::part(button) { 
+  	color: var(--ion-color-primary);
+    background: white;
+    border-radius: 14px;
+}
+
+.item-select-alert .alert-message {
+  font-size: 3ch;
+}
+
