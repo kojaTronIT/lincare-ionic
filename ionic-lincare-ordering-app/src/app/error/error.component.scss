@@ -1,19 +1,30 @@
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+* {
+  font-size: large;
+}
+
+#main-content {
+  --background: none;
   background-image: url("../../assets/images/background.jpg");
-  background-size: cover; 
+  background-size: cover;
+}
+
+ion-title {
+  font-size: 4ch;
+}
+
+ion-title ion-icon{
+  font-size: 1.8ch;
 }
 
 #message {
   text-align: center;
   height: fit-content;
-  margin-top: 35vh;
+  margin-top: 30vh;
 }
 
-h3 {
+p {
   color: black;
+  font-size: 3ch;
 }
 
 
