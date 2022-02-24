@@ -101,14 +101,14 @@ export class AmountPickerComponent implements OnInit {
 
   async onCancel() {
     let alert = await this.alertController.create({
-      header: 'Exiting the page !',
-      message: 'Are you sure you want to continue ?',
+      message: 'Are you sure you want to cancel ?',
+      cssClass: 'item-select-alert',
       buttons: [
         {
-          text: 'Cancel',
+          text: 'Deny',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
+            console.log('Deny clicked');
           }
         },
         {
@@ -121,7 +121,7 @@ export class AmountPickerComponent implements OnInit {
         }
       ]
     });
-    
+
     alert.present();
   }
 
