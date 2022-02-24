@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content id="main-content">
   <div class="wrapper">
     <ion-header>
       <ion-toolbar>
@@ -15,8 +15,7 @@
     <form class="form-container" (ngSubmit)="onSubmit()">
       <ion-list>
         <ion-radio-group class="item-options" allow-empty-selection="true" name="radio-group" #radioGroup>
-          <ion-card
-            *ngFor="let item of this.appComponent.item_select_list; let i = index; trackBy:this.appComponent.indexTracker;"
+          <ion-card *ngFor="let item of this.appComponent.item_select_list; let i = index; trackBy:this.appComponent.indexTracker;"
             (ionFocus)="radioFocus()" (ionBlur)="radioBlur()" (ionChange)="radioGroupChange($event, i)">
             <ion-item>
               <ion-label>{{item.text}}</ion-label>
