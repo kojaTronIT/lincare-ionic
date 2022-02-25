@@ -1,13 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon icon="medkit-outline"></ion-icon> Lincare
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content id="main-content">
   <div class="wrapper">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>
-          <ion-icon icon="medkit-outline"></ion-icon> Lincare
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
-    
+
     <div id="subtitle" align="center">
       <p>Help us verify your information</p>
     </div>
@@ -49,7 +50,7 @@
           <ion-input align="center" placeholder="Please enter your zipcode" readonly></ion-input>
 
           <div align="center">
-            <ion-input align="start" maxlength="5" id="zip-underline" formControlName="zipcode" #zip></ion-input>
+            <ion-input  type="text" inputmode="numeric" align="start" maxlength="5" id="zip-underline" formControlName="zipcode" #zip></ion-input>
           </div>        
         </div>
     
@@ -71,5 +72,6 @@
       </div>
     
     </form>
+    
   </div>
 </ion-content>
