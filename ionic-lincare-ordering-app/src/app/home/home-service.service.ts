@@ -31,5 +31,27 @@ export class HomeServiceService {
       })
     );
  }
+
+  public validateUrl(param: any) {
+    return this.http.post("http://localhost:8080/api/v1/check_one_time_link", { urlParam: param })
+      .pipe(
+        map((data: boolean) => {
+          return data;
+        }), catchError(error => {
+          return throwError(error);
+        })
+      );
+  }
+
+  public getZipcodes() {
+    return this.http.get("http://localhost:8080/api/v1/zip_codes")
+      .pipe(
+        map((data: any[]) => {
+          return data;
+        }), catchError(error => {
+          return throwError(error);
+        })
+      );
+  }
  
 }
