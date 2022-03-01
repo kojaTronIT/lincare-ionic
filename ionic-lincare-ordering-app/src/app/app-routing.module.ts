@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AmountPickerComponent } from './amount-picker/amount-picker.component';
+import { DummyPageComponent } from './dummy-page/dummy-page.component';
 import { ErrorComponent } from './error/error.component';
 import { ItemSelectComponent } from './item-select/item-select.component';
 
@@ -11,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'dummy',
     pathMatch: 'full'
   },
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'amount-picker',
     component: AmountPickerComponent
+  },
+  {
+    path: 'dummy',
+    component: DummyPageComponent
   }
 ];
 
