@@ -1,3 +1,4 @@
+import { formatDate} from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -19,6 +20,9 @@ export class HomePage implements OnInit{
   zipValue = '';
   zipResponse;
   submitted = false;
+  zipcodeValidation;
+
+  currentDate;
 
   private zipcodePattern = RegExp(/^[0-9]{5}$/g);
 
@@ -48,6 +52,9 @@ export class HomePage implements OnInit{
         error: (error) => console.log(error.message)
       });
     })
+
+    this.currentDate = formatDate(new Date, 'yyyy-MM-dd', 'en');
+    console.log(this.currentDate)
   }
 
   async presentLoading() {
@@ -99,7 +106,16 @@ export class HomePage implements OnInit{
     this.zipValue = value;
 
     this.homeService.validateZip(this.zipValue).subscribe({
-      next: (data) => { console.log(data), this.zipResponse = data },
+      next: (data) => { 
+        console.log(data, data.length),
+        this.zipResponse = data
+        if(data.length == 0) {
+          this.zipcodeValidation = false;
+        } else {
+          this.zipcodeValidation = true;
+        }
+        console.log(this.zipcodeValidation)
+      },
       error: (error) => console.log(error.message)
     })
   }
@@ -111,7 +127,7 @@ export class HomePage implements OnInit{
     
     this.homeService.validateDobAndZip(this.dateValue, this.zipValue).subscribe({
         next: () => this.router.navigate(['/item-select']),
-        error: (error) => {console.log(error), this.appComponent.message = error.error}
+        error: (error) => { console.log(error), this.appComponent.message = error.error }
       })
 
     console.log(this.registrationForm.value);

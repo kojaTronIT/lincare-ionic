@@ -21,7 +21,7 @@
           <ion-modal trigger="open-modal">
             <ng-template>
               <ion-content id="date-select">
-                <ion-datetime min="1892-01-01" max="2000-01-01" value="1940-01-01" presentation="date" #popoverDatetime (ionChange)="onDateChange(formatDate(popoverDatetime.value))">
+                <ion-datetime min="1892-01-01" [max]="currentDate" value="1940-01-01" presentation="date" #popoverDatetime (ionChange)="onDateChange(formatDate(popoverDatetime.value))">
                   <!-- <div slot="title">Select your date of birth</div> -->
                   <ion-buttons slot="buttons">
                     <ion-button  color="primary" (click)="confirmDate()">Confirm</ion-button>
@@ -59,10 +59,17 @@
             <small class="error-message">{{error.message}}</small>
           </ng-container>
         </div>
+
+        <div align="center" class="error-field" id="american-zipcode">
+          <ng-container
+            *ngIf="(zipcodeValidation == false) && (zipcode.dirty)">
+            <small class="error-message"> Zipcode doesn't exist </small>
+          </ng-container>
+        </div>
       </ion-card>
     
       <div id="buttons">
-        <ion-button expand="block" class="form-action-button" type="submit" (click)="onSubmit()">
+        <ion-button expand="block" class="form-action-button" type="submit" (click)="onSubmit()" [disabled]="!registrationForm.valid">
           Submit
         </ion-button>
     
