@@ -104,7 +104,7 @@ $in-w: $n-char*($char-w + $gap);
 
 }
 
-@media screen and (min-height: 740px) {
+@media screen and (min-height: 730px) {
 
 * {
   font-size: large;
@@ -159,6 +159,10 @@ ion-icon {
 .error-message {
   color: var(--ion-color-danger);
   font-size: 2ch;
+}
+
+.error-field {
+  margin-top: 1ch;
 }
 
 #buttons {
