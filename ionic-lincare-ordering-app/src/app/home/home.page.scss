@@ -165,6 +165,10 @@ ion-icon {
   margin-top: 1ch;
 }
 
+#american-zipcode {
+  margin-top: 2ch;
+}
+
 #buttons {
   margin-top: 3vh;
 }
@@ -197,8 +201,8 @@ ion-toolbar ion-title {
 }
  
 //zipcode underlines
-$char-w: 1.1ch;
-$gap: 1.2*$char-w;
+$char-w: 1.4ch;
+$gap: 1.6ch;
 $n-char: 5;
 $in-w: $n-char*($char-w + $gap);
 
@@ -212,7 +216,7 @@ $in-w: $n-char*($char-w + $gap);
 		transparent 0, transparent $char-w + $gap) 
 		0 100%/ #{$in-w - $gap} 2px no-repeat;
 	font: 2.8ch droid sans mono, consolas, monospace;
-	letter-spacing: $gap;
+	letter-spacing: 1.9ch;
 }
 
 }
@@ -312,7 +316,7 @@ ion-toolbar ion-title {
 }
 
 //zipcode underlines
-$char-w: 1.1ch;
+$char-w: 1ch;
 $gap: 1.2*$char-w;
 $n-char: 5;
 $in-w: $n-char*($char-w + $gap);
