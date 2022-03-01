@@ -158,7 +158,7 @@ ion-icon {
 
 .error-message {
   color: var(--ion-color-danger);
-  font-size: 2ch;
+  font-size: 1.8ch;
 }
 
 .error-field {
@@ -170,7 +170,7 @@ ion-icon {
 }
 
 .form-elements {
-  height: 14.5ch;
+  height: 15.5ch;
 }
 
 .form-element {
@@ -185,7 +185,7 @@ ion-icon {
 .form-action-button {
   margin-bottom: 1ch;
   font-size: 2ch;
-  height: 5ch;
+  height: 4.5ch;
 }
 
 ion-toolbar ion-title {
@@ -195,7 +195,7 @@ ion-toolbar ion-title {
 .zip-input ion-input {
    font-size: 2.5ch;
 }
-
+ 
 //zipcode underlines
 $char-w: 1.1ch;
 $gap: 1.2*$char-w;
