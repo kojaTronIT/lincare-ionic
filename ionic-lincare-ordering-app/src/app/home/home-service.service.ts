@@ -13,7 +13,7 @@ export class HomeServiceService {
   public validateZip(zip: string) {
     return this.http.post("http://localhost:8080/api/v1/check_us_zip", {usZip: zip})
       .pipe(
-        map((data: boolean) => {
+        map((data: string) => {
           return data;
         }), catchError(error => {
           return throwError(error);
