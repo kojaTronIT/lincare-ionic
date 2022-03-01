@@ -17,14 +17,14 @@ export class HomePage implements OnInit{
 
   dateValue = '';
   zipValue = '';
+  zipResponse;
   submitted = false;
 
   private zipcodePattern = RegExp(/^[0-9]{5}$/g);
 
   public errorMessages = {
     dateOfBirth: [
-      { type: 'required', message: 'Date of birth is a mandatory field' },
-      { type: 'pattern', message: 'Date should be in dd/mm/yyyy format (example: 19/05/1998)' }
+      { type: 'required', message: 'Date of birth is a mandatory field' }
     ],
     zipcode: [
       { type: 'required', message: 'Zipcode is a mandatory field' },
@@ -99,7 +99,7 @@ export class HomePage implements OnInit{
     this.zipValue = value;
 
     this.homeService.validateZip(this.zipValue).subscribe({
-      next: (data) => console.log(data),
+      next: (data) => { console.log(data), this.zipResponse = data },
       error: (error) => console.log(error.message)
     })
   }
@@ -107,8 +107,8 @@ export class HomePage implements OnInit{
   onSubmit() {
     this.submitted = true;
 
-    this.presentLoading();
-
+    // this.presentLoading();
+    
     this.homeService.validateDobAndZip(this.dateValue, this.zipValue).subscribe({
         next: () => this.router.navigate(['/item-select']),
         error: (error) => {console.log(error), this.appComponent.message = error.error}
