@@ -213,7 +213,7 @@ $in-w: $n-char*($char-w + $gap);
 
 }
 
-@media screen and (min-height: 800px) {
+@media screen and (min-height: 890px) {
 
 * {
   font-size: large;
@@ -259,7 +259,7 @@ ion-title ion-icon{
   margin-top: 3ch;
   display: flex;
   flex-direction: column;
-  gap: 5ch;
+  gap: 2ch;
 }
 
 ion-icon {
@@ -273,11 +273,11 @@ ion-icon {
 }
 
 .error-field {
-  margin-top: 1ch;
+  margin-top: 0.5ch;
 }
 
 #buttons {
-  margin-top: 2ch;
+  margin-top: 1ch;
 }
 
 .form-elements {
@@ -347,7 +347,7 @@ $in-w: $n-char*($char-w + $gap);
 }
 
 #date-select ion-datetime {
-  height: 38ch;
+  height: 3ch;
   align-self: center;
   position: absolute;
   top:0; left:0; right:0; bottom:0; 
@@ -414,6 +414,235 @@ ion-toolbar ion-title {
 
 .zip-input ion-input {
    font-size: 2.5ch;
+}
+
+//zipcode underlines
+$char-w: 1.1ch;
+$gap: 1.2*$char-w;
+$n-char: 5;
+$in-w: $n-char*($char-w + $gap);
+
+#zip-underline {
+  display: block;
+	border: none;
+  padding: 0;
+	width: $in-w;
+	background: repeating-linear-gradient(90deg, 
+		dimgrey 0, dimgrey $char-w, 
+		transparent 0, transparent $char-w + $gap) 
+		0 100%/ #{$in-w - $gap} 2px no-repeat;
+	font: 2.8ch droid sans mono, consolas, monospace;
+	letter-spacing: $gap;
+}
+
+}
+
+@media screen and (min-height: 840px) {
+
+* {
+  font-size: large;
+}
+
+#main-content {
+  --background: none;
+  background-image: url("../../assets/images/background.jpg");
+  background-size: cover;
+}
+
+#date-select {
+  --background: none;
+  background-image: url("../../assets/images/background.jpg");
+  background-size: cover;
+}
+
+#date-select ion-datetime {
+  height: 50ch;
+  align-self: center;
+  position: absolute;
+  top:0; left:0; right:0; bottom:0; 
+  margin: auto;
+}
+
+ion-title {
+  font-size: 4ch;
+}
+
+ion-title ion-icon{
+  font-size: 1.8ch;
+}
+
+#subtitle {
+  margin-top: 6.5vh;
+}
+
+#subtitle p {
+  font-size: 4ch;
+}
+
+.form-container {
+  margin-top: 3ch;
+  display: flex;
+  flex-direction: column;
+}
+
+ion-icon {
+  vertical-align: top;
+  color: black;
+}
+
+.error-message {
+  color: var(--ion-color-danger);
+  font-size: 2ch;
+}
+
+.error-field {
+  margin-top: 1ch;
+}
+
+#buttons {
+  margin-top: 1ch;
+}
+
+.form-elements {
+  height: 16.5ch;
+}
+
+.form-element {
+  justify-self: center;
+  margin-top: 5ch;
+}
+
+.form-element ion-input{
+  font-size: 2.7ch;
+}
+
+.form-action-button {
+  margin-bottom: 1ch;
+  font-size: 2.3ch;
+  height: 5ch;
+}
+
+ion-toolbar ion-title {
+  justify-self: center;
+}
+
+.zip-input ion-input {
+   font-size: 2.7ch;
+}
+
+//zipcode underlines
+$char-w: 1.1ch;
+$gap: 1.2*$char-w;
+$n-char: 5;
+$in-w: $n-char*($char-w + $gap);
+
+#zip-underline {
+  display: block;
+	border: none;
+  padding: 0;
+	width: $in-w;
+	background: repeating-linear-gradient(90deg, 
+		dimgrey 0, dimgrey $char-w, 
+		transparent 0, transparent $char-w + $gap) 
+		0 100%/ #{$in-w - $gap} 2px no-repeat;
+	font: 2.8ch droid sans mono, consolas, monospace;
+	letter-spacing: $gap;
+}
+
+}
+
+@media screen and (min-height: 850px) {
+
+* {
+  font-size: large;
+}
+
+#main-content {
+  --background: none;
+  background-image: url("../../assets/images/background.jpg");
+  background-size: cover;
+}
+
+#date-select {
+  --background: none;
+  background-image: url("../../assets/images/background.jpg");
+  background-size: cover;
+}
+
+#date-select ion-datetime {
+  height: 50ch;
+  align-self: center;
+  position: absolute;
+  top:0; left:0; right:0; bottom:0; 
+  margin: auto;
+}
+
+ion-title {
+  font-size: 4ch;
+}
+
+ion-title ion-icon{
+  font-size: 1.8ch;
+}
+
+#subtitle {
+  margin-top: 6.5vh;
+}
+
+#subtitle p {
+  font-size: 4ch;
+}
+
+.form-container {
+  margin-top: 3ch;
+  display: flex;
+  flex-direction: column;
+  gap: 1ch;
+}
+
+ion-icon {
+  vertical-align: top;
+  color: black;
+}
+
+.error-message {
+  color: var(--ion-color-danger);
+  font-size: 2ch;
+}
+
+.error-field {
+  margin-top: 0.5ch;
+}
+
+#buttons {
+  margin-top: 2ch;
+}
+
+.form-elements {
+  height: 16.5ch;
+}
+
+.form-element {
+  justify-self: center;
+  margin-top: 5ch;
+}
+
+.form-element ion-input{
+  font-size: 3ch;
+}
+
+.form-action-button {
+  margin-bottom: 1ch;
+  font-size: 2.3ch;
+  height: 5ch;
+}
+
+ion-toolbar ion-title {
+  justify-self: center;
+}
+
+.zip-input ion-input {
+   font-size: 3ch;
 }
 
 //zipcode underlines
