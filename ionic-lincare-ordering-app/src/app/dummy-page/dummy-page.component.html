@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Dummy page
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="wrapper">
+    <ion-list *ngFor="let zipcode of zipcode_list">
+      <ion-item>
+        <ion-label class="zipcode" align="center">{{zipcode.usZip}}</ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-button (click)="onSubmit()" size="large" expand="full" fill="outline"> Go to home page </ion-button>
+  </div>
+</ion-content>
