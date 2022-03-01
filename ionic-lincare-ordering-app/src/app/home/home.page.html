@@ -37,7 +37,7 @@
         </div>
 
         <div align="center" class="error-field" *ngFor="let error of errorMessages.dateOfBirth">
-          <ng-container *ngIf="dateOfBirth.hasError(error.type) && dateOfBirth.touched">
+          <ng-container *ngIf="(dateOfBirth.hasError(error.type) && dateOfBirth.touched) || (dateOfBirth.hasError(error.type) && submitted)">
             <small class="error-message">{{error.message}}</small>
           </ng-container>
         </div>
@@ -50,12 +50,12 @@
           <ion-input align="center" placeholder="Please enter your zipcode" readonly></ion-input>
 
           <div align="center">
-            <ion-input  type="text" inputmode="numeric" align="start" maxlength="5" (ionInput)="onZipChange(zip.value)" id="zip-underline" formControlName="zipcode" #zip></ion-input>
+            <ion-input type="text" inputmode="numeric" align="start" maxlength="5" (ionInput)="onZipChange(zip.value)" id="zip-underline" formControlName="zipcode" #zip></ion-input>
           </div>        
         </div>
     
         <div align="center" class="error-field" *ngFor="let error of errorMessages.zipcode">
-          <ng-container *ngIf="zipcode.hasError(error.type) && (zipcode.dirty || zipcode.touched)">
+          <ng-container *ngIf="(zipcode.hasError(error.type) && (zipcode.dirty || zipcode.touched)) || (zipcode.hasError(error.type) && submitted)">
             <small class="error-message">{{error.message}}</small>
           </ng-container>
         </div>
