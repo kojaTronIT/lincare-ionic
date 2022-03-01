@@ -1,6 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { IonDatetime, AlertController, LoadingController } from '@ionic/angular';
 import { format, parseISO } from 'date-fns';
 import { AppComponent } from '../app.component';
@@ -11,7 +11,7 @@ import { HomeServiceService } from './home-service.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit{
 
   @ViewChild(IonDatetime, { static: false }) datetime: IonDatetime;
 
@@ -35,8 +35,20 @@ export class HomePage {
   constructor(
     private formBuilder: FormBuilder, private alertController: AlertController, 
     private router: Router, private homeService: HomeServiceService, private appComponent: AppComponent, 
-    private loadingController: LoadingController
+    private loadingController: LoadingController, private activeRoute: ActivatedRoute
     ) { }
+
+  ngOnInit() {
+    this.activeRoute.queryParams.subscribe(params => {
+
+      console.log(params.user_code);
+
+      this.homeService.validateUrl(params.user_code).subscribe({
+        next: (data) => console.log(data),
+        error: (error) => console.log(error.message)
+      });
+    })
+  }
 
   async presentLoading() {
     const loading = await this.loadingController.create({
@@ -83,19 +95,25 @@ export class HomePage {
     this.dateValue = value;
   }
 
-  onSubmit(value: string) {
-    this.submitted = true;
+  onZipChange(value) {
     this.zipValue = value;
+
+    this.homeService.validateZip(this.zipValue).subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.log(error.message)
+    })
+  }
+
+  onSubmit() {
+    this.submitted = true;
 
     this.presentLoading();
 
-    this.homeService.validateZip(this.dateValue).subscribe({
-      next: (data) => {if (data) {this.homeService.validateDobAndZip(this.dateValue, this.zipValue).subscribe({
+    this.homeService.validateDobAndZip(this.dateValue, this.zipValue).subscribe({
         next: () => this.router.navigate(['/item-select']),
         error: (error) => {console.log(error), this.appComponent.message = error.error}
-      })}},
-      error: (error) => { console.log(error), this.appComponent.message = error.error, this.router.navigate(['/message']) }
-    })
+      })
+
     console.log(this.registrationForm.value);
   }
 
