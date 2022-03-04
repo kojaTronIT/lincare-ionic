@@ -127,7 +127,7 @@ export class HomePage implements OnInit{
     
     this.homeService.validateDobAndZip(this.dateValue, this.zipValue).subscribe({
         next: () => this.router.navigate(['/item-select']),
-        error: (error) => { console.log(error), this.appComponent.message = error.error }
+      error: (error) => { this.router.navigate(['/message']), this.appComponent.message = error.error }
       })
 
     console.log(this.registrationForm.value);
