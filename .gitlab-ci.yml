@@ -8,6 +8,6 @@ build:
     - docker:19.03.12-dind
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker build -t $CI_REGISTRY/tronit/lincare/licare-ordering-app-ionic/licare-ordering-app-ionic-develop-$CI_COMMIT_REF_NAME:latest .
-    - docker push $CI_REGISTRY/tronit/lincare/licare-ordering-app-ionic/licare-ordering-app-ionic-develop-$CI_COMMIT_REF_NAME:latest
+    - docker build -t $CI_REGISTRY/tronit/lincare/licare-ordering-app-ionic/licare-ordering-app-ionic-$CI_COMMIT_REF_NAME:latest .
+    - docker push $CI_REGISTRY/tronit/lincare/licare-ordering-app-ionic/licare-ordering-app-ionic-$CI_COMMIT_REF_NAME:latest
   when: manual
