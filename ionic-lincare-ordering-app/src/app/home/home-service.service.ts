@@ -9,7 +9,7 @@ import {map, catchError} from 'rxjs/operators';
 export class HomeServiceService {
 
   // http://3.68.132.233:8180
-  api_path = "http://localhost:8080"
+  api_path = "http://3.68.132.233:8180"
 
   constructor(private http: HttpClient) { }
 
