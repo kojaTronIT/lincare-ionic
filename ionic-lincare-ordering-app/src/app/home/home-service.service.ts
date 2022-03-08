@@ -8,10 +8,13 @@ import {map, catchError} from 'rxjs/operators';
 })
 export class HomeServiceService {
 
+  // http://3.68.132.233:8180
+  api_path = "http://localhost:8080"
+
   constructor(private http: HttpClient) { }
 
   public validateZip(zip: string) {
-    return this.http.post("http://localhost:8080/api/v1/check_us_zip", {usZip: zip})
+    return this.http.post(this.api_path + "/api/v1/check_us_zip", {usZip: zip})
       .pipe(
         map((data: string) => {
           return data;
@@ -22,7 +25,7 @@ export class HomeServiceService {
   }
 
   public validateDobAndZip(zip: string, dob: string){
-    return this.http.post("http://localhost:8080/api/v1/validate_dob_zip", { dateOfBrith: dob, usZip: zip }, { responseType: 'text' })
+    return this.http.post(this.api_path + "/api/v1/validate_dob_zip", { dateOfBrith: dob, usZip: zip }, { responseType: 'text' })
     .pipe(
       map((data: string) => {
         return data;
@@ -33,7 +36,7 @@ export class HomeServiceService {
  }
 
   public validateUrl(param: any) {
-    return this.http.post("http://localhost:8080/api/v1/check_one_time_link", { urlParam: param })
+    return this.http.post(this.api_path + "/api/v1/check_one_time_link", { urlParam: param })
       .pipe(
         map((data: boolean) => {
           return data;
@@ -44,7 +47,7 @@ export class HomeServiceService {
   }
 
   public getZipcodes() {
-    return this.http.get("http://localhost:8080/api/v1/zip_codes")
+    return this.http.get(this.api_path + "/api/v1/zip_codes")
       .pipe(
         map((data: any[]) => {
           return data;
