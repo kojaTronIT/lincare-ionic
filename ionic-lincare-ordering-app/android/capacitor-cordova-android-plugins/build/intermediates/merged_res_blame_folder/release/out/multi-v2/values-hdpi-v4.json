@@ -1,0 +1,36 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\marko\\OneDrive\\Radna površina\\Projects\\lincare-ordering-app-ionic\\ionic-lincare-ordering-app\\android\\capacitor-cordova-android-plugins\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\marko\\.gradle\\caches\\transforms-3\\057813758d8291d1db410649cdbeee12\\transformed\\appcompat-1.2.0\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "C:\\Users\\marko\\OneDrive\\Radna površina\\Projects\\lincare-ordering-app-ionic\\ionic-lincare-ordering-app\\android\\capacitor-cordova-android-plugins\\build\\intermediates\\merged_res\\release\\values-hdpi-v4\\values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\marko\\.gradle\\caches\\transforms-3\\057813758d8291d1db410649cdbeee12\\transformed\\appcompat-1.2.0\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}
