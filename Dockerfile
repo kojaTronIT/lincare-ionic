@@ -1,4 +1,9 @@
 FROM node:16-alpine as build
+RUN apk add --no-cache nodejs npm && \
+apk upgrade --no-cache --available && \
+npm config set unsafe-perm true && \
+npm install -g @angular/cli npm-snapshot && \
+npm cache clean --force
 RUN mkdir /app
 WORKDIR /app
 COPY package*.json /app/
