@@ -1,18 +1,17 @@
-FROM node:16-alpine as build
-RUN apk add --no-cache nodejs npm && \
-apk upgrade --no-cache --available && \
-npm config set unsafe-perm true && \
-npm install -g @angular/cli npm-snapshot && \
-npm cache clean --force
-RUN mkdir /app
-WORKDIR /app
-COPY package*.json /app/
-RUN npm install -g ionic
-RUN npm install && \
-ng build --prod && ls -la
-COPY ./www/ /app/
-FROM nginx:latest AS release
-COPY --from=dev /app/www/ /usr/share/nginx/html/
+## Build
+FROM beevelop/ionic AS ionic
+# Create app directory
+WORKDIR /usr/src/app
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+RUN npm ci
+# Bundle app source
+COPY . .
+RUN ionic build
 
-
-
+## Run 
+FROM nginx:alpine
+#COPY www /usr/share/nginx/html
+COPY --from=ionic  /usr/src/app/www /usr/share/nginx/html
