@@ -5,4 +5,6 @@ COPY package*.json /app/
 RUN npm install -g ionic
 RUN npm install
 COPY ./ /app/
-CMD ["ionic", "serve"]
+RUN npm run-script build
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=build /app/www /usr/share/nginx/html/
