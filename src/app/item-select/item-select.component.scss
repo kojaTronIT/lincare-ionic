@@ -1,3 +1,69 @@
+@media screen and (max-height: 680px) {
+
+* {
+  font-size: large;
+}
+
+#main-content {
+  --background: none;
+  background-image: url("../../assets/images/background.jpg");
+  background-size: cover;
+}
+
+ion-title {
+  font-size: 3.5ch;
+}
+
+ion-title ion-icon{
+  font-size: 1.5ch;
+}
+
+#subtitle p {
+  font-size: 4ch;
+}
+
+.form-container {
+  margin-top: -4.5ch;
+  display: flex;
+  flex-direction: column;
+}
+
+ion-list {
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+.item-options {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-options ion-card {
+  height: 7ch;
+}
+
+.item-options ion-item {
+  margin-top: 1ch;
+}
+
+.item-options ion-label {
+  font-size: 3ch;
+}
+
+ion-icon {
+  vertical-align: top;
+  color: black;
+}
+
+.form-action-button {
+  margin-bottom: 1ch;
+  font-size: 2ch;
+  height: 5ch;
+}
+
+}
+
+@media screen and (min-height: 730px) {
+
 * {
   font-size: large;
 }
@@ -64,4 +130,6 @@ ion-icon {
   margin-bottom: 1ch;
   font-size: 2ch;
   height: 5ch;
+}
+
 }
