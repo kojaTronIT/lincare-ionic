@@ -9,4 +9,6 @@ RUN mkdir /app
 WORKDIR /app
 COPY ./ /app/
 RUN npm install
-RUN npm run-script start
+RUN npm run build
+FROM nginx:latest AS release
+COPY --from=build /app/www/ /usr/share/nginx/html/
