@@ -20,7 +20,7 @@ export class HomePage implements OnInit{
   zipValue = '';
   zipResponse;
   submitted = false;
-  zipcodeValidation;
+  zipcodeValidation = false;
 
   currentDate;
 
@@ -109,10 +109,10 @@ export class HomePage implements OnInit{
       next: (data) => { 
         console.log(data, data.length),
         this.zipResponse = data
-        if(data.length == 0) {
-          this.zipcodeValidation = false;
-        } else {
+        if(!(data.length == 0)) {
           this.zipcodeValidation = true;
+        } else {
+          this.zipcodeValidation = false;
         }
         console.log(this.zipcodeValidation)
       },
