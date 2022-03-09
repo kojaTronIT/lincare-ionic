@@ -1,9 +1,12 @@
-FROM node:16-alpine as build
+FROM nginx:alpine as env
+RUN apk add --no-cache nodejs npm && \
+apk upgrade --no-cache --available && \
+npm config set unsafe-perm true && \
+npm install -g ionic && \
+npm cache clean --force
+
 RUN mkdir /app
 WORKDIR /app
-COPY package*.json /app/
-RUN npm install -g ionic
-RUN npm install
 COPY ./ /app/
-RUN npm run-script build && \
-    npm run-script start
+RUN npm install
+RUN npm run-script start
