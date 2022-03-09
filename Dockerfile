@@ -6,4 +6,4 @@ RUN npm install -g ionic
 RUN npm install
 COPY ./ /app/
 RUN npm run-script build && \
-    npm run-script serve
+    npm run-script start
