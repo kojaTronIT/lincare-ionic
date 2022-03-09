@@ -2,11 +2,7 @@ FROM node:0.12
 
 COPY . /www/app
 
-RUN npm install -g cordova ionic
-RUN npm install -g bower
-RUN npm install -g gulp
-
-WORKDIR /www/app
+RUN npm install -g ionic
 RUN npm install
 
 EXPOSE 8100
