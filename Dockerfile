@@ -1,14 +1,14 @@
-FROM nginx:alpine as env
+FROM nginx:alpine as build
 RUN apk add --no-cache nodejs npm && \
 apk upgrade --no-cache --available && \
 npm config set unsafe-perm true && \
 npm install -g ionic && \
 npm cache clean --force
-
 RUN mkdir /app
 WORKDIR /app
 COPY ./ /app/
 RUN npm install
 RUN npm run build
+
 FROM nginx:latest AS release
 COPY --from=build /app/www/ /usr/share/nginx/html/
