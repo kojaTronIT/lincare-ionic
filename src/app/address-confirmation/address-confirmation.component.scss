@@ -1,0 +1,58 @@
+#address {
+    margin: 6ch;
+}
+
+#buttons {
+  display: flex;
+}
+
+#buttons ion-button {
+   width: 50%;
+}
+
+* {
+  font-size: large;
+}
+
+#main-content {
+  --background: none;
+  background-image: url("../../assets/images/background.jpg");
+  background-size: cover;
+}
+
+ion-title {
+  font-size: 4ch;
+}
+
+ion-title ion-icon{
+  font-size: 1.8ch;
+}
+
+#subtitle {
+  margin-top: 6.5vh;
+}
+
+#subtitle p {
+  font-size: 4ch;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 7ch;
+}
+
+ion-icon {
+  vertical-align: top;
+  color: black;
+}
+
+.form-action-button {
+  margin-bottom: 1ch;
+  font-size: 2ch;
+  height: 5ch;
+}
+
+ion-card {
+    height: 25ch;
+}
