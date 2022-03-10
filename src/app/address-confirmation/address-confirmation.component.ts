@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-address-confirmation',
@@ -7,8 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddressConfirmationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private appComponenet: AppComponent) { }
 
   ngOnInit() {}
+
+  onYes() {
+    this.router.navigate(['/item-select'])
+    console.log("Yes clicked")
+  }
+
+  onNo() {
+    this.router.navigate(['/message']);
+    this.appComponenet.message = "You clicked no on adress confirmation Please contact your centre"
+    this.appComponenet.cancel_location = "address-confirmation: No clicked";
+  }
 
 }
