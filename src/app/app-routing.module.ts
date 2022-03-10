@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AddressConfirmationComponent } from './address-confirmation/address-confirmation.component';
 import { AmountPickerComponent } from './amount-picker/amount-picker.component';
 import { DummyPageComponent } from './dummy-page/dummy-page.component';
 import { ErrorComponent } from './error/error.component';
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'dummy',
     component: DummyPageComponent
+  },
+  {
+    path: 'address-confirmation',
+    component: AddressConfirmationComponent
   }
 ];
 

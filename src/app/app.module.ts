@@ -11,9 +11,10 @@ import { ItemSelectComponent } from './item-select/item-select.component';
 import { AmountPickerComponent } from './amount-picker/amount-picker.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DummyPageComponent } from './dummy-page/dummy-page.component';
+import { AddressConfirmationComponent } from './address-confirmation/address-confirmation.component';
 
 @NgModule({
-  declarations: [AppComponent, ItemSelectComponent, AmountPickerComponent, DummyPageComponent],
+  declarations: [AppComponent, ItemSelectComponent, AmountPickerComponent, DummyPageComponent, AddressConfirmationComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ReactiveFormsModule, FormsModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ItemSelectComponent],
