@@ -1,3 +1,38 @@
-<p>
-  address-confirmation works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon icon="medkit-outline"></ion-icon> Lincare
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="main-content">
+  <div class="wrapper">
+
+    <div id="subtitle" align="center">
+      <p> Do we have the correct shipping adress ? </p>
+    </div>
+
+    <div class="container">
+      <ion-card id="address-card">
+        <div id="address">
+          <p> City </p>
+          <p> Area </p>
+          <p> Zipcode </p>
+          <p> Address </p>
+        </div>
+      </ion-card>
+
+      <div id="buttons">
+          <ion-button expand="block" color="danger" class="form-action-button" (click)="onNo()">
+            No
+          </ion-button>
+
+          <ion-button expand="block" color="primary" class="form-action-button" (click)="onYes()">
+            Yes
+          </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
