@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
+
   constructor() {}
 
   public item_select_list = [
