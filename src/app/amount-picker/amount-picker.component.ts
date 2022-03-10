@@ -14,6 +14,7 @@ export class AmountPickerComponent implements OnInit {
   constructor(private router: Router, private alertController: AlertController, private appComponent: AppComponent) { }
 
   ngOnInit() {
+    console.log(localStorage.getItem("one_time_code"));
     console.log(this.appComponent.item_select_list);
   }
 
