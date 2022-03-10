@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ToastController  } from '@ionic/angular';
 import { AppComponent } from '../app.component';
@@ -8,10 +8,14 @@ import { AppComponent } from '../app.component';
   templateUrl: './item-select.component.html',
   styleUrls: ['./item-select.component.scss'],
 })
-export class ItemSelectComponent {
+export class ItemSelectComponent implements OnInit{
 
   constructor(private router: Router, private alertController: AlertController, private appComponent: AppComponent,
+
     private toastController: ToastController) {}
+
+  ngOnInit() {
+  }
   
   selectedRadioGroup: any;
 
@@ -28,7 +32,7 @@ export class ItemSelectComponent {
           cssClass: 'toast-button',
           handler: () => {
             toast.dismiss;
-            console.log('Okay clicked');
+            console.log('Continue clicked');
           }
         }
       ]
@@ -86,7 +90,7 @@ export class ItemSelectComponent {
           handler: () => {
             this.appComponent.message = "You have canceled your request";
             this.router.navigate(['/message'])
-            console.log('Confirm clicked');
+            this.appComponent.cancel_location = "item-select: Confirm cancelation clicked"
           }
         }
       ]

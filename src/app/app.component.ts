@@ -39,4 +39,6 @@ export class AppComponent {
 
   public message: string = " ";
 
+  public cancel_location = " ";
+
 }

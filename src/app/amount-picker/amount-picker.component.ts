@@ -90,12 +90,14 @@ export class AmountPickerComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log("Submit clicked");
     const result = this.appComponent.item_select_list.filter(obj => obj.checked == true).map(obj => obj.value);
     this.data_list.push(result, this.selectedAmount);
     console.log(this.data_list);
   }
 
   onBack() {
+    console.log("Back clicked")
     this.router.navigate(['/item-select'])
   }
 
@@ -116,7 +118,7 @@ export class AmountPickerComponent implements OnInit {
           handler: () => {
             this.appComponent.message = "You have canceled your request";
             this.router.navigate(['/message'])
-            console.log('Confirm clicked');
+            this.appComponent.cancel_location = "ammount-picker: Confirm cancelation clicked"
           }
         }
       ]

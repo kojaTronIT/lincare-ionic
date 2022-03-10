@@ -11,6 +11,7 @@ export class ErrorComponent implements OnInit {
   constructor(private appComponent: AppComponent) { }
 
   ngOnInit() {
+    console.log(this.appComponent.cancel_location);
   }
 
 }

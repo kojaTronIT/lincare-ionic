@@ -126,7 +126,7 @@ export class HomePage implements OnInit{
     // this.presentLoading();
     
     this.homeService.validateDobAndZip(this.dateValue, this.zipValue).subscribe({
-        next: () => this.router.navigate(['/item-select']),
+        next: () => this.router.navigate(['/address-confirmation']),
       error: (error) => { this.router.navigate(['/message']), this.appComponent.message = error.error }
       })
 
@@ -150,7 +150,7 @@ export class HomePage implements OnInit{
           handler: () => {
             this.appComponent.message = "You have canceled your request";
             this.router.navigate(['/message'])
-            console.log('Confirm clicked');
+            this.appComponent.cancel_location = "home-page: Confirm cancelation clicked"
           }
         }
       ]
