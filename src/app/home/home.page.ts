@@ -45,6 +45,7 @@ export class HomePage implements OnInit{
   ngOnInit() {
     this.activeRoute.queryParams.subscribe(params => {
 
+      localStorage.setItem("one_time_code", params.user_code);
       console.log(params.user_code);
 
       this.homeService.validateUrl(params.user_code).subscribe({
@@ -105,30 +106,33 @@ export class HomePage implements OnInit{
   onZipChange(value) {
     this.zipValue = value;
 
-    this.homeService.validateZip(this.zipValue).subscribe({
-      next: (data) => { 
-        console.log(data, data.length),
-        this.zipResponse = data
-        if(!(data.length == 0)) {
-          this.zipcodeValidation = true;
-        } else {
-          this.zipcodeValidation = false;
-        }
-        console.log(this.zipcodeValidation)
-      },
-      error: (error) => console.log(error.message)
-    })
+    if(this.zipValue.length == 5) {
+      this.homeService.validateZip(this.zipValue).subscribe({
+        next: (data) => {
+          console.log(data, data.length),
+            this.zipResponse = data
+          if (!(data.length == 0)) {
+            this.zipcodeValidation = true;
+          } else {
+            this.zipcodeValidation = false;
+          }
+          console.log(this.zipcodeValidation)
+        },
+        error: (error) => console.log(error.message)
+      })
+    }   
   }
 
   onSubmit() {
     this.submitted = true;
+    this.router.navigate(['/address-confirmation'])
 
     // this.presentLoading();
     
-    this.homeService.validateDobAndZip(this.dateValue, this.zipValue).subscribe({
-        next: () => this.router.navigate(['/address-confirmation']),
-      error: (error) => { this.router.navigate(['/message']), this.appComponent.message = error.error }
-      })
+    // this.homeService.validateDobAndZip(this.dateValue, this.zipValue).subscribe({
+    //     next: () => this.router.navigate(['/address-confirmation']),
+    //   error: (error) => { this.router.navigate(['/message']), this.appComponent.message = error.error }
+    //   })
 
     console.log(this.registrationForm.value);
   }
