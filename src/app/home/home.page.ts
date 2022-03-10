@@ -49,7 +49,7 @@ export class HomePage implements OnInit{
 
       this.homeService.validateUrl(params.user_code).subscribe({
         next: (data) => console.log(data),
-        error: (error) => { this.router.navigate(['/message']), this.appComponent.message = error.error }
+        error: (error) => console.log(error) //{ this.router.navigate(['/message']), this.appComponent.message = error.error }
       });
     })
 
