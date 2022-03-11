@@ -56,5 +56,16 @@ export class HomeServiceService {
         })
       );
   }
+
+  public validateCancel(oneTimeString: any, message: any) {
+    return this.http.post(this.api_path + "/api/v1/cancel", { oneTimeString: oneTimeString, message: message })
+      .pipe(
+        map((data: boolean) => {
+          return data;
+        }), catchError(error => {
+          return throwError(error);
+        })
+      );
+  }
  
 }
