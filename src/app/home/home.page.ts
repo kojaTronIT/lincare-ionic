@@ -153,8 +153,8 @@ export class HomePage implements OnInit{
           text: 'Confirm',
           handler: () => {
             this.appComponent.message = "You have canceled your request";
-            this.router.navigate(['/message'])
-            this.appComponent.cancel_location = "home-page: Confirm cancelation clicked"
+            this.router.navigate(['/message']);
+            this.appComponent.cancel_location = "home-page: Confirm cancelation clicked";
           }
         }
       ]
