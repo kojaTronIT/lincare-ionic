@@ -1,12 +1,10 @@
-<ion-header>
+<ion-content id="main-content">
   <ion-toolbar>
-    <ion-title>
-      <ion-icon icon="medkit-outline"></ion-icon> Lincare
+    <ion-title align="center">
+      <img src="../../assets/images/lincare_inverse.png" alt="logo">
     </ion-title>
   </ion-toolbar>
-</ion-header>
 
-<ion-content id="main-content">
   <div class="wrapper">
 
     <div id="subtitle" align="center">
@@ -24,11 +22,11 @@
       </ion-card>
 
       <div id="buttons">
-          <ion-button expand="block" color="danger" class="form-action-button" (click)="onNo()">
+          <ion-button expand="block" id="no-button" class="form-action-button" (click)="onNo()">
             No
           </ion-button>
 
-          <ion-button expand="block" color="primary" class="form-action-button" (click)="onYes()">
+          <ion-button expand="block" class="form-action-button" (click)="onYes()">
             Yes
           </ion-button>
       </div>

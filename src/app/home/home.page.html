@@ -1,12 +1,10 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      <ion-icon icon="medkit-outline"></ion-icon> Lincare
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content id="main-content">
+    <ion-toolbar>
+      <ion-title align="center">
+        <img src="../../assets/images/lincare_inverse.png" alt="logo">
+      </ion-title>
+    </ion-toolbar>
+
   <div class="wrapper">
 
     <div id="subtitle" align="center">
@@ -21,11 +19,11 @@
           <ion-modal trigger="open-modal">
             <ng-template>
               <ion-content id="date-select">
-                <ion-datetime min="1892-01-01" [max]="currentDate" value="1940-01-01" presentation="date" #popoverDatetime (ionChange)="onDateChange(formatDate(popoverDatetime.value))">
+                <ion-datetime min="1892-01-01" color="dark" [max]="currentDate" value="1940-01-01" presentation="date" #popoverDatetime (ionChange)="onDateChange(formatDate(popoverDatetime.value))">
                   <!-- <div slot="title">Select your date of birth</div> -->
                   <ion-buttons slot="buttons">
-                    <ion-button  color="primary" (click)="confirmDate()">Confirm</ion-button>
-                    <ion-button  color="danger" (click)="closeDatePicker()">Close</ion-button>
+                    <ion-button (click)="confirmDate()">Confirm</ion-button>
+                    <ion-button color="danger" (click)="closeDatePicker()">Close</ion-button>
                   </ion-buttons>
                 </ion-datetime>
               </ion-content>
@@ -73,7 +71,7 @@
           Submit
         </ion-button>
     
-        <ion-button expand="block" color="danger" class="form-action-button" (click)="onCancel()">
+        <ion-button id="cancel-button" expand="block" class="form-action-button" (click)="onCancel()">
           Cancel
         </ion-button>
       </div>
