@@ -34,11 +34,9 @@ export class AppComponent {
     }
   ];
 
-  indexTracker(index: number, value: any) {
+  indexTracker(index: number) {
     return index;
   }
-
-  public message: string = " ";
 
   public cancel_location = " ";
 
