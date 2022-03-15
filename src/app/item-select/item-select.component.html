@@ -1,12 +1,10 @@
-<ion-header>
+<ion-content id="main-content">
   <ion-toolbar>
-    <ion-title>
-      <ion-icon icon="medkit-outline"></ion-icon> Lincare
+    <ion-title align="center">
+      <img src="../../assets/images/lincare_inverse.png" alt="logo">
     </ion-title>
   </ion-toolbar>
-</ion-header>
 
-<ion-content id="main-content">
   <div class="wrapper">
     
     <div id="subtitle" align="center">
@@ -18,7 +16,7 @@
         <ion-radio-group class="item-options" allow-empty-selection="true" name="radio-group" #radioGroup>
           <ion-card *ngFor="let item of this.appComponent.item_select_list; let i = index; trackBy:this.appComponent.indexTracker;"
             (ionFocus)="radioFocus()" (ionBlur)="radioBlur()" (ionChange)="radioGroupChange($event, i)">
-            <ion-item>
+            <ion-item  lines="none">
               <ion-label>{{item.text}}</ion-label>
               <ion-checkbox name="{{item.name}}" value="{{item.value}}"></ion-checkbox>
             </ion-item>
@@ -31,7 +29,7 @@
           Submit
         </ion-button>
     
-        <ion-button expand="block" color="danger" class="form-action-button" (click)="onCancel()" type="reset">
+        <ion-button expand="block" id="cancel-button" class="form-action-button" (click)="onCancel()" type="reset">
           Cancel
         </ion-button>
       </div>
