@@ -2,6 +2,15 @@
   font-size: large;
 }
 
+ion-toolbar {
+  --background: rgb(0, 24, 46);
+   box-shadow: 5px 10px 10px rgb(1, 34, 65);
+}
+
+ion-title img {
+  height: 6ch;
+}
+
 #main-content {
   --background: none;
   background-image: url("../../assets/images/background.jpg");
@@ -21,6 +30,7 @@ ion-title ion-icon{
 }
 
 #subtitle p {
+  color: rgb(1, 34, 65);
   font-size: 4ch;
 }
 
@@ -37,12 +47,14 @@ ion-icon {
 .form-action-button {
   margin-bottom: 1ch;
   font-size: 2ch;
-  height: 5ch;
+  height: 5ch;  
+  --background: rgb(1, 34, 65);
 }
 
 #cancel-buttons {
   display: flex;
 }
+
 
 #cancel-buttons ion-button {
    width: 50%;
@@ -52,10 +64,21 @@ ion-icon {
   margin-top: 10vh;
 }
 
+#cancel-button {
+  --background: white;
+  color: rgb(1, 34, 65);
+} 
+
+#back-button {
+  --background: white;
+  color: rgb(1, 34, 65);
+}
+
 ion-card {
   display: flex;
   flex-direction: column;
   height: 17ch;
+  box-shadow: 5px 10px 10px rgb(1, 34, 65);
 }
 
 #dropdown {

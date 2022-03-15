@@ -1,12 +1,10 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      <ion-icon icon="medkit-outline"></ion-icon> Lincare
+<ion-content id="main-content">
+  <ion-toolbar align="center">
+    <ion-title align="center">
+      <img src="../../assets/images/lincare_inverse.png" alt="logo">
     </ion-title>
   </ion-toolbar>
-</ion-header>
 
-<ion-content id="main-content">
   <div class="wrapper">
     
     <div id="subtitle" align="center">
@@ -17,7 +15,7 @@
       <ion-card id="dropdown-card">
         <div id="dropdown" align="center">
           <ion-label >Click below to select an number</ion-label>
-          <ion-select interface="action-sheet" name="numbers-dropdown" (ionChange)="selectChange($event)"
+          <ion-select cancel-text="Close" interface="action-sheet" name="numbers-dropdown" (ionChange)="selectChange($event)"
             placeholder="0">
             <ion-select-option *ngFor="let number of amount_list" value="{{number.value}}"> {{number.text}} </ion-select-option>
           </ion-select>
@@ -30,11 +28,11 @@
         </ion-button>
     
         <div id="cancel-buttons">
-          <ion-button expand="block" color="danger" class="form-action-button" (click)="onBack()">
+          <ion-button id="back-button" expand="block" class="form-action-button" (click)="onBack()">
             Back
           </ion-button>
     
-          <ion-button expand="block" color="danger" class="form-action-button" (click)="onCancel()" type="reset">
+          <ion-button id="cancel-button" expand="block" class="form-action-button" (click)="onCancel()" type="reset">
             Cancel
           </ion-button>
         </div>
