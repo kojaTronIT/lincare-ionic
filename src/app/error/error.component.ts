@@ -9,9 +9,13 @@ import { HomeServiceService } from '../home/home-service.service';
 })
 export class ErrorComponent implements OnInit {
 
+  message;
+
   constructor(private appComponent: AppComponent, private homeService: HomeServiceService) { }
 
   ngOnInit() {
+    this.message = localStorage.getItem("message");
+
     this.homeService.validateCancel(localStorage.getItem("one_time_code"), this.appComponent.cancel_location).subscribe({
         next: (data) => console.log(data),
         error: (error) => console.log(error.error)

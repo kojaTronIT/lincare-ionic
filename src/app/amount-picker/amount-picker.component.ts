@@ -68,18 +68,6 @@ export class AmountPickerComponent implements OnInit {
       value: 8,
       text: '8',
       checked: false
-    },
-    {
-      id: '9',
-      value: 9,
-      text: '9',
-      checked: false
-    },
-    {
-      id: '10',
-      value: 10,
-      text: '10',
-      checked: false
     }
   ];
 
@@ -117,7 +105,7 @@ export class AmountPickerComponent implements OnInit {
         {
           text: 'Confirm',
           handler: () => {
-            this.appComponent.message = "You have canceled your request";
+            localStorage.setItem("message", "You have canceled your request");
             this.router.navigate(['/message'])
             this.appComponent.cancel_location = "ammount-picker: Confirm cancelation clicked"
           }

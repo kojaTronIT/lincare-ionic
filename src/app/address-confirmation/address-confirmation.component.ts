@@ -20,7 +20,7 @@ export class AddressConfirmationComponent implements OnInit {
 
   onNo() {
     this.router.navigate(['/message']);
-    this.appComponenet.message = "You clicked no on adress confirmation Please contact your centre"
+    localStorage.setItem("message", "Please contact your centre");
     this.appComponenet.cancel_location = "address-confirmation: No clicked";
   }
 

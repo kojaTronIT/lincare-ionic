@@ -128,10 +128,10 @@ export class HomePage implements OnInit{
     this.router.navigate(['/address-confirmation'])
 
     // this.presentLoading();
-    
+
     // this.homeService.validateDobAndZip(this.dateValue, this.zipValue).subscribe({
     //     next: () => this.router.navigate(['/address-confirmation']),
-    //   error: (error) => { this.router.navigate(['/message']), this.appComponent.message = error.error }
+    //   error: (error) => { this.router.navigate(['/message']), localStorage.setItem("message", error.error) }
     //   })
 
     console.log(this.registrationForm.value);
@@ -152,7 +152,7 @@ export class HomePage implements OnInit{
         {
           text: 'Confirm',
           handler: () => {
-            this.appComponent.message = "You have canceled your request";
+            localStorage.setItem("message", "You have canceled your request");
             this.router.navigate(['/message']);
             this.appComponent.cancel_location = "home-page: Confirm cancelation clicked";
           }
