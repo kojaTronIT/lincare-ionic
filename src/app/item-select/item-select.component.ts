@@ -88,7 +88,7 @@ export class ItemSelectComponent implements OnInit{
         {
           text: 'Confirm',
           handler: () => {
-            this.appComponent.message = "You have canceled your request";
+            localStorage.setItem("message", "You have canceled your request");
             this.router.navigate(['/message'])
             this.appComponent.cancel_location = "item-select: Confirm cancelation clicked"
           }
