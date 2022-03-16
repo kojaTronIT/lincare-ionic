@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import {map, catchError} from 'rxjs/operators';
+import { ShippingAddress } from '../address-confirmation/address.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,10 +25,10 @@ export class HomeServiceService {
       );
   }
 
-  public validateDobAndZip(zip: string, dob: string){
-    return this.http.post(this.api_path + "/api/v1/validate_dob_zip", { dateOfBrith: dob, usZip: zip }, { responseType: 'text' })
+  public validateDobAndZip(zip: any, dob: any, one_time_code: any){
+    return this.http.post(this.api_path + "/api/v1/validate_dob_zip", { dateOfBrith: dob, usZip: zip, oneTimeCode: one_time_code })
     .pipe(
-      map((data: string) => {
+      map((data: ShippingAddress) => {
         return data;
       }), catchError(error => {
         return throwError(error);
