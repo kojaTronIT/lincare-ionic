@@ -129,10 +129,10 @@ export class HomePage implements OnInit{
 
     // this.presentLoading();
 
-    // this.homeService.validateDobAndZip(this.dateValue, this.zipValue).subscribe({
-    //     next: () => this.router.navigate(['/address-confirmation']),
-    //   error: (error) => { this.router.navigate(['/message']), localStorage.setItem("message", error.error) }
-    //   })
+    this.homeService.validateDobAndZip(this.dateValue, this.zipValue, localStorage.getItem("one_time_code")).subscribe({
+      next: (data) => { this.router.navigate(['/address-confirmation']), localStorage.setItem("shiping_address", JSON.stringify(data)) },
+      error: (error) => { this.router.navigate(['/message']), localStorage.setItem("message", error.error) }
+      })
 
     console.log(this.registrationForm.value);
   }
