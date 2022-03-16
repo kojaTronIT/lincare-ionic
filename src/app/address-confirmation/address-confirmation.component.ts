@@ -11,7 +11,12 @@ export class AddressConfirmationComponent implements OnInit {
 
   constructor(private router: Router, private appComponenet: AppComponent) { }
 
-  ngOnInit() {}
+  addressArray: any;
+
+  ngOnInit() {
+    this.addressArray = JSON.parse(localStorage.getItem("shiping_address"));
+    console.log(localStorage.getItem("shiping_address"));
+  }
 
   onYes() {
     this.router.navigate(['/item-select'])
