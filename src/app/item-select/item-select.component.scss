@@ -1,23 +1,5 @@
 @media screen and (max-height: 680px) {
 
-* {
-  font-size: large;
-}
-
-ion-toolbar {
-  --background: rgb(0, 24, 46);
-}
-
-ion-title img {
-  height: 6ch;
-}
-
-#main-content {
-  --background: none;
-  background-image: url("../../assets/images/background.jpg");
-  background-size: cover;
-}
-
 ion-title {
   font-size: 3.5ch;
 }
@@ -84,24 +66,6 @@ ion-checkbox {
 }
 
 @media screen and (min-height: 730px) {
-
-* {
-  font-size: large;
-}
-
-ion-toolbar {
-  --background: rgb(0, 24, 46);
-}
-
-ion-title img {
-  height: 6ch;
-}
-
-#main-content {
-  --background: none;
-  background-image: url("../../assets/images/background.jpg");
-  background-size: cover;
-}
 
 ion-title {
   font-size: 4ch;
