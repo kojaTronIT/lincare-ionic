@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppComponent } from '../app.component';
+import { HomeServiceService } from '../home/home-service.service';
 
 @Component({
   selector: 'app-address-confirmation',
@@ -9,7 +9,7 @@ import { AppComponent } from '../app.component';
 })
 export class AddressConfirmationComponent implements OnInit {
 
-  constructor(private router: Router, private appComponenet: AppComponent) { }
+  constructor(private router: Router, private homeService: HomeServiceService) { }
 
   addressArray: any;
 
@@ -19,14 +19,25 @@ export class AddressConfirmationComponent implements OnInit {
   }
 
   onYes() {
+    localStorage.setItem("action", "Yes clicked");
+    localStorage.setItem("actionLocation", "address-confirmation")
+
+    this.homeService.logUserActions(
+      localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+      ).subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.log(error.error)
+    })
+
     this.router.navigate(['/item-select'])
-    console.log("Yes clicked")
+    console.log("Yes clicked") //user voyage method
   }
 
   onNo() {
-    this.router.navigate(['/message']);
+    localStorage.setItem("action", "No clicked")
+    localStorage.setItem("actionLocation", "address-confirmation");
     localStorage.setItem("message", "Please contact your centre");
-    this.appComponenet.cancel_location = "address-confirmation: No clicked";
+    this.router.navigate(['/message']);
   }
 
 }

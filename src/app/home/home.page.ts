@@ -4,7 +4,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IonDatetime, AlertController, LoadingController } from '@ionic/angular';
 import { format, parseISO } from 'date-fns';
-import { AppComponent } from '../app.component';
 import { HomeServiceService } from './home-service.service';
 
 @Component({
@@ -38,7 +37,7 @@ export class HomePage implements OnInit{
 
   constructor(
     private formBuilder: FormBuilder, private alertController: AlertController, 
-    private router: Router, private homeService: HomeServiceService, private appComponent: AppComponent, 
+    private router: Router, private homeService: HomeServiceService, 
     private loadingController: LoadingController, private activeRoute: ActivatedRoute
     ) { }
 
@@ -50,7 +49,7 @@ export class HomePage implements OnInit{
 
       this.homeService.validateUrl(params.user_code).subscribe({
         next: (data) => console.log(data),
-        error: (error) => console.log(error) //{ this.router.navigate(['/message']), this.appComponent.message = error.error }
+        error: (error) => console.log(error) //{ this.router.navigate(['/message']), localStorage.setItem("message", error.error)}
       });
     })
 
@@ -125,19 +124,38 @@ export class HomePage implements OnInit{
 
   onSubmit() {
     this.submitted = true;
+    localStorage.setItem("action", "Submit clicked")
+    localStorage.setItem("actionLocation", "home-page")
     this.router.navigate(['/address-confirmation'])
 
     // this.presentLoading();
 
+    this.homeService.logUserActions(
+      localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+      ).subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.log(error.error)
+    })
+
     this.homeService.validateDobAndZip(this.dateValue, this.zipValue, localStorage.getItem("one_time_code")).subscribe({
       next: (data) => { this.router.navigate(['/address-confirmation']), localStorage.setItem("shiping_address", JSON.stringify(data)) },
       error: (error) => { this.router.navigate(['/message']), localStorage.setItem("message", error.error) }
-      })
+      }) 
 
     console.log(this.registrationForm.value);
   }
 
   async onCancel() {
+    localStorage.setItem("action", "Cancel clicked");
+    localStorage.setItem("actionLocation", "home-page");
+
+    this.homeService.logUserActions(
+      localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+    ).subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.log(error.error)
+    })
+
     let alert = await this.alertController.create({
       message: 'Are you sure you want to cancel ?',
       cssClass: 'item-select-alert',
@@ -146,15 +164,24 @@ export class HomePage implements OnInit{
           text: 'Deny',
           role: 'cancel',
           handler: () => {
-            console.log('Deny clicked');
+            localStorage.setItem("action", "Deny cancelation clicked");
+            localStorage.setItem("actionLocation", "home-page");
+
+            this.homeService.logUserActions(
+              localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+            ).subscribe({
+              next: (data) => console.log(data),
+              error: (error) => console.log(error.error)
+            })
           }
         },
         {
           text: 'Confirm',
           handler: () => {
+            localStorage.setItem("action", "Confirm cancelation clicked");
+            localStorage.setItem("actionLocation", "home-page");
             localStorage.setItem("message", "You have canceled your request");
             this.router.navigate(['/message']);
-            this.appComponent.cancel_location = "home-page: Confirm cancelation clicked";
           }
         }
       ]

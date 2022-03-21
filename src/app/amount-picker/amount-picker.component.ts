@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { __values } from 'tslib';
 import { AppComponent } from '../app.component';
+import { HomeServiceService } from '../home/home-service.service';
 
 @Component({
   selector: 'app-amount-picker',
@@ -11,14 +12,12 @@ import { AppComponent } from '../app.component';
 })
 export class AmountPickerComponent implements OnInit {
 
-  constructor(private router: Router, private alertController: AlertController, private appComponent: AppComponent) { }
-
-  ngOnInit() {
-    console.log(localStorage.getItem("one_time_code"));
-    console.log(this.appComponent.item_select_list);
-  }
+  constructor(private router: Router, private alertController: AlertController, 
+    private appComponent: AppComponent, private homeService: HomeServiceService) { }
 
   selectedAmount: any;
+
+  order_data: Array<Object> = [];
 
   amount_list = [
     {
@@ -71,7 +70,10 @@ export class AmountPickerComponent implements OnInit {
     }
   ];
 
-  data_list: Array<Object> = [];
+  ngOnInit() {
+    console.log(localStorage.getItem("one_time_code"));
+    console.log(localStorage.getItem("order_items"));
+  }
 
   selectChange(event) {
     console.log("selectChange", event.detail);
@@ -79,18 +81,46 @@ export class AmountPickerComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("Submit clicked");
+    localStorage.setItem("action", "Submit clicked");
+    localStorage.setItem("actionLocation", "ammount-picker")
+
+    this.homeService.logUserActions(
+      localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+    ).subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.log(error.error)
+    })
+
     const result = this.appComponent.item_select_list.filter(obj => obj.checked == true).map(obj => obj.value);
-    this.data_list.push(result, this.selectedAmount);
-    console.log(this.data_list);
+    this.order_data.push(result, this.selectedAmount);
+    console.log(this.order_data);
   }
 
   onBack() {
-    console.log("Back clicked")
+    localStorage.setItem("action", "Back clicked");
+    localStorage.setItem("actionLocation", "ammount-picker")
+
+    this.homeService.logUserActions(
+      localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+    ).subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.log(error.error)
+    })
+
     this.router.navigate(['/item-select'])
   }
 
   async onCancel() {
+    localStorage.setItem("action", "Cancel clicked");
+    localStorage.setItem("actionLocation", "ammount-picker");
+
+    this.homeService.logUserActions(
+      localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+    ).subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.log(error.error)
+    })
+
     let alert = await this.alertController.create({
       message: 'Are you sure you want to cancel ?',
       cssClass: 'item-select-alert',
@@ -99,15 +129,24 @@ export class AmountPickerComponent implements OnInit {
           text: 'Deny',
           role: 'cancel',
           handler: () => {
-            console.log('Deny clicked');
+            localStorage.setItem("action", "Deny cancelation clicked");
+            localStorage.setItem("actionLocation", "ammount-picker");
+
+            this.homeService.logUserActions(
+              localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+            ).subscribe({
+              next: (data) => console.log(data),
+              error: (error) => console.log(error.error)
+            })
           }
         },
         {
           text: 'Confirm',
           handler: () => {
+            localStorage.setItem("action", "Confirm cancelation clicked");
+            localStorage.setItem("actionLocation", "ammount-picker")
             localStorage.setItem("message", "You have canceled your request");
-            this.router.navigate(['/message'])
-            this.appComponent.cancel_location = "ammount-picker: Confirm cancelation clicked"
+            this.router.navigate(['/message'])  
           }
         }
       ]

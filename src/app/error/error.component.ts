@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
 import { HomeServiceService } from '../home/home-service.service';
 
 @Component({
@@ -11,17 +10,18 @@ export class ErrorComponent implements OnInit {
 
   message;
 
-  constructor(private appComponent: AppComponent, private homeService: HomeServiceService) { }
+  constructor(private homeService: HomeServiceService) { }
 
   ngOnInit() {
     this.message = localStorage.getItem("message");
 
-    this.homeService.validateCancel(localStorage.getItem("one_time_code"), this.appComponent.cancel_location).subscribe({
+    this.homeService.logUserActions(
+      localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+      ).subscribe({
         next: (data) => console.log(data),
         error: (error) => console.log(error.error)
       })
 
-    console.log(this.appComponent.cancel_location);
   }
 
 }

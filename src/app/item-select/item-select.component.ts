@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, ToastController  } from '@ionic/angular';
 import { AppComponent } from '../app.component';
+import { HomeServiceService } from '../home/home-service.service';
 
 @Component({
   selector: 'app-item-select',
@@ -10,9 +11,9 @@ import { AppComponent } from '../app.component';
 })
 export class ItemSelectComponent implements OnInit{
 
-  constructor(private router: Router, private alertController: AlertController, private appComponent: AppComponent,
-
-    private toastController: ToastController) {}
+  constructor(private router: Router, private alertController: AlertController, 
+    private appComponent: AppComponent, private toastController: ToastController, 
+    private homeService: HomeServiceService) {}
 
   ngOnInit() {
   }
@@ -59,14 +60,25 @@ export class ItemSelectComponent implements OnInit{
   }
 
   onSubmit() {
+    localStorage.setItem("action", "Submit clicked");
+    localStorage.setItem("actionLocation", "item-select");
+
+    this.homeService.logUserActions(
+      localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+    ).subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.log(error.error)
+    })
+
     const result = this.appComponent.item_select_list.filter(obj => obj.checked == true).map(obj => obj.value);
+
+    localStorage.setItem("order_items", JSON.stringify(result));
 
     if (this.selectedRadioGroup == undefined || result.length == 0) {
       this.presentToastWithOptions();
-      // alert("No products selected" + "\nPlease select at least one item")
     } else if (result[0] == "cylinders") {
       this.router.navigate(['/amount-picker']);
-      console.log(result);
+      console.log(localStorage.getItem("order_items"));
     } else {
       console.log(result)
     }
@@ -74,6 +86,16 @@ export class ItemSelectComponent implements OnInit{
   }
 
   async onCancel() {
+    localStorage.setItem("action", "Cancel clicked");
+    localStorage.setItem("actionLocation", "item-select");
+
+    this.homeService.logUserActions(
+      localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+    ).subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.log(error.error)
+    })
+
     let alert = await this.alertController.create({
       message: 'Are you sure you want to cancel ?',
       cssClass: 'item-select-alert',
@@ -82,15 +104,24 @@ export class ItemSelectComponent implements OnInit{
           text: 'Deny',
           role: 'cancel',
           handler: () => {
-            console.log('Deny clicked');
+            localStorage.setItem("action", "Deny cancelation clicked");
+            localStorage.setItem("actionLocation", "item-select");
+
+            this.homeService.logUserActions(
+              localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+            ).subscribe({
+              next: (data) => console.log(data),
+              error: (error) => console.log(error.error)
+            })
           }
         },
         {
           text: 'Confirm',
           handler: () => {
+            localStorage.setItem("action", "Confirm cancelation clicked")
+            localStorage.setItem("actionLocation", "item-select");
             localStorage.setItem("message", "You have canceled your request");
             this.router.navigate(['/message'])
-            this.appComponent.cancel_location = "item-select: Confirm cancelation clicked"
           }
         }
       ]
