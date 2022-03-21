@@ -38,6 +38,4 @@ export class AppComponent {
     return index;
   }
 
-  public cancel_location = " ";
-
 }
