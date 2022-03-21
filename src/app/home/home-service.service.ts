@@ -14,6 +14,18 @@ export class HomeServiceService {
 
   constructor(private http: HttpClient) { }
 
+
+  public validateUrl(oneTimeString: any) {
+    return this.http.post(this.api_path + "/api/v1/check_one_time_link", { urlParam: oneTimeString })
+      .pipe(
+        map((data: boolean) => {
+          return data;
+        }), catchError(error => {
+          return throwError(error);
+        })
+      );
+  }
+
   public validateZip(zip: string) {
     return this.http.post(this.api_path + "/api/v1/check_us_zip", {usZip: zip})
       .pipe(
@@ -25,8 +37,9 @@ export class HomeServiceService {
       );
   }
 
-  public validateDobAndZip(zip: any, dob: any, one_time_code: any){
-    return this.http.post(this.api_path + "/api/v1/validate_dob_zip", { dateOfBrith: dob, usZip: zip, oneTimeCode: one_time_code })
+  //returns address if dob,zip and user code valid
+  public validateDobAndZip(zip: any, dob: any, oneTimeString: any){
+    return this.http.post(this.api_path + "/api/v1/validate_dob_zip", { dateOfBrith: dob, usZip: zip, oneTimeCode: oneTimeString })
     .pipe(
       map((data: ShippingAddress) => {
         return data;
@@ -36,8 +49,8 @@ export class HomeServiceService {
     );
  }
 
-  public validateUrl(param: any) {
-    return this.http.post(this.api_path + "/api/v1/check_one_time_link", { urlParam: param })
+  public logUserActions(oneTimeString: any, action: any, actionLocation: any) {
+    return this.http.post(this.api_path + "/api/v1/log_user_actions", { oneTimeString: oneTimeString, action: action, actionLocation: actionLocation })
       .pipe(
         map((data: boolean) => {
           return data;
@@ -47,21 +60,11 @@ export class HomeServiceService {
       );
   }
 
+  //dummy page
   public getZipcodes() {
     return this.http.get(this.api_path + "/api/v1/zip_codes")
       .pipe(
         map((data: any[]) => {
-          return data;
-        }), catchError(error => {
-          return throwError(error);
-        })
-      );
-  }
-
-  public validateCancel(oneTimeString: any, message: any) {
-    return this.http.post(this.api_path + "/api/v1/cancel", { oneTimeString: oneTimeString, message: message })
-      .pipe(
-        map((data: boolean) => {
           return data;
         }), catchError(error => {
           return throwError(error);
