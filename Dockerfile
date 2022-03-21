@@ -1,9 +1,8 @@
-FROM node:13-alpine as build
+FROM node:16-alpine as build
 WORKDIR /app
-COPY package*.json /app/
+COPY ./ /app/
 RUN npm install -g ionic
 RUN npm install
-COPY ./ /app/
 RUN npm run-script build
 FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*
