@@ -1,6 +1,15 @@
 export class ShippingAddress {
+
+    patientName: string;
+
+    street: string;
+
+    apartment: string;
+
     city: string;
-    are: string;
-    zipcode: string;
-    address: string;
+
+    state: string;
+
+    zipCode: string;
+
 }
