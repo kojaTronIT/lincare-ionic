@@ -1,5 +1,14 @@
 #address {
-    margin: 6ch;
+  margin-left: 2ch;
+}
+
+#address p {
+  font-size: 2.3ch;
+}
+
+#address b {
+  margin-left: 1ch;
+  font-size: 1.7ch;
 }
 
 #buttons {
@@ -30,7 +39,7 @@ ion-title ion-icon{
 .container {
   display: flex;
   flex-direction: column;
-  gap: 7ch;
+  gap: 6.6ch;
 }
 
 ion-icon {
@@ -51,7 +60,7 @@ ion-icon {
 }
 
 ion-card {
-    height: 25ch;
+    height: 26ch;
     box-shadow: 10ch;
     box-shadow: 5px 10px 10px rgb(1, 34, 65);
 }
