@@ -49,7 +49,7 @@ export class HomePage implements OnInit{
 
       this.homeService.validateUrl(params.user_code).subscribe({
         next: (data) => console.log(data),
-        error: (error) => console.log(error) //{ this.router.navigate(['/message']), localStorage.setItem("message", error.error)}
+        error: (error) => { this.router.navigate(['/message']), localStorage.setItem("message", error.error) }
       });
     })
 
@@ -138,7 +138,7 @@ export class HomePage implements OnInit{
     })
 
     this.homeService.validateDobAndZip(this.dateValue, this.zipValue, localStorage.getItem("one_time_code")).subscribe({
-      next: (data) => { this.router.navigate(['/address-confirmation']), localStorage.setItem("shiping_address", JSON.stringify(data)) },
+      next: (data) => { this.router.navigate(['/address-confirmation']), localStorage.setItem("shipping_address", JSON.stringify(data)) },
       error: (error) => { this.router.navigate(['/message']), localStorage.setItem("message", error.error) }
       }) 
 
