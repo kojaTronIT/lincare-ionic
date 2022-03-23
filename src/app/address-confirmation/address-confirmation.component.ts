@@ -14,8 +14,8 @@ export class AddressConfirmationComponent implements OnInit {
   addressArray: any;
 
   ngOnInit() {
-    this.addressArray = JSON.parse(localStorage.getItem("shiping_address"));
-    console.log(localStorage.getItem("shiping_address"));
+    this.addressArray = JSON.parse(localStorage.getItem("shipping_address"));
+    console.log(localStorage.getItem("shipping_address"));
   }
 
   onYes() {
