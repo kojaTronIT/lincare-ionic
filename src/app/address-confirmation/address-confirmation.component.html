@@ -13,12 +13,12 @@
 
     <div class="container">
       <ion-card id="address-card">
-        <div id="address">
-          <p> Your name: <b> {{addressArray.patientName}} </b> </p>
-          <p> Street: <b> {{addressArray.street}} </b> </p>
-          <p> Apartment: <b> {{addressArray.apartment}} </b> </p> <!--*ngIf="adressArray.apartment.length != null"-->
-          <p> City, State: <b> {{addressArray.city}}</b>, <b> {{addressArray.state}} </b> </p>
-          <p> Zip code: <b> {{addressArray.zipCode}} </b> </p>
+        <div id="address" align="center">
+          <p>  {{addressArray.patientName}} </p>
+          <p> {{addressArray.street}} </p>
+          <p *ngIf="addressArray.apartment != null"> {{addressArray.apartment}} </p>
+          <p> {{addressArray.city}}, {{addressArray.state}} </p>
+          <p> {{addressArray.zipCode}} </p>
         </div>
       </ion-card>
 
