@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import {map, catchError} from 'rxjs/operators';
 import { ShippingAddress } from '../address-confirmation/address.model';
@@ -10,7 +10,7 @@ import { ShippingAddress } from '../address-confirmation/address.model';
 export class HomeServiceService {
 
   // http://3.68.132.233:8180
-  api_path = "http://3.68.132.233:8180"
+  api_path = "http://localhost:8080"
 
   constructor(private http: HttpClient) { }
 
@@ -65,6 +65,19 @@ export class HomeServiceService {
     return this.http.get(this.api_path + "/api/v1/zip_codes")
       .pipe(
         map((data: any[]) => {
+          return data;
+        }), catchError(error => {
+          return throwError(error);
+        })
+      );
+  }
+
+  public displayMessageForAction(messageKey: any) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("messageKey", messageKey);
+    return this.http.get(this.api_path + "/api/v1/message_for_display", { params: queryParams })
+      .pipe(
+        map((data: any) => {
           return data;
         }), catchError(error => {
           return throwError(error);
