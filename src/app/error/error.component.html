@@ -7,11 +7,9 @@
 
   <div class="wrapper">
       <ion-card id="message">
-        <p>
-          Sorry for the inconvenience !
-          <br>
-          {{message}}
-        </p>
+        <p *ngIf="flag == true"> Thank you for using Lincare ! </p>
+        <p *ngIf="flag == false"> Sorry for the inconvenience ! </p>
+        <p> {{message}} </p>
       </ion-card>
   </div>
 </ion-content>

@@ -10,10 +10,18 @@ export class ErrorComponent implements OnInit {
 
   message;
 
+  flag = false;
+
   constructor(private homeService: HomeServiceService) { }
 
   ngOnInit() {
     this.message = localStorage.getItem("message");
+
+    if(this.message == "You have canceled your request") {
+      this.flag = true;
+    } else {
+      this.flag = false;
+    }
 
     this.homeService.logUserActions(
       localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
