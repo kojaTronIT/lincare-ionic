@@ -49,7 +49,7 @@ export class HomePage implements OnInit{
 
       this.homeService.validateUrl(params.user_code).subscribe({
         next: (data) => console.log(data),
-        error: (error) => console.log(error) //{ this.router.navigate(['/message']), localStorage.setItem("message", error.error) }
+        error: (error) => { this.router.navigate(['/message']), localStorage.setItem("message", error.error) }
       });
     })
 
@@ -182,7 +182,7 @@ export class HomePage implements OnInit{
             localStorage.setItem("actionLocation", "home-page");
 
             localStorage.setItem("messageKey", "CANCEL");
-            
+
             this.router.navigate(['/message']);
           }
         }
