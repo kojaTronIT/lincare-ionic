@@ -30,7 +30,7 @@ const routes: Routes = [
   },
   {
     path: 'dummy',
-    component: DummyPageComponent
+    component: DummyPageComponent,
   },
   {
     path: 'address-confirmation',

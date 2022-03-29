@@ -1,7 +1,7 @@
 import { formatDate} from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, CanActivate } from '@angular/router';
 import { IonDatetime, AlertController, LoadingController } from '@ionic/angular';
 import { format, parseISO } from 'date-fns';
 import { HomeServiceService } from './home-service.service';
@@ -11,7 +11,7 @@ import { HomeServiceService } from './home-service.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit{
+export class HomePage implements OnInit {
 
   @ViewChild(IonDatetime, { static: false }) datetime: IonDatetime;
 
@@ -44,29 +44,24 @@ export class HomePage implements OnInit{
   ngOnInit() {
     this.activeRoute.queryParams.subscribe(params => {
 
-      localStorage.setItem("one_time_code", params.user_code);
-      console.log(params.user_code);
+      if(params.user_code == undefined) {
+        localStorage.setItem("one_time_code", "empty")
+      } else {
+        localStorage.setItem("one_time_code", params.user_code);
+      } 
 
-      this.homeService.validateUrl(params.user_code).subscribe({
-        next: (data) => console.log(data),
-        error: (error) => { this.router.navigate(['/message']), localStorage.setItem("messageKey", "ONETIMELINKNOTVALID") }
-      });
-    })
+      console.log(params.user_code + " ovo je url param");
+
+      console.log(localStorage.getItem("one_time_code") + " ovo je local storage");
+    });
+
+    this.homeService.validateUrl(localStorage.getItem("one_time_code")).subscribe({
+      next: (data) => console.log(data),
+      error: (error) => { localStorage.setItem("messageKey", error.error), this.router.navigate(['/message']) }
+    });
 
     this.currentDate = formatDate(new Date, 'yyyy-MM-dd', 'en');
     console.log(this.currentDate)
-  }
-
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      cssClass: 'loading',
-      message: 'Confirming user data, please wait...',
-      duration: 3000
-    });
-    await loading.present();
-
-    const { role, data } = await loading.onDidDismiss();
-    console.log('Loading dismissed!');
   }
 
   get dateOfBirth() {
@@ -127,8 +122,6 @@ export class HomePage implements OnInit{
     localStorage.setItem("action", "Submit clicked")
     localStorage.setItem("actionLocation", "home-page")
     this.router.navigate(['/address-confirmation'])
-
-    // this.presentLoading();
 
     this.homeService.logUserActions(
       localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
