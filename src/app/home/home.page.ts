@@ -49,7 +49,7 @@ export class HomePage implements OnInit{
 
       this.homeService.validateUrl(params.user_code).subscribe({
         next: (data) => console.log(data),
-        error: (error) => { this.router.navigate(['/message']), localStorage.setItem("message", error.error) }
+        error: (error) => { this.router.navigate(['/message']), localStorage.setItem("messageKey", "ONETIMELINKNOTVALID") }
       });
     })
 
