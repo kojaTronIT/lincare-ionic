@@ -15,21 +15,25 @@ export class ErrorComponent implements OnInit {
   constructor(private homeService: HomeServiceService) { }
 
   ngOnInit() {
-    this.message = localStorage.getItem("message");
+    this.homeService.displayMessageForAction(localStorage.getItem("messageKey")).subscribe({
+      next: (data) => { 
+        this.message = data.message 
 
-    if(this.message == "You have canceled your request") {
-      this.flag = true;
-    } else {
-      this.flag = false;
-    }
+        if (data.message == "You have canceled your request") {
+          this.flag = true;
+        } else {
+          this.flag = false;
+        }
+      },
+      error: (error) => console.log(error.error)
+    });
 
     this.homeService.logUserActions(
       localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
-      ).subscribe({
-        next: (data) => console.log(data),
-        error: (error) => console.log(error.error)
-      })
-
+    ).subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.log(error.error)
+    })
   }
 
 }

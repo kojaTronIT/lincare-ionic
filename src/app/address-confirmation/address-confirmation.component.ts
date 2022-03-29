@@ -36,10 +36,7 @@ export class AddressConfirmationComponent implements OnInit {
     localStorage.setItem("action", "No clicked")
     localStorage.setItem("actionLocation", "address-confirmation");
 
-    this.homeService.displayMessageForAction("NO").subscribe({
-      next: (data) => localStorage.setItem("message", data.message),
-      error: (error) => console.log(error.error)
-    });
+    localStorage.setItem("messageKey", "NO");
 
     this.router.navigate(['/message']);
   }

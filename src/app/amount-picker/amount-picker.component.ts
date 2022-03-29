@@ -145,10 +145,8 @@ export class AmountPickerComponent implements OnInit {
           handler: () => {
             localStorage.setItem("action", "Confirm cancelation clicked");
             localStorage.setItem("actionLocation", "ammount-picker")
-            this.homeService.displayMessageForAction("CANCEL").subscribe({
-              next: (data) => localStorage.setItem("message", data.message),
-              error: (error) => console.log(error.error)
-            });
+            
+            localStorage.setItem("messageKey", "CANCEL");
             
             this.router.navigate(['/message'])  
           }

@@ -120,10 +120,8 @@ export class ItemSelectComponent implements OnInit{
           handler: () => {
             localStorage.setItem("action", "Confirm cancelation clicked")
             localStorage.setItem("actionLocation", "item-select");
-            this.homeService.displayMessageForAction("CANCEL").subscribe({
-              next: (data) => localStorage.setItem("message", data.message),
-              error: (error) => console.log(error.error)
-            });
+            
+            localStorage.setItem("messageKey", "CANCEL");
             
             this.router.navigate(['/message'])
           }
