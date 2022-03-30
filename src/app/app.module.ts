@@ -14,13 +14,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { DummyPageComponent } from './dummy-page/dummy-page.component';
 import { AddressConfirmationComponent } from './address-confirmation/address-confirmation.component';
 import { ErrorComponent } from './error/error.component';
+import { HomePage } from './home/home.page';
 
 
 @NgModule({
   declarations: [AppComponent, ItemSelectComponent, AmountPickerComponent, DummyPageComponent, AddressConfirmationComponent, ErrorComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ReactiveFormsModule, FormsModule, HttpClientModule, CommonModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ItemSelectComponent],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ItemSelectComponent, HomePage],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
