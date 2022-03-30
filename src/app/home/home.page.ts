@@ -17,11 +17,13 @@ export class HomePage implements OnInit {
 
   dateValue = '';
   zipValue = '';
-  zipResponse;
+  
   submitted = false;
   zipcodeValidation = false;
 
   currentDate;
+  zipResponse;
+  public userCode;
 
   private zipcodePattern = RegExp(/^[0-9]{5}$/g);
 
@@ -38,26 +40,20 @@ export class HomePage implements OnInit {
   constructor(
     private formBuilder: FormBuilder, private alertController: AlertController, 
     private router: Router, private homeService: HomeServiceService, 
-    private loadingController: LoadingController, private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute
     ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.activeRoute.queryParams.subscribe(params => {
 
-      if(params.user_code == undefined) {
-        localStorage.setItem("one_time_code", "empty")
-      } else {
-        localStorage.setItem("one_time_code", params.user_code);
-      } 
-
-      console.log(params.user_code + " ovo je url param");
-
-      console.log(localStorage.getItem("one_time_code") + " ovo je local storage");
+      this.userCode = params.user_code;
+  
+      console.log(this.userCode);
     });
 
-    this.homeService.validateUrl(localStorage.getItem("one_time_code")).subscribe({
-      next: (data) => console.log(data),
-      error: (error) => { localStorage.setItem("messageKey", error.error), this.router.navigate(['/message']) }
+    this.homeService.validateUrl(this.userCode).subscribe({
+      next: () => console.log(this.userCode),
+      error: (error) => { console.log(this.userCode) , localStorage.setItem("messageKey", error.error), this.router.navigate(['/message']) }
     });
 
     this.currentDate = formatDate(new Date, 'yyyy-MM-dd', 'en');
