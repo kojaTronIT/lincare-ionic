@@ -14,9 +14,10 @@ ion-title ion-icon{
 }
 
 .form-container {
-  margin-top: -4.5ch;
+  margin-top: -3ch;
   display: flex;
   flex-direction: column;
+  gap: 3ch;
 }
 
 ion-list {
@@ -26,9 +27,11 @@ ion-list {
 .item-options {
     display: flex;
     flex-direction: column;
+    gap: 1.5ch;
 }
 
 .item-options ion-card {
+  box-shadow: 5px 10px 10px rgb(1, 34, 65);
   height: 7ch;
 }
 
@@ -46,7 +49,6 @@ ion-icon {
 }
 
 .form-action-button {
-  margin-bottom: 1ch;
   font-size: 2ch;
   height: 5ch; --background: rgb(1, 34, 65);
 }
