@@ -225,10 +225,6 @@ $in-w: $n-char*($char-w + $gap);
   margin: auto;
 }
 
-#subtitle {
-  margin-top: -1.5ch;
-}
-
 #subtitle p {
   color: rgb(1, 34, 65);
   font-size: 3.2ch;
@@ -250,6 +246,7 @@ $in-w: $n-char*($char-w + $gap);
 }
 
 .form-elements {
+  margin-top: 2ch;
   height: 13.5ch;
   box-shadow: 5px 10px 10px rgb(1, 34, 65);
 }
@@ -261,6 +258,10 @@ $in-w: $n-char*($char-w + $gap);
 
 .form-element ion-input{
   font-size: 2.4ch;
+}
+
+#buttons {
+  margin-top: 2ch;
 }
 
 .form-action-button {
@@ -300,7 +301,7 @@ $in-w: $n-char*($char-w + $gap);
 
 }
 
-@media screen and (min-height: 680px) {
+@media screen and (min-height: 670px) {
 
 #date-select {
   --background: none;
