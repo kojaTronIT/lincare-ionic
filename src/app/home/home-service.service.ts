@@ -38,8 +38,8 @@ export class HomeServiceService {
   }
 
   //returns address if dob,zip and user code valid
-  public validateDobAndZip(zip: any, dob: any, oneTimeString: any){
-    return this.http.post(this.api_path + "/api/v1/validate_dob_zip", { dateOfBrith: dob, usZip: zip, oneTimeCode: oneTimeString })
+  public validateDobAndZip(dob: any, zip: any, oneTimeString: any){
+    return this.http.post(this.api_path + "/api/v1/validate_dob_zip", { dateOfBirth: dob, zipcode: zip, oneTimeCode: oneTimeString })
     .pipe(
       map((data: ShippingAddress) => {
         return data;

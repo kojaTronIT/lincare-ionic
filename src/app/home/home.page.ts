@@ -53,7 +53,7 @@ export class HomePage implements OnInit {
 
     this.homeService.validateUrl(this.userCode).subscribe({
       next: () => console.log(this.userCode),
-      error: (error) => { console.log(this.userCode), localStorage.setItem("messageKey", error.error), this.router.navigate(['/message']) } //console.log(error) 
+      error: (error) => { console.log(this.userCode), localStorage.setItem("messageKey", error.error), this.router.navigate(['/message']) }
     });
 
     this.currentDate = formatDate(new Date, 'yyyy-MM-dd', 'en');
@@ -74,8 +74,8 @@ export class HomePage implements OnInit {
   });
 
   formatDate(value: string) {
-    console.log(format(parseISO(value), "dd/MM/yyyy"));
-    return format(parseISO(value), "dd/MM/yyyy");
+    console.log(format(parseISO(value), "MM/dd/yyyy"));
+    return format(parseISO(value), "MM/dd/yyyy");
   }
 
   confirmDate() {
@@ -126,10 +126,11 @@ export class HomePage implements OnInit {
       error: (error) => console.log(error.error)
     })
 
-    this.homeService.validateDobAndZip(this.dateValue, this.zipValue, localStorage.getItem("one_time_code")).subscribe({
+    this.homeService.validateDobAndZip(this.registrationForm.value.dateOfBirth, this.registrationForm.value.zipcode, this.userCode).subscribe({
       next: (data) => { this.router.navigate(['/address-confirmation']), localStorage.setItem("shipping_address", JSON.stringify(data)) },
       error: (error) => { this.router.navigate(['/message']), localStorage.setItem("message", error.error) }
       }) 
+
 
     console.log(this.registrationForm.value);
   }
