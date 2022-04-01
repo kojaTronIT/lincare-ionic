@@ -85,7 +85,7 @@ export class AmountPickerComponent implements OnInit {
     localStorage.setItem("actionLocation", "ammount-picker")
 
     this.homeService.logUserActions(
-      localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+      localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
     ).subscribe({
       next: (data) => console.log(data),
       error: (error) => console.log(error.error)
@@ -94,6 +94,8 @@ export class AmountPickerComponent implements OnInit {
     const result = this.appComponent.item_select_list.filter(obj => obj.checked == true).map(obj => obj.value);
     this.order_data.push(result, this.selectedAmount);
     console.log(this.order_data);
+
+    this.router.navigate(['/delivery-date']);
   }
 
   onBack() {
@@ -101,7 +103,7 @@ export class AmountPickerComponent implements OnInit {
     localStorage.setItem("actionLocation", "ammount-picker")
 
     this.homeService.logUserActions(
-      localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+      localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
     ).subscribe({
       next: (data) => console.log(data),
       error: (error) => console.log(error.error)
@@ -115,7 +117,7 @@ export class AmountPickerComponent implements OnInit {
     localStorage.setItem("actionLocation", "ammount-picker");
 
     this.homeService.logUserActions(
-      localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+      localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
     ).subscribe({
       next: (data) => console.log(data),
       error: (error) => console.log(error.error)
@@ -133,7 +135,7 @@ export class AmountPickerComponent implements OnInit {
             localStorage.setItem("actionLocation", "ammount-picker");
 
             this.homeService.logUserActions(
-              localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+              localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
             ).subscribe({
               next: (data) => console.log(data),
               error: (error) => console.log(error.error)

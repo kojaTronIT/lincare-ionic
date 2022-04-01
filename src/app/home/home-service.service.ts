@@ -38,7 +38,7 @@ export class HomeServiceService {
   }
 
   //returns address if dob,zip and user code valid
-  public validateDobAndZip(dob: any, zip: any, oneTimeString: any){
+  public validateDobAndZip(dob: Date, zip: any, oneTimeString: any){
     return this.http.post(this.api_path + "/api/v1/validate_dob_zip", { dateOfBirth: dob, zipcode: zip, oneTimeCode: oneTimeString })
     .pipe(
       map((data: ShippingAddress) => {
@@ -49,8 +49,8 @@ export class HomeServiceService {
     );
  }
 
-  public logUserActions(oneTimeString: any, action: any, actionLocation: any) {
-    return this.http.post(this.api_path + "/api/v1/log_user_actions", { oneTimeString: oneTimeString, action: action, actionLocation: actionLocation })
+  public logUserActions(action: any, actionLocation: any, oneTimeString: any) {
+    return this.http.post(this.api_path + "/api/v1/log_user_actions", { action: action, actionLocation: actionLocation, oneTimeString: oneTimeString })
       .pipe(
         map((data: boolean) => {
           return data;

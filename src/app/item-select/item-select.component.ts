@@ -64,7 +64,7 @@ export class ItemSelectComponent implements OnInit{
     localStorage.setItem("actionLocation", "item-select");
 
     this.homeService.logUserActions(
-      localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+      localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
     ).subscribe({
       next: (data) => console.log(data),
       error: (error) => console.log(error.error)
@@ -90,7 +90,7 @@ export class ItemSelectComponent implements OnInit{
     localStorage.setItem("actionLocation", "item-select");
 
     this.homeService.logUserActions(
-      localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+      localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
     ).subscribe({
       next: (data) => console.log(data),
       error: (error) => console.log(error.error)
@@ -108,7 +108,7 @@ export class ItemSelectComponent implements OnInit{
             localStorage.setItem("actionLocation", "item-select");
 
             this.homeService.logUserActions(
-              localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+              localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
             ).subscribe({
               next: (data) => console.log(data),
               error: (error) => console.log(error.error)

@@ -23,7 +23,7 @@ export class AddressConfirmationComponent implements OnInit {
     localStorage.setItem("actionLocation", "address-confirmation")
 
     this.homeService.logUserActions(
-      localStorage.getItem("one_time_code"), localStorage.getItem("action"), localStorage.getItem("actionLocation")
+      localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
       ).subscribe({
       next: (data) => console.log(data),
       error: (error) => console.log(error.error)
