@@ -225,13 +225,17 @@ $in-w: $n-char*($char-w + $gap);
   margin: auto;
 }
 
+#subtitle {
+  margin-top: -4vh;
+}
+
 #subtitle p {
   color: rgb(1, 34, 65);
   font-size: 3.2ch;
 }
 
 .form-container {
-  margin-top: -3ch;
+  margin-top: -4ch;
   display: flex;
   flex-direction: column;
 }
@@ -261,7 +265,7 @@ $in-w: $n-char*($char-w + $gap);
 }
 
 #buttons {
-  margin-top: 2ch;
+  margin-top: 1ch;
 }
 
 .form-action-button {

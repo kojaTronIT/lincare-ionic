@@ -1,24 +1,13 @@
-
-ion-title {
-  font-size: 4ch;
-}
-
-ion-title ion-icon{
-  font-size: 1.8ch;
-}
-
-#subtitle {
-  margin-top: 6.5vh;
-}
-
 #subtitle p {
   color: rgb(1, 34, 65);
-  font-size: 4ch;
+  font-size: 3.5ch;
 }
 
 .form-container {
+  margin-top: -2ch;
   display: flex;
   flex-direction: column;
+  gap: 2ch;
 }
 
 ion-icon {
@@ -27,7 +16,6 @@ ion-icon {
 }
 
 .form-action-button {
-  margin-bottom: 1ch;
   font-size: 2ch;
   height: 5ch;  
   --background: rgb(1, 34, 65);
@@ -37,13 +25,8 @@ ion-icon {
   display: flex;
 }
 
-
 #cancel-buttons ion-button {
    width: 50%;
-}
-
-#buttons {
-  margin-top: 10vh;
 }
 
 #cancel-button {

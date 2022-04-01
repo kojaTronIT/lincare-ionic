@@ -21,18 +21,18 @@ ion-title ion-icon{
 }
 
 #subtitle {
-  margin-top: 6.5vh;
+  margin-top: 2.5vh;
 }
 
 #subtitle p {
   color: rgb(1, 34, 65);
-  font-size: 4ch;
+  font-size: 3ch;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  gap: 6.6ch;
+  gap: 1ch;
 }
 
 ion-icon {
@@ -41,7 +41,6 @@ ion-icon {
 }
 
 .form-action-button {
-  margin-bottom: 1ch;
   font-size: 2ch;
   height: 5ch;
   --background: rgb(1, 34, 65);
@@ -53,6 +52,7 @@ ion-icon {
 }
 
 ion-card {
+    margin-top: -1ch;
     height: 26ch;
     box-shadow: 10ch;
     box-shadow: 5px 10px 10px rgb(1, 34, 65);
