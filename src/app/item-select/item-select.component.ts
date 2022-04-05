@@ -43,7 +43,7 @@ export class ItemSelectComponent implements OnInit{
 
   radioGroupChange(event, index: number) {
     console.log("radioGroupChange", event.detail)
-    if(event.detail.checked == true) {
+    if(event.detail.checked === true) {
       this.appComponent.item_select_list[index].checked = true;
     } else {
       this.appComponent.item_select_list[index].checked = false;
@@ -76,7 +76,7 @@ export class ItemSelectComponent implements OnInit{
 
     if (this.selectedRadioGroup == undefined || result.length == 0) {
       alert("Please select atleast one item !")
-    } else if (result[0] == "cylinders") {
+    } else if (result[0] === "cylinders") {
       this.router.navigate(['/amount-picker']);
       console.log(localStorage.getItem("order_items"));
     } else {
