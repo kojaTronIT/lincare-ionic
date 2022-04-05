@@ -15,12 +15,14 @@ ion-icon {
 }
 
 .form-action-button {
+  margin-top: 1ch;
   font-size: 2ch;
   height: 5ch;  
   --background: rgb(1, 34, 65);
 }
 
 #cancel-buttons {
+  margin-top: 0.5ch;
   display: flex;
 }
 
