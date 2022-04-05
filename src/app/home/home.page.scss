@@ -225,19 +225,16 @@ $in-w: $n-char*($char-w + $gap);
   margin: auto;
 }
 
-#subtitle {
-  margin-top: -4vh;
-}
-
 #subtitle p {
   color: rgb(1, 34, 65);
   font-size: 3.2ch;
 }
 
 .form-container {
-  margin-top: -4ch;
+  margin-top: -2ch;
   display: flex;
   flex-direction: column;
+  gap: 1ch;
 }
 
 .error-message {
@@ -305,7 +302,7 @@ $in-w: $n-char*($char-w + $gap);
 
 }
 
-@media screen and (min-height: 680px) {
+@media screen and (min-height: 690px) {
 
 #date-select {
   --background: none;
