@@ -1,8 +1,8 @@
 import { formatDate} from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute, CanActivate } from '@angular/router';
-import { IonDatetime, AlertController, LoadingController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
+import { IonDatetime, AlertController } from '@ionic/angular';
 import { format, parseISO } from 'date-fns';
 import { HomeServiceService } from './home-service.service';
 
@@ -23,17 +23,18 @@ export class HomePage implements OnInit {
 
   currentDate;
   zipResponse;
+
   public userCode;
 
   private zipcodePattern = RegExp(/^[0-9]{5}$/g);
 
   public errorMessages = {
     dateOfBirth: [
-      { type: 'required', message: 'Date of birth is a mandatory field' }
+      { type: 'required', message: 'Date of birth is a mandatory field !' }
     ],
     zipcode: [
-      { type: 'required', message: 'Zipcode is a mandatory field' },
-      { type: 'pattern', message: 'Zipcode must be 5 numbers long (example: 11000)' }
+      { type: 'required', message: 'Zipcode is a mandatory field !' },
+      { type: 'pattern', message: 'Zipcode must be 5 numbers long !' }
     ]
   }
 
@@ -79,7 +80,7 @@ export class HomePage implements OnInit {
   }
 
   confirmDate() {
-    if (this.dateValue == '') {
+    if (this.dateValue === '') {
       this.dateValue = "01/01/1940"
     }
     this.datetime.confirm(true);
@@ -96,12 +97,12 @@ export class HomePage implements OnInit {
   onZipChange(value) {
     this.zipValue = value;
 
-    if(this.zipValue.length == 5) {
+    if(this.zipValue.length === 5) {
       this.homeService.validateZip(this.zipValue).subscribe({
         next: (data) => {
           console.log(data, data.length),
             this.zipResponse = data
-          if (!(data.length == 0)) {
+          if (!(data.length === 0)) {
             this.zipcodeValidation = true;
           } else {
             this.zipcodeValidation = false;
