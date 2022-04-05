@@ -20,26 +20,26 @@ export class ItemSelectComponent implements OnInit{
   
   selectedRadioGroup: any;
 
-  async presentToastWithOptions() {
-    const toast = await this.toastController.create({
-      message: 'Atleast one item needs to be selected',
-      icon: 'information-circle',
-      position: 'middle',
-      color: 'primary',
-      cssClass: 'item-select-toast',
-      buttons: [
-        {
-          text: 'Continue',
-          cssClass: 'toast-button',
-          handler: () => {
-            toast.dismiss;
-            console.log('Continue clicked');
-          }
-        }
-      ]
-    });
-    await toast.present();
-  }
+  // async presentToastWithOptions() {
+  //   const toast = await this.toastController.create({
+  //     message: 'Atleast one item needs to be selected',
+  //     icon: 'information-circle',
+  //     position: 'middle',
+  //     color: 'primary',
+  //     cssClass: 'item-select-toast',
+  //     buttons: [
+  //       {
+  //         text: 'Continue',
+  //         cssClass: 'toast-button',
+  //         handler: () => {
+  //           toast.dismiss;
+  //           console.log('Continue clicked');
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   await toast.present();
+  // }
 
   radioGroupChange(event, index: number) {
     console.log("radioGroupChange", event.detail)
@@ -75,7 +75,7 @@ export class ItemSelectComponent implements OnInit{
     localStorage.setItem("order_items", JSON.stringify(result));
 
     if (this.selectedRadioGroup == undefined || result.length == 0) {
-      this.presentToastWithOptions();
+      alert("Please select atleast one item !")
     } else if (result[0] == "cylinders") {
       this.router.navigate(['/amount-picker']);
       console.log(localStorage.getItem("order_items"));
