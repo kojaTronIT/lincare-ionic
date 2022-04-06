@@ -1,59 +1,324 @@
-#address p {
-  font-size: 2.3ch;
-  font-weight: bold;
-  color: rgb(1, 34, 65);
+@media screen and (max-height: 620px) {
+  #address p {
+    font-size: 2.3ch;
+    font-weight: bold;
+    color: rgb(1, 34, 65);
+  }
+  
+  #buttons {
+    display: flex;
+  }
+  
+  #buttons ion-button {
+    width: 50%;
+  }
+  
+  #subtitle {
+    margin-top: 2.5vh;
+  }
+  
+  #subtitle p {
+    color: rgb(1, 34, 65);
+    font-size: 3.5ch;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 2ch;
+  }
+  
+  ion-icon {
+    vertical-align: top;
+    color: black;
+  }
+  
+  .form-action-button {
+    font-size: 1.8ch;
+    height: 4.5ch;
+    --background: rgb(1, 34, 65);
+  }
+  
+  #no-button {
+    color: rgb(1, 34, 65);
+    --background: white;
+  }
+  
+  ion-card {
+    margin-top: -1.5ch;
+    height: 26ch;
+    box-shadow: 10ch;
+    box-shadow: 5px 10px 10px rgb(1, 34, 65);
+  }
 }
 
-#buttons {
-  display: flex;
-}
-
-#buttons ion-button {
-   width: 50%;
-}
-
-ion-title {
-  font-size: 4ch;
-}
-
-ion-title ion-icon{
-  font-size: 1.8ch;
-}
-
-#subtitle {
-  margin-top: 2.5vh;
-}
-
-#subtitle p {
-  color: rgb(1, 34, 65);
-  font-size: 4ch;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 3ch;
-}
-
-ion-icon {
-  vertical-align: top;
-  color: black;
-}
-
-.form-action-button {
-  font-size: 2ch;
-  height: 5ch;
-  --background: rgb(1, 34, 65);
-}
-
-#no-button {
-  color: rgb(1, 34, 65);
-  --background: white;
-}
-
-ion-card {
+@media screen and (min-height: 620px) { 
+  #address p {
+    font-size: 2.3ch;
+    font-weight: bold;
+    color: rgb(1, 34, 65);
+  }
+  
+  #buttons {
+    display: flex;
+  }
+  
+  #buttons ion-button {
+    width: 50%;
+  }
+  
+  #subtitle {
+    margin-top: 2.5vh;
+  }
+  
+  #subtitle p {
+    color: rgb(1, 34, 65);
+    font-size: 3.5ch;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 3ch;
+  }
+  
+  ion-icon {
+    vertical-align: top;
+    color: black;
+  }
+  
+  .form-action-button {
+    font-size: 1.8ch;
+    height: 4.5ch;
+    --background: rgb(1, 34, 65);
+  }
+  
+  #no-button {
+    color: rgb(1, 34, 65);
+    --background: white;
+  }
+  
+  ion-card {
     margin-top: -1ch;
     height: 26ch;
     box-shadow: 10ch;
     box-shadow: 5px 10px 10px rgb(1, 34, 65);
+  }
+}
+
+@media screen and (min-height: 649px) {
+  #address p {
+    font-size: 2.3ch;
+    font-weight: bold;
+    color: rgb(1, 34, 65);
+  }
+  
+  #buttons {
+    display: flex;
+  }
+  
+  #buttons ion-button {
+    width: 50%;
+  }
+  
+  #subtitle {
+    margin-top: 2.5vh;
+  }
+  
+  #subtitle p {
+    color: rgb(1, 34, 65);
+    font-size: 4ch;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 3ch;
+  }
+  
+  ion-icon {
+    vertical-align: top;
+    color: black;
+  }
+  
+  .form-action-button {
+    font-size: 2ch;
+    height: 5ch;
+    --background: rgb(1, 34, 65);
+  }
+  
+  #no-button {
+    color: rgb(1, 34, 65);
+    --background: white;
+  }
+  
+  ion-card {
+    margin-top: -1ch;
+    height: 26ch;
+    box-shadow: 10ch;
+    box-shadow: 5px 10px 10px rgb(1, 34, 65);
+  }
+}
+
+@media screen and (min-height: 679px) {
+  #address p {
+    font-size: 2.3ch;
+    font-weight: bold;
+    color: rgb(1, 34, 65);
+  }
+
+  #buttons {
+    display: flex;
+  }
+
+  #buttons ion-button {
+    width: 50%;
+  }
+
+  #subtitle {
+    margin-top: 2.5vh;
+  }
+
+  #subtitle p {
+    color: rgb(1, 34, 65);
+    font-size: 4ch;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 4ch;
+  }
+
+  ion-icon {
+    vertical-align: top;
+    color: black;
+  }
+
+  .form-action-button {
+    font-size: 1.8ch;
+    height: 4.5ch;
+    --background: rgb(1, 34, 65);
+  }
+
+  #no-button {
+    color: rgb(1, 34, 65);
+    --background: white;
+  }
+
+  ion-card {
+    margin-top: -1ch;
+    height: 26ch;
+    box-shadow: 10ch;
+    box-shadow: 5px 10px 10px rgb(1, 34, 65);
+  }
+}
+
+@media screen and (min-height: 649px) {
+  #address p {
+    font-size: 2.3ch;
+    font-weight: bold;
+    color: rgb(1, 34, 65);
+  }
+
+  #buttons {
+    display: flex;
+  }
+
+  #buttons ion-button {
+    width: 50%;
+  }
+
+  #subtitle {
+    margin-top: 2.5vh;
+  }
+
+  #subtitle p {
+    color: rgb(1, 34, 65);
+    font-size: 4ch;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 3ch;
+  }
+
+  ion-icon {
+    vertical-align: top;
+    color: black;
+  }
+
+  .form-action-button {
+    margin-top: 2ch;
+    font-size: 1.8ch;
+    height: 4.5ch;
+    --background: rgb(1, 34, 65);
+  }
+
+  #no-button {
+    color: rgb(1, 34, 65);
+    --background: white;
+  }
+
+  ion-card {
+    margin-top: -1ch;
+    height: 26ch;
+    box-shadow: 10ch;
+    box-shadow: 5px 10px 10px rgb(1, 34, 65);
+  }
+}
+
+@media screen and (min-height: 699px) {
+  #address p {
+    font-size: 2.3ch;
+    font-weight: bold;
+    color: rgb(1, 34, 65);
+  }
+
+  #buttons {
+    display: flex;
+  }
+
+  #buttons ion-button {
+    width: 50%;
+  }
+
+  #subtitle {
+    margin-top: 2.5vh;
+  }
+
+  #subtitle p {
+    color: rgb(1, 34, 65);
+    font-size: 4ch;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 4ch;
+  }
+
+  ion-icon {
+    vertical-align: top;
+    color: black;
+  }
+
+  .form-action-button {
+    font-size: 1.8ch;
+    height: 4.5ch;
+    --background: rgb(1, 34, 65);
+  }
+
+  #no-button {
+    color: rgb(1, 34, 65);
+    --background: white;
+  }
+
+  ion-card {
+    margin-top: 2ch;
+    height: 26ch;
+    box-shadow: 10ch;
+    box-shadow: 5px 10px 10px rgb(1, 34, 65);
+  }
 }
