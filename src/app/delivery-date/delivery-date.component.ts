@@ -17,7 +17,7 @@ export class DeliveryDateComponent implements OnInit {
   ngOnInit() {
     this.currentDate.setDate(this.currentDate.getDate() + 5);
     let datePipe: DatePipe = new DatePipe('en-US');
-    this.formatedDate = datePipe.transform(this.currentDate, 'shortDate');
+    this.formatedDate = datePipe.transform(this.currentDate, 'fullDate');
   }
 
 }
