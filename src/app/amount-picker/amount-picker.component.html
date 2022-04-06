@@ -14,7 +14,7 @@
     <form class="form-container" (ngSubmit)="onSubmit()">
       <ion-card id="dropdown-card">
         <div id="dropdown" align="center">
-          <ion-label >Click below to select an number</ion-label>
+          <ion-label > Click below to select an ammount </ion-label>
           <ion-select cancel-text="Close" interface="action-sheet" name="numbers-dropdown" (ionChange)="selectChange($event)"
             placeholder="0">
             <ion-select-option *ngFor="let number of amount_list" value="{{number.value}}"> {{number.text}} </ion-select-option>
