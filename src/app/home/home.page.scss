@@ -1,102 +1,3 @@
-@media screen and (min-width: 500px) {
-
-#date-select {
-  --background: none;
-  background-image: url("../../assets/images/background.jpg");
-  background-size: cover;
-}
-
-#date-select ion-button {
-   color: rgb(1, 34, 65);
-}
-
-#date-select ion-datetime {
-  height: 40ch;
-  align-self: center;
-  position: absolute;
-  top:0; left:0; right:0; bottom:0; 
-  margin: auto;
-}
-
-#subtitle {
-  margin-top: 6.5vh;
-}
-
-#subtitle p {
-  color: rgb(1, 34, 65);
-  font-size: 4ch;
-}
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-}
-
-ion-icon {
-  vertical-align: top;
-  color: black;
-}
-
-.error-message {
-  color: var(--ion-color-danger);
-  font-size: 2ch;
-}
-
-#buttons {
-  margin-top: 3vh;
-}
-
-.form-elements {
-  height: 14.5ch;
-  box-shadow: 5px 10px 10px rgb(1, 34, 65);
-}
-
-.form-element {
-  justify-self: center;
-  margin-top: 5ch;
-}
-
-.form-element ion-input{
-  font-size: 2.5ch;
-}
-
-.form-action-button {
-  margin-bottom: 1ch;
-  font-size: 2ch;
-  height: 5ch;
-  --background: rgb(1, 34, 65);
-}
-
-#cancel-button {
-  color: rgb(1, 34, 65);
-  --background: white;
-}
-
-.zip-input ion-input {
-   font-size: 2.5ch;
-}
-
-//zipcode underlines
-$char-w: 1.1ch;
-$gap: 1.2*$char-w;
-$n-char: 5;
-$in-w: $n-char*($char-w + $gap);
-
-#zip-underline {
-  display: block;
-	border: none;
-  padding: 0;
-	width: $in-w;
-	background: repeating-linear-gradient(90deg, 
-		dimgrey 0, dimgrey $char-w, 
-		transparent 0, transparent $char-w + $gap) 
-		0 100%/ #{$in-w - $gap} 2px no-repeat;
-	font: 2.8ch droid sans mono, consolas, monospace;
-	letter-spacing: $gap;
-}
-
-}
-
 @media screen and (max-height: 620px) {
 
 #date-select {
@@ -118,12 +19,12 @@ $in-w: $n-char*($char-w + $gap);
 }
 
 #subtitle {
-  margin-top: -2.5ch;
+  margin-top: -2ch;
 }
 
 #subtitle p {
   color: rgb(1, 34, 65);
-  font-size: 4ch;
+  font-size: 3.2ch;
 }
 
 .form-container {
@@ -137,21 +38,20 @@ ion-icon {
   color: black;
 }
 
+.error-field {
+  margin-top: 1ch;
+}
+
 .error-message {
   color: var(--ion-color-danger);
-  font-size: 2ch;
+  font-size: 1.4ch;
 }
 
 #buttons {
   margin-top: 0.5ch;
   display: flex;
-  flex-direction: row;
-  width: 100%;
+  flex-direction: column;
   justify-content: center;
-}
-
-#buttons ion-button {
-  width: 45%;
 }
 
 .form-elements {
@@ -165,11 +65,11 @@ ion-icon {
 }
 
 .form-element ion-input{
-  font-size: 2.5ch;
+  font-size: 2.4ch;
 }
 
 .form-action-button {
-  font-size: 2ch;
+  font-size: 1.8ch;
   height: 5ch;
   --background: rgb(1, 34, 65);
 }
@@ -177,11 +77,10 @@ ion-icon {
 #cancel-button {
   color: rgb(1, 34, 65);
   --background: white;
-  margin-left: 1ch;
 }
 
 .zip-input ion-input {
-   font-size: 2.5ch;
+   font-size: 2.4ch;
 }
 
 //zipcode underlines
@@ -206,6 +105,104 @@ $in-w: $n-char*($char-w + $gap);
 }
 
 @media screen and (min-height: 620px) {
+  #date-select {
+    --background: none;
+    background-image: url("../../assets/images/background.jpg");
+    background-size: cover;
+  }
+  
+  #date-select ion-button {
+    color: rgb(1, 34, 65);
+  }
+  
+  #date-select ion-datetime {
+    height: 40ch;
+    align-self: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  
+  #subtitle p {
+    color: rgb(1, 34, 65);
+    font-size: 3.2ch;
+  }
+  
+  .form-container {
+    margin-top: -3ch;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .error-message {
+    color: var(--ion-color-danger);
+    font-size: 1.5ch;
+  }
+  
+  .error-field {
+    margin-top: 1ch;
+  }
+  
+  .form-elements {
+    margin-top: 2ch;
+    height: 13.5ch;
+    box-shadow: 5px 10px 10px rgb(1, 34, 65);
+  }
+  
+  .form-element {
+    justify-self: center;
+    margin-top: 4.5ch;
+  }
+  
+  .form-element ion-input {
+    font-size: 2.4ch;
+  }
+  
+  #buttons {
+    margin-top: 1ch;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-action-button {
+    font-size: 1.8ch;
+    height: 4.5ch;
+    --background: rgb(1, 34, 65);
+  }
+  
+  #cancel-button {
+    color: rgb(1, 34, 65);
+    --background: white;
+  }
+  
+  .zip-input ion-input {
+    margin-top: 0.1ch;
+    font-size: 2.4ch;
+  }
+  
+  //zipcode underlines
+  $char-w: 1.1ch;
+  $gap: 1.2*$char-w;
+  $n-char: 5;
+  $in-w: $n-char*($char-w + $gap);
+  
+  #zip-underline {
+    display: block;
+    border: none;
+    padding: 0;
+    width: $in-w;
+    background: repeating-linear-gradient(90deg,
+      dimgrey 0, dimgrey $char-w,
+      transparent 0, transparent $char-w + $gap) 0 100%/ #{$in-w - $gap} 2px no-repeat;
+    font: 2.5ch droid sans mono, consolas, monospace;
+    letter-spacing: $gap;
+  }
+}
+
+@media screen and (min-height: 649px) {
 
 #date-select {
   --background: none;
@@ -218,7 +215,7 @@ $in-w: $n-char*($char-w + $gap);
 }
 
 #date-select ion-datetime {
-  height: 50ch;
+  height: 40ch;
   align-self: center;
   position: absolute;
   top:0; left:0; right:0; bottom:0; 
@@ -262,7 +259,9 @@ $in-w: $n-char*($char-w + $gap);
 }
 
 #buttons {
-  margin-top: 1ch;
+  margin-top: 0.5ch;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-action-button {
@@ -302,635 +301,205 @@ $in-w: $n-char*($char-w + $gap);
 
 }
 
-@media screen and (min-height: 690px) {
-
-#date-select {
-  --background: none;
-  background-image: url("../../assets/images/background.jpg");
-  background-size: cover;
-}
-
-#date-select ion-button {
-   color: rgb(1, 34, 65);
-}
-
-#date-select ion-datetime {
-  height: 50ch;
-  align-self: center;
-  position: absolute;
-  top:0; left:0; right:0; bottom:0; 
-  margin: auto;
-}
-
-#subtitle {
-  margin-top: 6.5vh;
-}
-
-#subtitle p {
-  color: rgb(1, 34, 65);
-  font-size: 4ch;
-}
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-}
-
-ion-icon {
-  vertical-align: top;
-  color: black;
-}
-
-.error-message {
-  color: var(--ion-color-danger);
-  font-size: 1.8ch;
-}
-
-.error-field {
-  margin-top: 1ch;
-}
-
-#american-zipcode {
-  margin-top: 2ch;
-}
-
-#buttons {
-  margin-top: 3vh;
-}
-
-.form-elements {
-  height: 15.5ch;
-  box-shadow: 5px 10px 10px rgb(1, 34, 65);
-}
-
-.form-element {
-  justify-self: center;
-  margin-top: 5ch;
-}
-
-.form-element ion-input{
-  font-size: 2.5ch;
-}
-
-.form-action-button {
-  margin-bottom: 1ch;
-  font-size: 2ch;
-  height: 4.5ch;
-  --background: rgb(1, 34, 65);
-}
-
-#cancel-button {
-  color: rgb(1, 34, 65);
-  --background: white;
-}
-
-.zip-input ion-input {
-   font-size: 2.5ch;
-}
- 
-//zipcode underlines
-$char-w: 1.4ch;
-$gap: 1.6ch;
-$n-char: 5;
-$in-w: $n-char*($char-w + $gap);
-
-#zip-underline {
-  display: block;
-	border: none;
-  padding: 0;
-	width: $in-w;
-	background: repeating-linear-gradient(90deg, 
-		dimgrey 0, dimgrey $char-w, 
-		transparent 0, transparent $char-w + $gap) 
-		0 100%/ #{$in-w - $gap} 2px no-repeat;
-	font: 2.8ch droid sans mono, consolas, monospace;
-	letter-spacing: 1.9ch;
-}
-
-}
-
-@media screen and (min-height: 710px) {
-
-#date-select {
-  --background: none;
-  background-image: url("../../assets/images/background.jpg");
-  background-size: cover;
-}
-
-#date-select ion-button {
-   color: rgb(1, 34, 65);
-}
-
-#date-select ion-datetime {
-  height: 50ch;
-  align-self: center;
-  position: absolute;
-  top:0; left:0; right:0; bottom:0; 
-  margin: auto;
-}
-
-#subtitle {
-  margin-top: 6.5vh;
-}
-
-#subtitle p {
-   color: rgb(1, 34, 65);
-  font-size: 4ch;
-}
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-  margin-top: -1ch;
-}
-
-ion-icon {
-  vertical-align: top;
-  color: black;
-}
-
-.error-message {
-  color: var(--ion-color-danger);
-  font-size: 1.8ch;
-}
-
-.error-field {
-  margin-top: 1ch;
-}
-
-#american-zipcode {
-  margin-top: 2ch;
-}
-
-#buttons {
-  margin-top: 3vh;
-}
-
-.form-elements {
-  height: 15.5ch;
-  box-shadow: 5px 10px 10px rgb(1, 34, 65);
-}
-
-.form-element {
-  justify-self: center;
-  margin-top: 5ch;
-}
-
-.form-element ion-input{
-  font-size: 2.5ch;
-}
-
-.form-action-button {
-  margin-bottom: 1ch;
-  font-size: 2ch;
-  height: 4.5ch;
-  --background: rgb(1, 34, 65);
-}
-
-#cancel-button {
-  color: rgb(1, 34, 65);
-  --background: white;
-}
-
-.zip-input ion-input {
-   font-size: 2.5ch;
-}
- 
-//zipcode underlines
-$char-w: 1.4ch;
-$gap: 1.6ch;
-$n-char: 5;
-$in-w: $n-char*($char-w + $gap);
-
-#zip-underline {
-  display: block;
-	border: none;
-  padding: 0;
-	width: $in-w;
-	background: repeating-linear-gradient(90deg, 
-		dimgrey 0, dimgrey $char-w, 
-		transparent 0, transparent $char-w + $gap) 
-		0 100%/ #{$in-w - $gap} 2px no-repeat;
-	font: 2.8ch droid sans mono, consolas, monospace;
-	letter-spacing: 1.9ch;
-}
-
-}
-
-@media screen and (min-height: 800px) {
-
-#date-select {
-  --background: none;
-  background-image: url("../../assets/images/background.jpg");
-  background-size: cover;
-}
-
-#date-select ion-button {
-   color: rgb(1, 34, 65);
-}
-
-#date-select ion-datetime {
-  height: 50ch;
-  align-self: center;
-  position: absolute;
-  top:0; left:0; right:0; bottom:0; 
-  margin: auto;
-}
-
-#subtitle {
-  margin-top: 6.5vh;
-}
-
-#subtitle p {
-  color: rgb(1, 34, 65);
-  font-size: 4ch;
-}
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-}
-
-ion-icon {
-  vertical-align: top;
-  color: black;
-}
-
-.error-message {
-  color: var(--ion-color-danger);
-  font-size: 2ch;
-}
-
-.error-field {
-  margin-top: 1.4ch;
-}
-
-#buttons {
-  margin-top: 1ch;
-}
-
-.form-elements {
-  height: 16.5ch;
-  box-shadow: 5px 10px 10px rgb(1, 34, 65);
-}
-
-.form-element {
-  justify-self: center;
-  margin-top: 5ch;
-}
-
-.form-element ion-input{
-  font-size: 2.5ch;
-}
-
-.form-action-button {
-  margin-bottom: 1ch;
-  font-size: 2.3ch;
-  height: 5ch;
-  --background: rgb(1, 34, 65);
-}
-
-#cancel-button {
-  color: rgb(1, 34, 65);
-  --background: white;
-}
-
-.zip-input ion-input {
-   font-size: 2.5ch;
-}
-
-//zipcode underlines
-$char-w: 1.1ch;
-$gap: 1.2*$char-w;
-$n-char: 5;
-$in-w: $n-char*($char-w + $gap);
-
-#zip-underline {
-  display: block;
-	border: none;
-  padding: 0;
-	width: $in-w;
-	background: repeating-linear-gradient(90deg, 
-		dimgrey 0, dimgrey $char-w, 
-		transparent 0, transparent $char-w + $gap) 
-		0 100%/ #{$in-w - $gap} 2px no-repeat;
-	font: 2.8ch droid sans mono, consolas, monospace;
-	letter-spacing: $gap;
-}
-
-}
-
-@media screen and (min-height: 850px) {
-
-#date-select {
-  --background: none;
-  background-image: url("../../assets/images/background.jpg");
-  background-size: cover;
-}
-
-#date-select ion-button {
-   color: rgb(1, 34, 65);
-}
-
-#date-select ion-datetime {
-  height: 50ch;
-  align-self: center;
-  position: absolute;
-  top:0; left:0; right:0; bottom:0; 
-  margin: auto;
-}
-
-#subtitle {
-  margin-top: 6.5vh;
-}
-
-#subtitle p {
-  color: rgb(1, 34, 65);
-  font-size: 4ch;
-}
-
-.form-container {
-  margin-top: 3ch;
-  display: flex;
-  flex-direction: column;
-  gap: 1ch;
-}
-
-ion-icon {
-  vertical-align: top;
-  color: black;
-}
-
-.error-message {
-  color: var(--ion-color-danger);
-  font-size: 2ch;
-}
-
-.error-field {
-  margin-top: 1.5ch;
-}
-
-#buttons {
-  margin-top: 2ch;
-}
-
-.form-elements {
-  height: 16.5ch;
-  box-shadow: 5px 10px 10px rgb(1, 34, 65);
-}
-
-.form-element {
-  justify-self: center;
-  margin-top: 5ch;
-}
-
-.form-element ion-input{
-  font-size: 2.5ch;
-}
-
-.form-action-button {
-  margin-bottom: 1ch;
-  font-size: 2.3ch;
-  height: 5ch;
-  --background: rgb(1, 34, 65);
-}
-
-#cancel-button {
-  color: rgb(1, 34, 65);
-  --background: white;
-}
-
-.zip-input ion-input {
-   font-size: 2.5ch;
-}
-
-//zipcode underlines
-$char-w: 1.1ch;
-$gap: 1.2*$char-w;
-$n-char: 5;
-$in-w: $n-char*($char-w + $gap);
-
-#zip-underline {
-  display: block;
-	border: none;
-  padding: 0;
-	width: $in-w;
-	background: repeating-linear-gradient(90deg, 
-		dimgrey 0, dimgrey $char-w, 
-		transparent 0, transparent $char-w + $gap) 
-		0 100%/ #{$in-w - $gap} 2px no-repeat;
-	font: 2.8ch droid sans mono, consolas, monospace;
-	letter-spacing: $gap;
-}
-
-}
-
-@media screen and (min-height: 880px) {
-
-#date-select {
-  --background: none;
-  background-image: url("../../assets/images/background.jpg");
-  background-size: cover;
-}
-
-#date-select ion-button {
-   color: rgb(1, 34, 65);
-}
-
-#date-select ion-datetime {
-  height: 50ch;
-  align-self: center;
-  position: absolute;
-  top:0; left:0; right:0; bottom:0; 
-  margin: auto;
-}
-
-#subtitle {
-  margin-top: 6.5vh;
-}
-
-#subtitle p {
-  color: rgb(1, 34, 65);
-  font-size: 4ch;
-}
-
-.form-container {
-  margin-top: 3ch;
-  display: flex;
-  flex-direction: column;
-  gap: 2ch;
-}
-
-ion-icon {
-  vertical-align: top;
-  color: black;
-}
-
-.error-message {
-  color: var(--ion-color-danger);
-  font-size: 2ch;
-}
-
-.error-field {
-  margin-top: 1.5ch;
-}
-
-#buttons {
-  margin-top: 1ch;
-}
-
-.form-elements {
-  height: 16.5ch;
-  box-shadow: 5px 10px 10px rgb(1, 34, 65);
-}
-
-.form-element {
-  justify-self: center;
-  margin-top: 5ch;
-}
-
-.form-element ion-input{
-  font-size: 2.5ch;
-}
-
-.form-action-button {
-  margin-bottom: 1ch;
-  font-size: 2.3ch;
-  height: 5ch;
-  --background: rgb(1, 34, 65);
-}
-
-#cancel-button {
-  color: rgb(1, 34, 65);
-  --background: white;
-}
-
-.zip-input ion-input {
-   font-size: 2.5ch;
-}
-
-//zipcode underlines
-$char-w: 1ch;
-$gap: 1.2*$char-w;
-$n-char: 5;
-$in-w: $n-char*($char-w + $gap);
-
-#zip-underline {
-  display: block;
-	border: none;
-  padding: 0;
-	width: $in-w;
-	background: repeating-linear-gradient(90deg, 
-		dimgrey 0, dimgrey $char-w, 
-		transparent 0, transparent $char-w + $gap) 
-		0 100%/ #{$in-w - $gap} 2px no-repeat;
-	font: 2.8ch droid sans mono, consolas, monospace;
-	letter-spacing: $gap;
-}
-
-}
-
-@media screen and (min-height: 900px) {
-
-#date-select {
-  --background: none;
-  background-image: url("../../assets/images/background.jpg");
-  background-size: cover;
-}
-
-#date-select ion-button {
-   color: rgb(1, 34, 65);
-}
-
-#date-select ion-datetime {
-  height: 50ch;
-  align-self: center;
-  position: absolute;
-  top:0; left:0; right:0; bottom:0; 
-  margin: auto;
-}
-
-#subtitle {
-  margin-top: 6.5vh;
-}
-
-#subtitle p {
-   color: rgb(1, 34, 65);
-  font-size: 4ch;
-}
-
-.form-container {
-  margin-top: 3ch;
-  display: flex;
-  flex-direction: column;
-  gap: 5ch;
-}
-
-ion-icon {
-  vertical-align: top;
-  color: black;
-}
-
-.error-message {
-  color: var(--ion-color-danger);
-  font-size: 2ch;
-}
-
-.error-field {
-  margin-top: 1.5ch;
-}
-
-#buttons {
-  margin-top: 1ch;
-}
-
-.form-elements {
-  height: 16.5ch;
-  box-shadow: 5px 10px 10px rgb(1, 34, 65);
-}
-
-.form-element {
-  justify-self: center;
-  margin-top: 5ch;
-}
-
-.form-element ion-input{
-  font-size: 2.5ch;
-}
-
-.form-action-button {
-  margin-bottom: 1ch;
-  font-size: 2.3ch;
-  height: 5ch;
-  --background: rgb(1, 34, 65);
-}
-
-#cancel-button {
-  color: rgb(1, 34, 65);
-  --background: white;
-}
-
-.zip-input ion-input {
-   font-size: 2.5ch;
-}
-
-//zipcode underlines
-$char-w: 1.2ch;
-$gap: 1.2*$char-w;
-$n-char: 5;
-$in-w: $n-char*($char-w + $gap);
-
-#zip-underline {
-  display: block;
-	border: none;
-  padding: 0;
-	width: $in-w;
-	background: repeating-linear-gradient(90deg, 
-		dimgrey 0, dimgrey $char-w, 
-		transparent 0, transparent $char-w + $gap) 
-		0 100%/ #{$in-w - $gap} 2px no-repeat;
-	font: 2.8ch droid sans mono, consolas, monospace;
-	letter-spacing: $gap;
-}
+@media screen and (min-height: 679px) {
+
+  #date-select {
+    --background: none;
+    background-image: url("../../assets/images/background.jpg");
+    background-size: cover;
+  }
+
+  #date-select ion-button {
+    color: rgb(1, 34, 65);
+  }
+
+  #date-select ion-datetime {
+    height: 40ch;
+    align-self: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  #subtitle p {
+    color: rgb(1, 34, 65);
+    font-size: 3.5ch;
+  }
+
+  .form-container {
+    margin-top: -2ch;
+    display: flex;
+    flex-direction: column;
+    gap: 1ch;
+  }
+
+  .error-message {
+    color: var(--ion-color-danger);
+    font-size: 1.5ch;
+  }
+
+  .error-field {
+    margin-top: 1ch;
+  }
+
+  .form-elements {
+    margin-top: 2ch;
+    height: 13.5ch;
+    box-shadow: 5px 10px 10px rgb(1, 34, 65);
+  }
+
+  .form-element {
+    justify-self: center;
+    margin-top: 4.5ch;
+  }
+
+  .form-element ion-input {
+    font-size: 2.4ch;
+  }
+
+  #buttons {
+    margin-top: 1ch;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-action-button {
+    font-size: 1.8ch;
+    height: 4.5ch;
+    --background: rgb(1, 34, 65);
+  }
+
+  #cancel-button {
+    color: rgb(1, 34, 65);
+    --background: white;
+  }
+
+  .zip-input ion-input {
+    margin-top: 0.1ch;
+    font-size: 2.4ch;
+  }
+
+  //zipcode underlines
+  $char-w: 1.1ch;
+  $gap: 1.2*$char-w;
+  $n-char: 5;
+  $in-w: $n-char*($char-w + $gap);
+
+  #zip-underline {
+    display: block;
+    border: none;
+    padding: 0;
+    width: $in-w;
+    background: repeating-linear-gradient(90deg,
+      dimgrey 0, dimgrey $char-w,
+      transparent 0, transparent $char-w + $gap) 0 100%/ #{$in-w - $gap} 2px no-repeat;
+    font: 2.5ch droid sans mono, consolas, monospace;
+    letter-spacing: $gap;
+  }
+
+}
+
+@media screen and (min-height: 699px) {
+
+  #date-select {
+    --background: none;
+    background-image: url("../../assets/images/background.jpg");
+    background-size: cover;
+  }
+
+  #date-select ion-button {
+    color: rgb(1, 34, 65);
+  }
+
+  #date-select ion-datetime {
+    height: 40ch;
+    align-self: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  #subtitle p {
+    color: rgb(1, 34, 65);
+    font-size: 3.5ch;
+  }
+
+  .form-container {
+    margin-top: -2ch;
+    display: flex;
+    flex-direction: column;
+    gap: 2ch;
+  }
+
+  .error-message {
+    color: var(--ion-color-danger);
+    font-size: 1.5ch;
+  }
+
+  .error-field {
+    margin-top: 1ch;
+  }
+
+  .form-elements {
+    margin-top: 2ch;
+    height: 13.5ch;
+    box-shadow: 5px 10px 10px rgb(1, 34, 65);
+  }
+
+  .form-element {
+    justify-self: center;
+    margin-top: 4.5ch;
+  }
+
+  .form-element ion-input {
+    font-size: 2.4ch;
+  }
+
+  #buttons {
+    margin-top: 1ch;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5ch;
+  }
+
+  .form-action-button {
+    font-size: 1.8ch;
+    height: 4.5ch;
+    --background: rgb(1, 34, 65);
+  }
+
+  #cancel-button {
+    color: rgb(1, 34, 65);
+    --background: white;
+  }
+
+  .zip-input ion-input {
+    margin-top: 0.1ch;
+    font-size: 2.4ch;
+  }
+
+  //zipcode underlines
+  $char-w: 1.1ch;
+  $gap: 1.2*$char-w;
+  $n-char: 5;
+  $in-w: $n-char*($char-w + $gap);
+
+  #zip-underline {
+    display: block;
+    border: none;
+    padding: 0;
+    width: $in-w;
+    background: repeating-linear-gradient(90deg,
+      dimgrey 0, dimgrey $char-w,
+      transparent 0, transparent $char-w + $gap) 0 100%/ #{$in-w - $gap} 2px no-repeat;
+    font: 2.5ch droid sans mono, consolas, monospace;
+    letter-spacing: $gap;
+  }
 
 }
