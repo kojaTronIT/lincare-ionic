@@ -98,7 +98,7 @@ export class AmountPickerComponent implements OnInit {
     if (this.selectedAmount > 0) {
       this.router.navigate(['/delivery-date']);
     } else {
-      alert("Please select an ammount");
+      alert("Please select an ammount !");
     }
   }
 
