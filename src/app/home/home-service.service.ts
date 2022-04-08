@@ -9,6 +9,7 @@ import { ShippingAddress } from '../address-confirmation/address.model';
 })
 export class HomeServiceService {
 
+  // http://localhost:8080
   // http://3.68.132.233:8180
   api_path = "http://3.68.132.233:8180"
 
