@@ -5,6 +5,7 @@ import { AmountPickerComponent } from './amount-picker/amount-picker.component';
 import { DeliveryDateComponent } from './delivery-date/delivery-date.component';
 import { DummyPageComponent } from './dummy-page/dummy-page.component';
 import { ErrorComponent } from './error/error.component';
+import { RoutesGuardGuard } from './guards/routes.guard';
 import { ItemSelectComponent } from './item-select/item-select.component';
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   },
   {
     path: 'item-select',
-    component: ItemSelectComponent
+    component: ItemSelectComponent,
+    canActivate: [RoutesGuardGuard]
   },
   {
     path: 'message',
@@ -27,19 +29,23 @@ const routes: Routes = [
   },
   {
     path: 'amount-picker',
-    component: AmountPickerComponent
+    component: AmountPickerComponent,
+    canActivate: [RoutesGuardGuard]
   },
   {
     path: 'dummy',
     component: DummyPageComponent,
+    canActivate: [RoutesGuardGuard]
   },
   {
     path: 'address-confirmation',
-    component: AddressConfirmationComponent
+    component: AddressConfirmationComponent,
+    canActivate: [RoutesGuardGuard]
   },
   {
     path: 'delivery-date',
-    component: DeliveryDateComponent
+    component: DeliveryDateComponent,
+    canActivate: [RoutesGuardGuard]
   }
 ];
 
