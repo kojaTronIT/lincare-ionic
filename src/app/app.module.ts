@@ -20,7 +20,7 @@ import { HomePage } from './home/home.page';
 @NgModule({
   declarations: [AppComponent, ItemSelectComponent, AmountPickerComponent, DummyPageComponent, AddressConfirmationComponent, ErrorComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, ReactiveFormsModule, FormsModule, HttpClientModule, CommonModule],
+  imports: [BrowserModule, IonicModule.forRoot({rippleEffect: false, mode: 'ios'}), AppRoutingModule, ReactiveFormsModule, FormsModule, HttpClientModule, CommonModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ItemSelectComponent, HomePage],
   bootstrap: [AppComponent],
 })
