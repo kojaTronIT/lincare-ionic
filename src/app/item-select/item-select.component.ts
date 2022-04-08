@@ -81,6 +81,7 @@ export class ItemSelectComponent implements OnInit{
       console.log(localStorage.getItem("order_items"));
     } else {
       console.log(result)
+      this.router.navigate(['/delivery-date'])
     }
     
   }
