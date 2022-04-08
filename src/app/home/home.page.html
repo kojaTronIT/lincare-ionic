@@ -45,10 +45,13 @@
       <ion-card id="zipcode" class="form-elements">
 
         <div class="zip-input">
-          <ion-input align="center" placeholder="Please enter your zipcode" readonly></ion-input>
+          <ion-input align="center" placeholder="Please enter your zipcode below" readonly></ion-input>
 
           <div align="center">
-            <ion-input type="text" inputmode="numeric" align="start" maxlength="5" (ionInput)="onZipChange(zip.value)" id="zip-underline" formControlName="zipcode" #zip></ion-input>
+            <div align="center" id="zip-input-wrapper">
+              <ion-input align="center" placeholder="00000" type="text" inputmode="numeric" maxlength="5"
+                (ionInput)="onZipChange(zip.value)" id="zip-underline" formControlName="zipcode" #zip></ion-input>
+            </div>
           </div>        
         </div>
     
