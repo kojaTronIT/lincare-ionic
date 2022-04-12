@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import {map, catchError} from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { ShippingAddress } from '../address-confirmation/address.model';
 
 @Injectable({
@@ -28,7 +28,7 @@ export class HomeServiceService {
   }
 
   public validateZip(zip: string) {
-    return this.http.post(this.api_path + "/api/v1/check_us_zip", {usZip: zip})
+    return this.http.post(this.api_path + "/api/v1/check_us_zip", { usZip: zip })
       .pipe(
         map((data: string) => {
           return data;
@@ -39,16 +39,16 @@ export class HomeServiceService {
   }
 
   //returns address if dob,zip and user code valid
-  public validateDobAndZip(dob: Date, zip: any, oneTimeString: any){
+  public validateDobAndZip(dob: Date, zip: any, oneTimeString: any) {
     return this.http.post(this.api_path + "/api/v1/validate_dob_zip", { dateOfBirth: dob, zipcode: zip, oneTimeCode: oneTimeString })
-    .pipe(
-      map((data: ShippingAddress) => {
-        return data;
-      }), catchError(error => {
-        return throwError(error);
-      })
-    );
- }
+      .pipe(
+        map((data: ShippingAddress) => {
+          return data;
+        }), catchError(error => {
+          return throwError(error);
+        })
+      );
+  }
 
   public logUserActions(action: any, actionLocation: any, oneTimeString: any) {
     return this.http.post(this.api_path + "/api/v1/log_user_actions", { action: action, actionLocation: actionLocation, oneTimeString: oneTimeString })
@@ -85,5 +85,5 @@ export class HomeServiceService {
         })
       );
   }
- 
+
 }
