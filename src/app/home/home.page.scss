@@ -1,5 +1,13 @@
 @media screen and (max-height: 620px) {
 
+ion-toolbar {
+  --min-height: 9vh;
+}
+  
+ion-title img {
+  height: 6vh;
+}
+
 #date-select {
   --background: none;
   background-image: url("../../assets/images/background.jpg");
@@ -68,9 +76,9 @@ ion-icon {
   font-size: 2.4ch;
 }
 
-.form-action-button {
+#submit-button {
   font-size: 1.8ch;
-  height: 5ch;
+  height: 4.5ch;
   --background: rgb(1, 34, 65);
 }
 
@@ -92,6 +100,14 @@ ion-icon {
 }
 
 @media screen and (min-height: 620px) {
+
+  ion-toolbar {
+    --min-height: 9vh;
+  }
+  
+  ion-title img {
+    height: 6vh;
+  }
 
   #date-select {
     --background: none;
@@ -155,7 +171,7 @@ ion-icon {
     flex-direction: column;
   }
   
-  .form-action-button {
+  #submit-button {
     font-size: 1.8ch;
     height: 4.5ch;
     --background: rgb(1, 34, 65);
@@ -179,6 +195,14 @@ ion-icon {
 }
 
 @media screen and (min-height: 649px) {
+
+ion-toolbar {
+  --min-height: 9vh;
+}
+
+ion-title img {
+  height: 6vh;
+}
 
 #date-select {
   --background: none;
@@ -240,7 +264,7 @@ ion-icon {
   flex-direction: column;
 }
 
-.form-action-button {
+#submit-button {
   font-size: 1.8ch;
   height: 4.5ch;
   --background: rgb(1, 34, 65);
@@ -264,6 +288,14 @@ ion-icon {
 }
 
 @media screen and (min-height: 679px) {
+
+  ion-toolbar {
+    --min-height: 9vh;
+  }
+  
+  ion-title img {
+    height: 6vh;
+  }
 
   #date-select {
     --background: none;
@@ -328,7 +360,7 @@ ion-icon {
     flex-direction: column;
   }
 
-  .form-action-button {
+  #submit-button {
     font-size: 1.8ch;
     height: 4.5ch;
     --background: rgb(1, 34, 65);
@@ -352,6 +384,14 @@ ion-icon {
 }
 
 @media screen and (min-height: 699px) {
+
+  ion-toolbar {
+    --min-height: 9vh;
+  }
+  
+  ion-title img {
+    height: 6vh;
+  }
 
   #date-select {
     --background: none;
@@ -417,7 +457,7 @@ ion-icon {
     gap: 0.5ch;
   }
 
-  .form-action-button {
+  #submit-button {
     font-size: 1.8ch;
     height: 4.5ch;
     --background: rgb(1, 34, 65);
