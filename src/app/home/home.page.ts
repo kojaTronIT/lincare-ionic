@@ -1,4 +1,4 @@
-import { formatDate} from '@angular/common';
+import { formatDate } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -17,7 +17,7 @@ export class HomePage implements OnInit {
 
   dateValue = '';
   zipValue = '';
-  
+
   submitted = false;
   zipcodeValidation = false;
 
@@ -39,16 +39,16 @@ export class HomePage implements OnInit {
   }
 
   constructor(
-    private formBuilder: FormBuilder, private alertController: AlertController, 
-    private router: Router, private homeService: HomeServiceService, 
+    private formBuilder: FormBuilder, private alertController: AlertController,
+    private router: Router, private homeService: HomeServiceService,
     private activeRoute: ActivatedRoute
-    ) { }
+  ) { }
 
   async ngOnInit() {
     this.activeRoute.queryParams.subscribe(params => {
 
       this.userCode = params.user_code;
-  
+
       console.log(this.userCode);
     });
 
@@ -101,7 +101,7 @@ export class HomePage implements OnInit {
   onZipChange(value) {
     this.zipValue = value;
 
-    if(this.zipValue.length === 5) {
+    if (this.zipValue.length === 5) {
       this.homeService.validateZip(this.zipValue).subscribe({
         next: (data) => {
           console.log(data, data.length),
@@ -115,7 +115,7 @@ export class HomePage implements OnInit {
         },
         error: (error) => console.log(error.message)
       })
-    }   
+    }
   }
 
   onSubmit() {
@@ -125,18 +125,29 @@ export class HomePage implements OnInit {
     this.router.navigate(['/address-confirmation'])
 
     this.homeService.logUserActions(
-        localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
-      ).subscribe({
+      localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
+    ).subscribe({
       next: (data) => console.log(data),
-        error: (error) => { console.log(error) }
-    })
+      error: (error) => { console.log(error) }
+    });
 
     this.homeService.validateDobAndZip(this.registrationForm.value.dateOfBirth, this.registrationForm.value.zipcode, this.userCode).subscribe({
-      next: (data) => { this.router.navigate(['/address-confirmation']), localStorage.setItem("shipping_address", JSON.stringify(data)) },
-      error: (error) => { this.router.navigate(['/message']), localStorage.setItem("messageKey", error.error) }
-      }) 
-
-
+      next: (data) => {
+        this.router.navigate(['/address-confirmation'], 
+        { state: { 
+          patientName: data.patientName,
+          street: data.street,
+          apartment: data.apartment,
+          city: data.city,
+          state: data.state,
+          zipCode: data.zipCode
+        }});
+      },
+      error: (error) => { 
+        this.router.navigate(['/message']);
+        localStorage.setItem("messageKey", error.error); }
+    });
+    
     console.log(this.registrationForm.value.dateOfBirth);
   }
 
