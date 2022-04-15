@@ -52,6 +52,8 @@ export class HomePage implements OnInit {
       console.log(this.userCode);
     });
 
+    // localStorage.setItem("isUserValid", "true");
+
     this.homeService.validateUrl(this.userCode).subscribe({
       next: () => { localStorage.setItem("isUserValid", "true"), console.log(this.userCode + " GOOD " + localStorage.getItem("isUserValid")) },
       error: (error) => { 
@@ -122,7 +124,6 @@ export class HomePage implements OnInit {
     this.submitted = true;
     localStorage.setItem("action", "Submit clicked")
     localStorage.setItem("actionLocation", "home-page")
-    this.router.navigate(['/address-confirmation'])
 
     this.homeService.logUserActions(
       localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
@@ -133,17 +134,20 @@ export class HomePage implements OnInit {
 
     this.homeService.validateDobAndZip(this.registrationForm.value.dateOfBirth, this.registrationForm.value.zipcode, this.userCode).subscribe({
       next: (data) => {
-        this.router.navigate(['/address-confirmation'], 
-        { state: { 
-          patientName: data.patientName,
-          street: data.street,
-          apartment: data.apartment,
-          city: data.city,
-          state: data.state,
-          zipCode: data.zipCode
-        }});
+        console.log(data, " OVO")
+        this.router.navigate(['/address-confirmation'],
+        { 
+          state: { 
+            patientName: data.patientName,
+            street: data.street,
+            apartment: data.apartment,
+            city: data.city,
+            state: data.state,
+            zipCode: data.zipCode
+          }
+        });
       },
-      error: (error) => { 
+      error: (error) => {
         this.router.navigate(['/message']);
         localStorage.setItem("messageKey", error.error); }
     });
