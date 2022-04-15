@@ -2,7 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { IonDatetime, AlertController } from '@ionic/angular';
+import { IonDatetime, AlertController, LoadingController } from '@ionic/angular';
 import { format, parseISO } from 'date-fns';
 import { HomeServiceService } from './home-service.service';
 
@@ -41,7 +41,7 @@ export class HomePage implements OnInit {
   constructor(
     private formBuilder: FormBuilder, private alertController: AlertController,
     private router: Router, private homeService: HomeServiceService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute, private loadingController: LoadingController
   ) { }
 
   async ngOnInit() {
@@ -120,6 +120,42 @@ export class HomePage implements OnInit {
     }
   }
 
+  async presendLoadingForDobAndZipValidation() {
+    const loading = await this.loadingController.create({
+      spinner: "crescent",
+      message: 'Evaluating patient data ...',
+      translucent: true,
+      cssClass: 'loading-patient-data',
+    });
+    await loading.present();
+
+    this.homeService.validateDobAndZip(this.registrationForm.value.dateOfBirth, this.registrationForm.value.zipcode, this.userCode).subscribe({
+      next: (data) => {
+        console.log(data, " OVO")
+        
+        this.router.navigate(['/address-confirmation'],
+          {
+            state: {
+              patientName: data.patientName,
+              street: data.street,
+              apartment: data.apartment,
+              city: data.city,
+              state: data.state,
+              zipCode: data.zipCode
+            }
+          });
+
+        loading.dismiss();
+      },
+      error: (error) => {
+        loading.dismiss();
+        this.router.navigate(['/message']);
+        localStorage.setItem("messageKey", error.error);
+      }
+    });
+
+  }
+
   onSubmit() {
     this.submitted = true;
     localStorage.setItem("action", "Submit clicked")
@@ -132,26 +168,8 @@ export class HomePage implements OnInit {
       error: (error) => { console.log(error) }
     });
 
-    this.homeService.validateDobAndZip(this.registrationForm.value.dateOfBirth, this.registrationForm.value.zipcode, this.userCode).subscribe({
-      next: (data) => {
-        console.log(data, " OVO")
-        this.router.navigate(['/address-confirmation'],
-        { 
-          state: { 
-            patientName: data.patientName,
-            street: data.street,
-            apartment: data.apartment,
-            city: data.city,
-            state: data.state,
-            zipCode: data.zipCode
-          }
-        });
-      },
-      error: (error) => {
-        this.router.navigate(['/message']);
-        localStorage.setItem("messageKey", error.error); }
-    });
-    
+    this.presendLoadingForDobAndZipValidation();
+
     console.log(this.registrationForm.value.dateOfBirth);
   }
 
