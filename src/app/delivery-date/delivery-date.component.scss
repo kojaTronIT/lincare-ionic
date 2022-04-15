@@ -1,3 +1,11 @@
+ion-toolbar {
+    --min-height: 9vh;
+}
+
+ion-title img {
+    height: 6vh;
+}
+
 #delivery-card {
     justify-self: center;
     text-align: center;
