@@ -1,4 +1,13 @@
-@media screen and (max-height: 620px) { 
+@media screen and (max-height: 647px) {
+
+  ion-toolbar {
+    --min-height: 7.5vh;
+  }
+  
+  ion-title img {
+    height: 4.5vh;
+  }
+
   #subtitle p {
     margin-top: 1ch;
     color: rgb(1, 34, 65);
@@ -64,7 +73,16 @@
   }
 }
 
-@media screen and (min-height: 620px) {
+@media screen and (min-height: 647px) {
+
+  ion-toolbar {
+    --min-height: 9vh;
+  }
+  
+  ion-title img {
+    height: 6vh;
+  }
+
   #subtitle p {
     color: rgb(1, 34, 65);
     font-size: 4ch;
@@ -129,7 +147,16 @@
   }
 }
 
-@media screen and (min-height: 649px) {
+@media screen and (min-height: 672px) {
+
+  ion-toolbar {
+    --min-height: 9vh;
+  }
+  
+  ion-title img {
+    height: 6vh;
+  }
+
 #subtitle p {
   color: rgb(1, 34, 65);
   font-size: 4ch;
@@ -192,7 +219,16 @@ ion-card {
 }
 }
 
-@media screen and (min-height: 679px) { 
+@media screen and (min-height: 690px) {
+
+  ion-toolbar {
+    --min-height: 9vh;
+  }
+  
+  ion-title img {
+    height: 6vh;
+  }
+
   #subtitle p {
     color: rgb(1, 34, 65);
     font-size: 4ch;
@@ -257,7 +293,16 @@ ion-card {
   }
 }
 
-@media screen and (min-height: 699px) {
+@media screen and (min-height: 720px) {
+
+  ion-toolbar {
+    --min-height: 9vh;
+  }
+  
+  ion-title img {
+    height: 6vh;
+  }
+  
   #subtitle p {
     margin-top: 2ch;
     color: rgb(1, 34, 65);
