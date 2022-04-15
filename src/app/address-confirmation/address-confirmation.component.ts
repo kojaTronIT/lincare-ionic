@@ -16,19 +16,31 @@ export class AddressConfirmationComponent implements OnInit {
   state: any;
   zipCode: any;
 
+  attributes: any;
+
   constructor(private router: Router, private homeService: HomeServiceService) {
-    this.patientName = this.router.getCurrentNavigation().extras.state.patientName;
-    this.street = this.router.getCurrentNavigation().extras.state.street;
-    this.apartment = this.router.getCurrentNavigation().extras.state.apartment;
-    this.city = this.router.getCurrentNavigation().extras.state.city;
-    this.state = this.router.getCurrentNavigation().extras.state.state;
-    this.zipCode = this.router.getCurrentNavigation().extras.state.zipCode;
+
+    try {
+
+      this.patientName = this.router.getCurrentNavigation().extras.state.patientName;
+      this.street = this.router.getCurrentNavigation().extras.state.street;
+      this.apartment = this.router.getCurrentNavigation().extras.state.apartment;
+      this.city = this.router.getCurrentNavigation().extras.state.city;
+      this.state = this.router.getCurrentNavigation().extras.state.state;
+      this.zipCode = this.router.getCurrentNavigation().extras.state.zipCode;
+
+    } catch (error) {
+      this.router.navigate(['/home'])
+      .then(() => {
+        window.location.reload();
+      });
+    }
+    
    }
 
-  ngOnInit() {
-    // this.addressArray = JSON.parse(localStorage.getItem("shipping_address"));
-    // console.log(localStorage.getItem("shipping_address"));
-  }
+   ngOnInit() {
+    
+   }
 
   onYes() {
     localStorage.setItem("action", "Yes clicked");
