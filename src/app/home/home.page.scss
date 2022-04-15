@@ -1,11 +1,11 @@
-@media screen and (max-height: 620px) {
+@media screen and (max-height: 647px) {
 
 ion-toolbar {
-  --min-height: 9vh;
+  --min-height: 7.5vh;
 }
   
 ion-title img {
-  height: 6vh;
+  height: 4.5vh;
 }
 
 #date-select {
@@ -47,7 +47,7 @@ ion-icon {
 }
 
 .error-field {
-  margin-top: 1ch;
+  margin-top: 1.5ch;
 }
 
 .error-message {
@@ -99,7 +99,7 @@ ion-icon {
 
 }
 
-@media screen and (min-height: 620px) {
+@media screen and (min-height: 647px) {
 
   ion-toolbar {
     --min-height: 9vh;
@@ -194,7 +194,7 @@ ion-icon {
 
 }
 
-@media screen and (min-height: 649px) {
+@media screen and (min-height: 672px) {
 
 ion-toolbar {
   --min-height: 9vh;
@@ -287,7 +287,7 @@ ion-title img {
 
 }
 
-@media screen and (min-height: 679px) {
+@media screen and (min-height: 690px) {
 
   ion-toolbar {
     --min-height: 9vh;
@@ -383,7 +383,7 @@ ion-title img {
 
 }
 
-@media screen and (min-height: 699px) {
+@media screen and (min-height: 720px) {
 
   ion-toolbar {
     --min-height: 9vh;
