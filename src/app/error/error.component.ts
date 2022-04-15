@@ -25,7 +25,7 @@ export class ErrorComponent implements OnInit {
           this.flag = false;
         }
       },
-      error: (error) => console.log(error.error)
+      error: (error) => this.message = "We were not able to process your request. Please contact your local center (PH Placeholder)"
     });
 
     this.homeService.logUserActions(
