@@ -15,22 +15,21 @@
 
       <ion-card id="open-modal" class="form-elements">
 
-        <div class="form-element">
+        <div class="form-element" align="center">
           <ion-modal trigger="open-modal">
             <ng-template>
               <ion-content id="date-select">
                 <ion-datetime min="1892-01-01" color="dark" [max]="currentDate" value="1940-01-01" presentation="date" #popoverDatetime (ionChange)="onDateChange(formatDate(popoverDatetime.value))">
-                  <!-- <div slot="title">Select your date of birth</div> -->
                   <ion-buttons slot="buttons">
-                    <ion-button (click)="confirmDate()">Confirm</ion-button>
                     <ion-button color="danger" (click)="closeDatePicker()">Close</ion-button>
+                    <ion-button (click)="confirmDate()">Confirm</ion-button>
                   </ion-buttons>
                 </ion-datetime>
               </ion-content>
             </ng-template>
           </ion-modal>
 
-          <ion-input align="center" placeholder="Click to select date of birth" formControlName="dateOfBirth" [value]="dateValue" readonly>
+          <ion-input id="dob-input" align="center" placeholder="Click to select date of birth" formControlName="dateOfBirth" [value]="dateValue" readonly>
           </ion-input>
         </div>
 
