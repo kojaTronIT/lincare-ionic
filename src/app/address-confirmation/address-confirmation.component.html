@@ -14,9 +14,10 @@
     <div class="container">
       <ion-card id="address-card">
         <div id="address" align="center">
+          <br *ngIf="apartment === null">
           <p> {{patientName}} </p>
           <p> {{street}} </p>
-          <p *ngIf="apartment != null"> {{apartment}} </p>
+          <p *ngIf="apartment !== null"> {{apartment}} </p>
           <p> {{city}}, {{state}} </p>
           <p> {{zipCode}} </p>
         </div>
