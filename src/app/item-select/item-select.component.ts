@@ -53,7 +53,7 @@ export class ItemSelectComponent implements OnInit{
     localStorage.setItem("order_items", JSON.stringify(result));
 
     if (this.selectedRadioGroup === undefined || result.length === 0) {
-      alert("Please select atleast one item !")
+      alert("To continue at least one item must be selected")
     } else if (result[0] === "cylinders") {
       console.log(localStorage.getItem("order_items")); //OVO IDE NA ORDER
       this.router.navigate(['/amount-picker']);
@@ -80,10 +80,10 @@ export class ItemSelectComponent implements OnInit{
       cssClass: 'item-select-alert',
       buttons: [
         {
-          text: 'Deny',
+          text: 'No',
           role: 'cancel',
           handler: () => {
-            localStorage.setItem("action", "Deny cancelation clicked");
+            localStorage.setItem("action", "No on cancel clicked");
             localStorage.setItem("actionLocation", "item-select");
 
             this.homeService.logUserActions(
@@ -95,9 +95,9 @@ export class ItemSelectComponent implements OnInit{
           }
         },
         {
-          text: 'Confirm',
+          text: 'Yes, Cancel',
           handler: () => {
-            localStorage.setItem("action", "Confirm cancelation clicked")
+            localStorage.setItem("action", "Yes on cancel clicked")
             localStorage.setItem("actionLocation", "item-select");
             
             localStorage.setItem("messageKey", "CANCEL");
