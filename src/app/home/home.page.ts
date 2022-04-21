@@ -30,11 +30,11 @@ export class HomePage implements OnInit {
 
   public errorMessages = {
     dateOfBirth: [
-      { type: 'required', message: 'Date of birth is a mandatory field !' }
+      { type: 'required', message: 'Date of birth is required to continue' }
     ],
     zipcode: [
-      { type: 'required', message: 'Zipcode is a mandatory field !' },
-      { type: 'pattern', message: 'Zipcode must be 5 numbers long !' }
+      { type: 'required', message: 'Zip code is required to continue' },
+      { type: 'pattern', message: 'Zip code must be in the form of 5 digits' }
     ]
   }
 
@@ -136,7 +136,6 @@ export class HomePage implements OnInit {
         this.router.navigate(['/address-confirmation'],
           {
             state: {
-              patientName: data.patientName,
               street: data.street,
               apartment: data.apartment,
               city: data.city,
@@ -189,10 +188,10 @@ export class HomePage implements OnInit {
       cssClass: 'item-select-alert',
       buttons: [
         {
-          text: 'Deny',
+          text: 'No',
           role: 'cancel',
           handler: () => {
-            localStorage.setItem("action", "Deny cancelation clicked");
+            localStorage.setItem("action", "No on cancel clicked");
             localStorage.setItem("actionLocation", "home-page");
 
             this.homeService.logUserActions(
@@ -204,9 +203,9 @@ export class HomePage implements OnInit {
           }
         },
         {
-          text: 'Confirm',
+          text: 'Yes, Cancel',
           handler: () => {
-            localStorage.setItem("action", "Confirm cancelation clicked");
+            localStorage.setItem("action", "Yes on cancel clicked");
             localStorage.setItem("actionLocation", "home-page");
 
             localStorage.setItem("messageKey", "CANCEL");
