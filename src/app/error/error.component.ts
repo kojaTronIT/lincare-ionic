@@ -19,7 +19,7 @@ export class ErrorComponent implements OnInit {
       next: (data) => { 
         this.message = data.message 
 
-        if (data.message === "You have canceled your request") {
+        if (data.message === "Your request has been cancelled and no further action is needed.") {
           this.flag = true;
         } else {
           this.flag = false;
