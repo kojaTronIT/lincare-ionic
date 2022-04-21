@@ -98,7 +98,7 @@ export class AmountPickerComponent implements OnInit {
     if (this.selectedAmount > 0) {
       this.router.navigate(['/delivery-date']);
     } else {
-      alert("Please select an ammount !");
+      alert("To continue an amount needs to be selected");
     }
   }
 
@@ -132,10 +132,10 @@ export class AmountPickerComponent implements OnInit {
       cssClass: 'item-select-alert',
       buttons: [
         {
-          text: 'Deny',
+          text: 'No',
           role: 'cancel',
           handler: () => {
-            localStorage.setItem("action", "Deny cancelation clicked");
+            localStorage.setItem("action", "No on cancel clicked");
             localStorage.setItem("actionLocation", "ammount-picker");
 
             this.homeService.logUserActions(
@@ -147,9 +147,9 @@ export class AmountPickerComponent implements OnInit {
           }
         },
         {
-          text: 'Confirm',
+          text: 'Yes, Cancel',
           handler: () => {
-            localStorage.setItem("action", "Confirm cancelation clicked");
+            localStorage.setItem("action", "Yes on cancel clicked");
             localStorage.setItem("actionLocation", "ammount-picker")
             
             localStorage.setItem("messageKey", "CANCEL");
