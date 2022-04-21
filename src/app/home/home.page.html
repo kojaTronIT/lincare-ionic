@@ -8,7 +8,8 @@
   <div class="wrapper">
 
     <div id="subtitle" align="center">
-      <p> Help us verify your information </p>
+      <p> Lincare Oxygen Ordering </p>
+      <br>
     </div>
     
     <form class="form-container" [formGroup]="registrationForm">
@@ -29,7 +30,7 @@
             </ng-template>
           </ion-modal>
 
-          <ion-input id="dob-input" align="center" placeholder="Click to select date of birth" formControlName="dateOfBirth" [value]="dateValue" readonly>
+          <ion-input id="dob-input" align="center" placeholder="Please enter your date of birth" formControlName="dateOfBirth" [value]="dateValue" readonly>
           </ion-input>
         </div>
 
@@ -44,11 +45,11 @@
       <ion-card id="zipcode" class="form-elements">
 
         <div class="zip-input" align="center">
-          <ion-input align="center" placeholder="Please enter your zipcode below" readonly></ion-input>
+          <ion-input align="center" placeholder="Please enter your zip code" readonly></ion-input>
 
           <div align="center">
             <div align="center" id="zip-input-wrapper">
-              <ion-input align="center" placeholder="00000" type="text" inputmode="numeric" maxlength="5"
+              <ion-input align="center" placeholder="#####" type="text" inputmode="numeric" maxlength="5"
                 (ionInput)="onZipChange(zip.value)" id="zip-underline" formControlName="zipcode" #zip></ion-input>
             </div>
           </div>        
@@ -63,7 +64,7 @@
         <div align="center" class="error-field" id="american-zipcode">
           <ng-container
             *ngIf="(zipcodeValidation == false) && (zipcode.dirty)">
-            <small class="error-message"> Not a valid zipcode ! </small>
+            <small class="error-message"> Not a valid zip code </small>
           </ng-container>
         </div>
       </ion-card>
