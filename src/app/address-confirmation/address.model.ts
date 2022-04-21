@@ -1,7 +1,5 @@
 export class ShippingAddress {
 
-    patientName: string;
-
     street: string;
 
     apartment: string;
