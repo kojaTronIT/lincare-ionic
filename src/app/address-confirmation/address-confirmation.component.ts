@@ -22,7 +22,6 @@ export class AddressConfirmationComponent implements OnInit {
 
     try {
 
-      this.patientName = this.router.getCurrentNavigation().extras.state.patientName;
       this.street = this.router.getCurrentNavigation().extras.state.street;
       this.apartment = this.router.getCurrentNavigation().extras.state.apartment;
       this.city = this.router.getCurrentNavigation().extras.state.city;
