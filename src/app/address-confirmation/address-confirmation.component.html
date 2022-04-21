@@ -8,14 +8,14 @@
   <div class="wrapper">
 
     <div id="subtitle" align="center">
-      <p> Do we have your correct shipping address ? </p>
+      <p> Would you like your order delivered to this address </p>
     </div>
 
     <div class="container">
       <ion-card id="address-card">
         <div id="address" align="center">
+          <br>
           <br *ngIf="apartment === null">
-          <p> {{patientName}} </p>
           <p> {{street}} </p>
           <p *ngIf="apartment !== null"> {{apartment}} </p>
           <p> {{city}}, {{state}} </p>
