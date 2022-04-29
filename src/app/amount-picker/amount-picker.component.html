@@ -8,18 +8,29 @@
   <div class="wrapper">
     
     <div id="subtitle" align="center">
-      <p> How many full cylinders do you have ? </p>
+      <p> Please update your cylinder count </p>
     </div>
     
     <form class="form-container" (ngSubmit)="onSubmit()">
       <ion-card id="dropdown-card">
         <div id="dropdown" align="center">
-          <ion-label > Click below to select an amount </ion-label>
-          <ion-select cancel-text="Close" interface="action-sheet" name="numbers-dropdown" (ionChange)="selectChange($event)"
+          <ion-label > Empty cylinders </ion-label>
+          <ion-select cancel-text="Close" interface="action-sheet" name="numbers-dropdown" (ionChange)="selectChangeEmpty($event)"
             placeholder="0">
             <ion-select-option *ngFor="let number of amount_list" value="{{number.value}}"> {{number.text}} </ion-select-option>
           </ion-select>
         </div>    
+      </ion-card>
+
+      <ion-card id="dropdown-card">
+        <div id="dropdown" align="center">
+          <ion-label> Full cylinders </ion-label>
+          <ion-select cancel-text="Close" interface="action-sheet" name="numbers-dropdown" (ionChange)="selectChangeFull($event)"
+            placeholder="0">
+            <ion-select-option *ngFor="let number of amount_list" value="{{number.value}}"> {{number.text}}
+            </ion-select-option>
+          </ion-select>
+        </div>
       </ion-card>
     
       <div id="buttons">
