@@ -12,10 +12,13 @@ import { HomeServiceService } from '../home/home-service.service';
 })
 export class AmountPickerComponent implements OnInit {
 
-  constructor(private router: Router, private alertController: AlertController, 
+  constructor(private router: Router, private alertController: AlertController,
     private appComponent: AppComponent, private homeService: HomeServiceService) { }
 
-  selectedAmount: any;
+  selectedAmountEmpty: any;
+  selectedAmountFull: any;
+
+  alertMessage: string;
 
   order_data: Array<Object> = [];
 
@@ -75,9 +78,14 @@ export class AmountPickerComponent implements OnInit {
     console.log(localStorage.getItem("order_items"));
   }
 
-  selectChange(event) {
-    console.log("selectChange", event.detail);
-    this.selectedAmount = event.detail.value;
+  selectChangeEmpty(event) {
+    console.log("selectChangeEmpty", event.detail);
+    this.selectedAmountEmpty = event.detail.value;
+  }
+
+  selectChangeFull(event) {
+    console.log("selectChangeFull", event.detail);
+    this.selectedAmountFull = event.detail.value;
   }
 
   onSubmit() {
@@ -91,14 +99,22 @@ export class AmountPickerComponent implements OnInit {
       error: (error) => console.log(error.error)
     })
 
-    const result = this.appComponent.item_select_list.filter(obj => obj.checked == true).map(obj => obj.value);
-    this.order_data.push(result, this.selectedAmount);
+    const result = this.appComponent.item_select_list.filter(obj => obj.checked === true).map(obj => obj.value);
+
+    this.order_data.push(result, this.selectedAmountEmpty);
+
+    this.order_data.push(result, this.selectedAmountFull);
+
     console.log(this.order_data);
 
-    if (this.selectedAmount > 0) {
-      this.router.navigate(['/delivery-date']);
-    } else {
+    if (!(this.selectedAmountEmpty > 0 && this.selectedAmountFull > 0)) {
+
       alert("To continue an amount needs to be selected");
+
+    } else {
+
+      this.router.navigate(['/delivery-date']);
+
     }
   }
 
@@ -151,10 +167,10 @@ export class AmountPickerComponent implements OnInit {
           handler: () => {
             localStorage.setItem("action", "Yes on cancel clicked");
             localStorage.setItem("actionLocation", "ammount-picker")
-            
+
             localStorage.setItem("messageKey", "CANCEL");
-            
-            this.router.navigate(['/message'])  
+
+            this.router.navigate(['/message'])
           }
         }
       ]
