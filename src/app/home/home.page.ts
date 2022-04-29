@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { IonDatetime, AlertController, LoadingController } from '@ionic/angular';
 import { format, parseISO } from 'date-fns';
+import { AppComponent } from '../app.component';
 import { HomeServiceService } from './home-service.service';
 
 @Component({
@@ -24,6 +25,8 @@ export class HomePage implements OnInit {
   currentDate;
   zipResponse;
 
+  submitCount = 0;
+
   public userCode;
 
   private zipcodePattern = RegExp(/^[0-9]{5}$/g);
@@ -41,7 +44,8 @@ export class HomePage implements OnInit {
   constructor(
     private formBuilder: FormBuilder, private alertController: AlertController,
     private router: Router, private homeService: HomeServiceService,
-    private activeRoute: ActivatedRoute, private loadingController: LoadingController
+    private activeRoute: ActivatedRoute, private loadingController: LoadingController,
+    private appComponent: AppComponent
   ) { }
 
   async ngOnInit() {
@@ -52,19 +56,9 @@ export class HomePage implements OnInit {
       console.log(this.userCode);
     });
 
-    // localStorage.setItem("isUserValid", "true");
-
-    this.homeService.validateUrl(this.userCode).subscribe({
-      next: () => { localStorage.setItem("isUserValid", "true"), console.log(this.userCode + " GOOD " + localStorage.getItem("isUserValid")) },
-      error: (error) => { 
-        localStorage.setItem("isUserValid", "false"),
-          console.log(this.userCode + " BAD " + localStorage.getItem("isUserValid")), 
-        localStorage.setItem("messageKey", error.error), this.router.navigate(['/message']) 
-      }
-    });
+    this.validateUrl();
 
     this.currentDate = formatDate(new Date, 'yyyy-MM-dd', 'en');
-    console.log(this.currentDate)
   }
 
   get dateOfBirth() {
@@ -103,6 +97,92 @@ export class HomePage implements OnInit {
   onZipChange(value) {
     this.zipValue = value;
 
+    this.validateZipcode();
+  }
+
+  onSubmit() {
+    this.submitted = true;
+
+    this.setUserActions("Submit clicked", "home-page");
+
+    this.logActions();
+
+    this.submitCount++
+
+    if (this.submitCount > 3) {
+      localStorage.setItem("messageKey", "CANCEL"); //new message key for 3 attempts
+      this.router.navigate(['/message']);
+    }
+
+    this.presendLoadingForDobAndZipValidation();
+  }
+
+  async onCancel() {
+    this.setUserActions("Cancel clicked", "home-page");
+
+    this.logActions();
+
+    let alert = await this.alertController.create({
+      message: 'Are you sure you want to cancel ?',
+      cssClass: 'item-select-alert',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            this.setUserActions("No on cancel clicked", "home-page");
+
+            this.logActions();
+
+          }
+        },
+        {
+          text: 'Yes, Cancel',
+          handler: () => {
+            this.setUserActions("Yes on cancel clicked", "home-page");
+
+            localStorage.setItem("messageKey", "CANCEL");
+
+            this.router.navigate(['/message']);
+          }
+        }
+      ]
+    });
+
+    alert.present();
+  }
+
+  validateUrl() {
+    //  this.appComponent.isOneTimeLinkValid(true);
+
+    this.homeService.validateUrl(this.userCode).subscribe({
+      next: () => {
+        this.appComponent.isOneTimeLinkValid(true);
+        console.log(this.userCode + " GOOD " + this.appComponent.isOneTimeLinkValid);
+      },
+      error: (error) => {
+        this.appComponent.isOneTimeLinkValid(false);
+        console.log(this.userCode + " BAD " + this.appComponent.isOneTimeLinkValid);
+        localStorage.setItem("messageKey", error.error), this.router.navigate(['/message']);
+      }
+    });
+  }
+
+  setUserActions(action: string, actionLocation: string) {
+    localStorage.setItem("action", action);
+    localStorage.setItem("actionLocation", actionLocation);
+  }
+
+  logActions() {
+    this.homeService.logUserActions(
+      localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
+    ).subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.log(error.error)
+    })
+  }
+
+  validateZipcode() {
     if (this.zipValue.length === 5) {
       this.homeService.validateZip(this.zipValue).subscribe({
         next: (data) => {
@@ -127,12 +207,14 @@ export class HomePage implements OnInit {
       translucent: true,
       cssClass: 'loading-patient-data',
     });
-    await loading.present();
+
+    if (this.submitCount >= 0 && this.submitCount <= 3) {
+      await loading.present();
+    }
 
     this.homeService.validateDobAndZip(this.registrationForm.value.dateOfBirth, this.registrationForm.value.zipcode, this.userCode).subscribe({
       next: (data) => {
-        console.log(data, " OVO")
-        
+
         this.router.navigate(['/address-confirmation'],
           {
             state: {
@@ -153,70 +235,6 @@ export class HomePage implements OnInit {
       }
     });
 
-  }
-
-  onSubmit() {
-    this.submitted = true;
-    localStorage.setItem("action", "Submit clicked")
-    localStorage.setItem("actionLocation", "home-page")
-
-    this.homeService.logUserActions(
-      localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
-    ).subscribe({
-      next: (data) => console.log(data),
-      error: (error) => { console.log(error) }
-    });
-
-    this.presendLoadingForDobAndZipValidation();
-
-    console.log(this.registrationForm.value.dateOfBirth);
-  }
-
-  async onCancel() {
-    localStorage.setItem("action", "Cancel clicked");
-    localStorage.setItem("actionLocation", "home-page");
-
-    this.homeService.logUserActions(
-      localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
-    ).subscribe({
-      next: (data) => console.log(data),
-      error: (error) => console.log(error.error)
-    })
-
-    let alert = await this.alertController.create({
-      message: 'Are you sure you want to cancel ?',
-      cssClass: 'item-select-alert',
-      buttons: [
-        {
-          text: 'No',
-          role: 'cancel',
-          handler: () => {
-            localStorage.setItem("action", "No on cancel clicked");
-            localStorage.setItem("actionLocation", "home-page");
-
-            this.homeService.logUserActions(
-              localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
-            ).subscribe({
-              next: (data) => console.log(data),
-              error: (error) => console.log(error.error)
-            })
-          }
-        },
-        {
-          text: 'Yes, Cancel',
-          handler: () => {
-            localStorage.setItem("action", "Yes on cancel clicked");
-            localStorage.setItem("actionLocation", "home-page");
-
-            localStorage.setItem("messageKey", "CANCEL");
-
-            this.router.navigate(['/message']);
-          }
-        }
-      ]
-    });
-
-    alert.present();
   }
 
 }
