@@ -110,7 +110,7 @@ export class HomePage implements OnInit {
     this.submitCount++
 
     if (this.submitCount > 3) {
-      localStorage.setItem("messageKey", "CANCEL"); //new message key for 3 attempts
+      localStorage.setItem("messageKey", "THREEATTEMPTS"); //new message key for 3 attempts
       this.router.navigate(['/message']);
     }
 
@@ -153,7 +153,7 @@ export class HomePage implements OnInit {
   }
 
   validateUrl() {
-    //  this.appComponent.isOneTimeLinkValid(true);
+    // this.appComponent.isOneTimeLinkValid(true);
 
     this.homeService.validateUrl(this.userCode).subscribe({
       next: () => {
