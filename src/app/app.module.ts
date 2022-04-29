@@ -21,7 +21,7 @@ import { HomePage } from './home/home.page';
   declarations: [AppComponent, ItemSelectComponent, AmountPickerComponent, DummyPageComponent, AddressConfirmationComponent, ErrorComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot({rippleEffect: false, mode: 'ios'}), AppRoutingModule, ReactiveFormsModule, FormsModule, HttpClientModule, CommonModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ItemSelectComponent, HomePage],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ItemSelectComponent, HomePage, AppComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
