@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,10 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
+  @HostListener('window: unload', ['$event'])
+  unloadHandler(event) {
+    localStorage.setItem("isValid", "false")
+  }
 
   constructor() {}
 
@@ -36,6 +40,14 @@ export class AppComponent {
 
   indexTracker(index: number) {
     return index;
+  }
+
+  isOneTimeLinkValid(valid: boolean) {
+    if(valid === true) {
+      localStorage.setItem("isValid", "true");
+    } else {
+      localStorage.setItem("isValid", "false");
+    }
   }
 
 }
