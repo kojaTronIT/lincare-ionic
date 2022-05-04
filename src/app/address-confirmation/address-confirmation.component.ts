@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { HomeServiceService } from '../home/home-service.service';
 
 @Component({
@@ -18,7 +19,9 @@ export class AddressConfirmationComponent implements OnInit {
 
   attributes: any;
 
-  constructor(private router: Router, private homeService: HomeServiceService) {
+  actionLocation = "address-confirmation";
+
+  constructor(private router: Router, private appComponent: AppComponent) {
 
     try {
 
@@ -42,22 +45,13 @@ export class AddressConfirmationComponent implements OnInit {
    }
 
   onYes() {
-    localStorage.setItem("action", "Yes clicked");
-    localStorage.setItem("actionLocation", "address-confirmation")
-
-    this.homeService.logUserActions(
-      localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
-    ).subscribe({
-      next: (data) => console.log(data),
-      error: (error) => console.log(error.error)
-    })
+    this.appComponent.logActions("Yes clicked", this.actionLocation);
 
     this.router.navigate(['/item-select'])
   }
 
   onNo() {
-    localStorage.setItem("action", "No clicked")
-    localStorage.setItem("actionLocation", "address-confirmation");
+    this.appComponent.setUserActions("No clicked", this.actionLocation);
 
     localStorage.setItem("messageKey", "NO");
 
