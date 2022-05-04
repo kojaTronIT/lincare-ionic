@@ -9,15 +9,18 @@ import { HomeServiceService } from '../home/home-service.service';
   templateUrl: './item-select.component.html',
   styleUrls: ['./item-select.component.scss'],
 })
-export class ItemSelectComponent implements OnInit{
+export class ItemSelectComponent implements OnInit {
 
-  constructor(private router: Router, private alertController: AlertController, 
-    private appComponent: AppComponent, private toastController: ToastController, 
-    private homeService: HomeServiceService) {}
+  selectedRadioGroup: any;
+
+  actionLocation = "item-select";
+
+  constructor(
+    private router: Router, private alertController: AlertController, 
+    private appComponent: AppComponent, private homeService: HomeServiceService
+  ) {}
 
   ngOnInit() { }
-  
-  selectedRadioGroup: any;
 
   radioGroupChange(event, index: number) {
     console.log("radioGroupChange", event.detail)
@@ -38,42 +41,18 @@ export class ItemSelectComponent implements OnInit{
   }
 
   onSubmit() {
-    localStorage.setItem("action", "Submit clicked");
-    localStorage.setItem("actionLocation", "item-select");
+    this.appComponent.logActions("Submit clicked", this.actionLocation);
 
-    this.homeService.logUserActions(
-      localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
-    ).subscribe({
-      next: (data) => console.log(data),
-      error: (error) => console.log(error.error)
-    })
+    const result = this.appComponent.item_select_list.filter(obj => obj.checked === true).map(obj => obj.value);
 
-    const result = this.appComponent.item_select_list.filter(obj => obj.checked == true).map(obj => obj.value);
+    this.sendOrder(result);
 
     localStorage.setItem("order_items", JSON.stringify(result));
-
-    if (this.selectedRadioGroup === undefined || result.length === 0) {
-      alert("To continue at least one item must be selected")
-    } else if (result[0] === "cylinders") {
-      console.log(localStorage.getItem("order_items")); //OVO IDE NA ORDER
-      this.router.navigate(['/amount-picker']);
-    } else {
-      console.log(result) //OVO IDE NA ORDER
-      this.router.navigate(['/delivery-date'])
-    }
-    
   }
 
   async onCancel() {
-    localStorage.setItem("action", "Cancel clicked");
-    localStorage.setItem("actionLocation", "item-select");
 
-    this.homeService.logUserActions(
-      localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
-    ).subscribe({
-      next: (data) => console.log(data),
-      error: (error) => console.log(error.error)
-    })
+    this.appComponent.logActions("Cancel clicked", this.actionLocation);
 
     let alert = await this.alertController.create({
       message: 'Are you sure you want to cancel ?',
@@ -83,22 +62,13 @@ export class ItemSelectComponent implements OnInit{
           text: 'No',
           role: 'cancel',
           handler: () => {
-            localStorage.setItem("action", "No on cancel clicked");
-            localStorage.setItem("actionLocation", "item-select");
-
-            this.homeService.logUserActions(
-              localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
-            ).subscribe({
-              next: (data) => console.log(data),
-              error: (error) => console.log(error.error)
-            })
+            this.appComponent.logActions("No on cancel clicked", this.actionLocation);
           }
         },
         {
           text: 'Yes, Cancel',
           handler: () => {
-            localStorage.setItem("action", "Yes on cancel clicked")
-            localStorage.setItem("actionLocation", "item-select");
+            this.appComponent.setUserActions("Yes on cancel clicked", this.actionLocation);
             
             localStorage.setItem("messageKey", "CANCEL");
             
@@ -109,6 +79,20 @@ export class ItemSelectComponent implements OnInit{
     });
     
     alert.present();
+  }
+
+  sendOrder(orderResult) {
+    if (this.selectedRadioGroup === undefined || orderResult.length === 0) {
+      alert("To continue at least one item must be selected")
+    } else if (orderResult[0] === "cylinders") {
+      this.router.navigate(['/amount-picker'], { state: { order: orderResult } });
+    } else {
+      this.homeService.sendOrder(orderResult).subscribe({
+        next: (data) => console.log(data),
+        error: (error) => console.log(error.error)
+      });
+      this.router.navigate(['/delivery-date'])
+    }
   }
 
 }
