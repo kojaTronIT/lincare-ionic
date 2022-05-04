@@ -26,6 +26,7 @@ export class HomePage implements OnInit {
   zipResponse;
 
   submitCount = 0;
+  actionLocation = "home-page";
 
   public userCode;
 
@@ -75,7 +76,6 @@ export class HomePage implements OnInit {
   });
 
   formatDate(value: string) {
-    console.log(format(parseISO(value), "MM/dd/yyyy"));
     return format(parseISO(value), "MM/dd/yyyy");
   }
 
@@ -103,9 +103,7 @@ export class HomePage implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    this.setUserActions("Submit clicked", "home-page");
-
-    this.logActions();
+    this.appComponent.logActions("Submit clicked", this.actionLocation);
 
     this.submitCount++
 
@@ -118,9 +116,8 @@ export class HomePage implements OnInit {
   }
 
   async onCancel() {
-    this.setUserActions("Cancel clicked", "home-page");
 
-    this.logActions();
+    this.appComponent.logActions("Cancel clicked", this.actionLocation);
 
     let alert = await this.alertController.create({
       message: 'Are you sure you want to cancel ?',
@@ -130,16 +127,13 @@ export class HomePage implements OnInit {
           text: 'No',
           role: 'cancel',
           handler: () => {
-            this.setUserActions("No on cancel clicked", "home-page");
-
-            this.logActions();
-
+            this.appComponent.logActions("No on cancel clicked", this.actionLocation);
           }
         },
         {
           text: 'Yes, Cancel',
           handler: () => {
-            this.setUserActions("Yes on cancel clicked", "home-page");
+            this.appComponent.setUserActions("Yes on cancel clicked", this.actionLocation);
 
             localStorage.setItem("messageKey", "CANCEL");
 
@@ -168,20 +162,6 @@ export class HomePage implements OnInit {
     });
   }
 
-  setUserActions(action: string, actionLocation: string) {
-    localStorage.setItem("action", action);
-    localStorage.setItem("actionLocation", actionLocation);
-  }
-
-  logActions() {
-    this.homeService.logUserActions(
-      localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
-    ).subscribe({
-      next: (data) => console.log(data),
-      error: (error) => console.log(error.error)
-    })
-  }
-
   validateZipcode() {
     if (this.zipValue.length === 5) {
       this.homeService.validateZip(this.zipValue).subscribe({
@@ -193,7 +173,6 @@ export class HomePage implements OnInit {
           } else {
             this.zipcodeValidation = false;
           }
-          console.log(this.zipcodeValidation)
         },
         error: (error) => console.log(error.message)
       })
@@ -230,8 +209,8 @@ export class HomePage implements OnInit {
       },
       error: (error) => {
         loading.dismiss();
-        this.router.navigate(['/message']);
         localStorage.setItem("messageKey", error.error);
+        this.router.navigate(['/message']);
       }
     });
 
