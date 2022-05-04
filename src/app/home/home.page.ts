@@ -105,12 +105,7 @@ export class HomePage implements OnInit {
 
     this.appComponent.logActions("Submit clicked", this.actionLocation);
 
-    this.submitCount++
-
-    if (this.submitCount > 3) {
-      localStorage.setItem("messageKey", "THREEATTEMPTS"); //new message key for 3 attempts
-      this.router.navigate(['/message']);
-    }
+    this.submitCount++  
 
     this.presendLoadingForDobAndZipValidation();
   }
@@ -180,6 +175,7 @@ export class HomePage implements OnInit {
   }
 
   async presendLoadingForDobAndZipValidation() {
+
     const loading = await this.loadingController.create({
       spinner: "crescent",
       message: 'Evaluating patient data ...',
@@ -189,30 +185,34 @@ export class HomePage implements OnInit {
 
     if (this.submitCount >= 0 && this.submitCount <= 3) {
       await loading.present();
+
+      this.homeService.validateDobAndZip(this.registrationForm.value.dateOfBirth, this.registrationForm.value.zipcode, this.userCode).subscribe({
+        next: (data) => {
+
+          this.router.navigate(['/address-confirmation'],
+            {
+              state: {
+                street: data.street,
+                apartment: data.apartment,
+                city: data.city,
+                state: data.state,
+                zipCode: data.zipCode
+              }
+            });
+
+          loading.dismiss();
+        },
+        error: (error) => {
+          loading.dismiss();
+          localStorage.setItem("messageKey", error.error);
+          this.router.navigate(['/message']);
+        }
+      });
+
+    } else {
+      localStorage.setItem("messageKey", "THREEATTEMPTS");
+      this.router.navigate(['/message']);
     }
-
-    this.homeService.validateDobAndZip(this.registrationForm.value.dateOfBirth, this.registrationForm.value.zipcode, this.userCode).subscribe({
-      next: (data) => {
-
-        this.router.navigate(['/address-confirmation'],
-          {
-            state: {
-              street: data.street,
-              apartment: data.apartment,
-              city: data.city,
-              state: data.state,
-              zipCode: data.zipCode
-            }
-          });
-
-        loading.dismiss();
-      },
-      error: (error) => {
-        loading.dismiss();
-        localStorage.setItem("messageKey", error.error);
-        this.router.navigate(['/message']);
-      }
-    });
 
   }
 
