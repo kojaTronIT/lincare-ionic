@@ -20,7 +20,7 @@ export class HomePage implements OnInit {
   zipValue = '';
 
   submitted = false;
-  zipcodeValidation = false;
+  // zipcodeValidation = false;
 
   currentDate;
   zipResponse;
@@ -96,8 +96,6 @@ export class HomePage implements OnInit {
 
   onZipChange(value) {
     this.zipValue = value;
-
-    this.validateZipcode();
   }
 
   onSubmit() {
@@ -157,22 +155,22 @@ export class HomePage implements OnInit {
     });
   }
 
-  validateZipcode() {
-    if (this.zipValue.length === 5) {
-      this.homeService.validateZip(this.zipValue).subscribe({
-        next: (data) => {
-          console.log(data, data.length),
-            this.zipResponse = data
-          if (!(data.length === 0)) {
-            this.zipcodeValidation = true;
-          } else {
-            this.zipcodeValidation = false;
-          }
-        },
-        error: (error) => console.log(error.message)
-      })
-    }
-  }
+  // validateZipcode() {
+  //   if (this.zipValue.length === 5) {
+  //     this.homeService.validateZip(this.zipValue).subscribe({
+  //       next: (data) => {
+  //         console.log(data, data.length),
+  //           this.zipResponse = data
+  //         if (!(data.length === 0)) {
+  //           this.zipcodeValidation = true;
+  //         } else {
+  //           this.zipcodeValidation = false;
+  //         }
+  //       },
+  //       error: (error) => console.log(error.message)
+  //     })
+  //   }
+  // }
 
   async presendLoadingForDobAndZipValidation() {
 
