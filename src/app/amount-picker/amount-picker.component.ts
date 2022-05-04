@@ -12,15 +12,37 @@ import { HomeServiceService } from '../home/home-service.service';
 })
 export class AmountPickerComponent implements OnInit {
 
-  constructor(private router: Router, private alertController: AlertController,
-    private appComponent: AppComponent, private homeService: HomeServiceService) { }
+  order: any;
 
-  selectedAmountEmpty: any;
-  selectedAmountFull: any;
+  actionLocation = "ammount-picker";
+
+  selectedAmountEmpty: number;
+  selectedAmountFull: number;
 
   alertMessage: string;
 
   order_data: Array<Object> = [];
+
+  constructor(
+    private router: Router, private alertController: AlertController, 
+    private homeService: HomeServiceService, private appComponent: AppComponent
+  ) { 
+
+    try {
+
+      if (this.router.getCurrentNavigation().extras.state.order != null) {
+        this.order = this.router.getCurrentNavigation().extras.state.order;
+      }
+      
+    } catch (error) {
+
+      localStorage.setItem("messageKey", "CUSTOMMESSAGE");
+
+      this.router.navigate(['/error']);
+
+    }
+
+  }
 
   amount_list = [
     {
@@ -79,33 +101,15 @@ export class AmountPickerComponent implements OnInit {
   }
 
   selectChangeEmpty(event) {
-    console.log("selectChangeEmpty", event.detail);
     this.selectedAmountEmpty = event.detail.value;
   }
 
   selectChangeFull(event) {
-    console.log("selectChangeFull", event.detail);
     this.selectedAmountFull = event.detail.value;
   }
 
   onSubmit() {
-    localStorage.setItem("action", "Submit clicked");
-    localStorage.setItem("actionLocation", "ammount-picker")
-
-    this.homeService.logUserActions(
-      localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
-    ).subscribe({
-      next: (data) => console.log(data),
-      error: (error) => console.log(error.error)
-    })
-
-    const result = this.appComponent.item_select_list.filter(obj => obj.checked === true).map(obj => obj.value);
-
-    this.order_data.push(result, this.selectedAmountEmpty);
-
-    this.order_data.push(result, this.selectedAmountFull);
-
-    console.log(this.order_data);
+    this.appComponent.logActions("Submit clicked", this.actionLocation);
 
     if (!(this.selectedAmountEmpty > 0 && this.selectedAmountFull > 0)) {
 
@@ -113,35 +117,24 @@ export class AmountPickerComponent implements OnInit {
 
     } else {
 
-      this.router.navigate(['/delivery-date']);
+      this.homeService.sendOrder(this.order, this.selectedAmountEmpty, this.selectedAmountFull).subscribe({
+        next: (data) => console.log(data),
+        error: (error) => console.log(error.error)
+      })
 
+      this.router.navigate(['/delivery-date']);
     }
+
   }
 
   onBack() {
-    localStorage.setItem("action", "Back clicked");
-    localStorage.setItem("actionLocation", "ammount-picker")
-
-    this.homeService.logUserActions(
-      localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
-    ).subscribe({
-      next: (data) => console.log(data),
-      error: (error) => console.log(error.error)
-    })
+    this.appComponent.logActions("Back clicked", this.actionLocation);
 
     this.router.navigate(['/item-select'])
   }
 
   async onCancel() {
-    localStorage.setItem("action", "Cancel clicked");
-    localStorage.setItem("actionLocation", "ammount-picker");
-
-    this.homeService.logUserActions(
-      localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
-    ).subscribe({
-      next: (data) => console.log(data),
-      error: (error) => console.log(error.error)
-    })
+    this.appComponent.logActions("Cancel clicked", this.actionLocation);
 
     let alert = await this.alertController.create({
       message: 'Are you sure you want to cancel ?',
@@ -151,22 +144,13 @@ export class AmountPickerComponent implements OnInit {
           text: 'No',
           role: 'cancel',
           handler: () => {
-            localStorage.setItem("action", "No on cancel clicked");
-            localStorage.setItem("actionLocation", "ammount-picker");
-
-            this.homeService.logUserActions(
-              localStorage.getItem("action"), localStorage.getItem("actionLocation"), localStorage.getItem("one_time_code")
-            ).subscribe({
-              next: (data) => console.log(data),
-              error: (error) => console.log(error.error)
-            })
+            this.appComponent.logActions("No on cancel clicked", this.actionLocation);
           }
         },
         {
           text: 'Yes, Cancel',
           handler: () => {
-            localStorage.setItem("action", "Yes on cancel clicked");
-            localStorage.setItem("actionLocation", "ammount-picker")
+            this.appComponent.setUserActions("Yes on cancel clicked", this.actionLocation);
 
             localStorage.setItem("messageKey", "CANCEL");
 
