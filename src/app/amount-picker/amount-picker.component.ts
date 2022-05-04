@@ -97,7 +97,6 @@ export class AmountPickerComponent implements OnInit {
 
   ngOnInit() {
     console.log(localStorage.getItem("one_time_code"));
-    console.log(localStorage.getItem("order_items"));
   }
 
   selectChangeEmpty(event) {
