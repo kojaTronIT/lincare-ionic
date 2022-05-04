@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+import { HomeServiceService } from './home/home-service.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent {
     localStorage.setItem("isValid", "false")
   }
 
-  constructor() {}
+  constructor(private homeService: HomeServiceService) {}
 
   public item_select_list = [
     {
@@ -48,6 +49,20 @@ export class AppComponent {
     } else {
       localStorage.setItem("isValid", "false");
     }
+  }
+
+  setUserActions(action: string, actionLocation: string) {
+    localStorage.setItem("action", action);
+    localStorage.setItem("actionLocation", actionLocation);
+  }
+
+  logActions(action: string, actionLocation: string) {
+    this.homeService.logUserActions(
+      action, actionLocation, localStorage.getItem("one_time_code")
+    ).subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.log(error.error)
+    })
   }
 
 }
