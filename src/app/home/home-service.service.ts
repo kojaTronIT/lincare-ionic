@@ -27,16 +27,16 @@ export class HomeServiceService {
       );
   }
 
-  public validateZip(zip: string) {
-    return this.http.post(this.api_path + "/api/v1/check_us_zip", { usZip: zip })
-      .pipe(
-        map((data: string) => {
-          return data;
-        }), catchError(error => {
-          return throwError(error);
-        })
-      );
-  }
+  // public validateZip(zip: string) {
+  //   return this.http.post(this.api_path + "/api/v1/check_us_zip", { usZip: zip })
+  //     .pipe(
+  //       map((data: string) => {
+  //         return data;
+  //       }), catchError(error => {
+  //         return throwError(error);
+  //       })
+  //     );
+  // }
 
   //returns address if dob,zip and user code valid
   public validateDobAndZip(dob: Date, zip: any, oneTimeString: any) {
