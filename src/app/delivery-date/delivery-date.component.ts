@@ -8,16 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeliveryDateComponent implements OnInit {
 
-  currentDate = new Date;
+  // currentDate = new Date;
 
-  formatedDate;
+  // formatedDate;
 
   constructor() { }
 
   ngOnInit() {
-    this.currentDate.setDate(this.currentDate.getDate() + 5);
-    let datePipe: DatePipe = new DatePipe('en-US');
-    this.formatedDate = datePipe.transform(this.currentDate, 'fullDate');
+    // this.currentDate.setDate(this.currentDate.getDate() + 5);
+    // let datePipe: DatePipe = new DatePipe('en-US');
+    // this.formatedDate = datePipe.transform(this.currentDate, 'fullDate');
   }
 
 }
