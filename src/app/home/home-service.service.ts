@@ -61,18 +61,6 @@ export class HomeServiceService {
       );
   }
 
-  //dummy page
-  public getZipcodes() {
-    return this.http.get(this.api_path + "/api/v1/zip_codes")
-      .pipe(
-        map((data: any[]) => {
-          return data;
-        }), catchError(error => {
-          return throwError(error);
-        })
-      );
-  }
-
   public displayMessageForAction(messageKey: any) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("messageKey", messageKey);
