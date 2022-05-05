@@ -103,7 +103,7 @@ export class HomePage implements OnInit {
 
     this.appComponent.logActions("Submit clicked", this.actionLocation);
 
-    this.submitCount++  
+    this.submitCount++;
 
     this.presendLoadingForDobAndZipValidation();
   }
@@ -155,23 +155,6 @@ export class HomePage implements OnInit {
     });
   }
 
-  // validateZipcode() {
-  //   if (this.zipValue.length === 5) {
-  //     this.homeService.validateZip(this.zipValue).subscribe({
-  //       next: (data) => {
-  //         console.log(data, data.length),
-  //           this.zipResponse = data
-  //         if (!(data.length === 0)) {
-  //           this.zipcodeValidation = true;
-  //         } else {
-  //           this.zipcodeValidation = false;
-  //         }
-  //       },
-  //       error: (error) => console.log(error.message)
-  //     })
-  //   }
-  // }
-
   async presendLoadingForDobAndZipValidation() {
 
     const loading = await this.loadingController.create({
@@ -213,5 +196,22 @@ export class HomePage implements OnInit {
     }
 
   }
+
+  // validateZipcode() {
+  //   if (this.zipValue.length === 5) {
+  //     this.homeService.validateZip(this.zipValue).subscribe({
+  //       next: (data) => {
+  //         console.log(data, data.length),
+  //           this.zipResponse = data
+  //         if (!(data.length === 0)) {
+  //           this.zipcodeValidation = true;
+  //         } else {
+  //           this.zipcodeValidation = false;
+  //         }
+  //       },
+  //       error: (error) => console.log(error.message)
+  //     })
+  //   }
+  // }
 
 }
