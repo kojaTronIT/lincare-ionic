@@ -11,14 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { ItemSelectComponent } from './item-select/item-select.component';
 import { AmountPickerComponent } from './amount-picker/amount-picker.component';
 import { HttpClientModule } from '@angular/common/http';
-import { DummyPageComponent } from './dummy-page/dummy-page.component';
 import { AddressConfirmationComponent } from './address-confirmation/address-confirmation.component';
 import { ErrorComponent } from './error/error.component';
 import { HomePage } from './home/home.page';
+import { EofBlockerComponent } from './eof-blocker/eof-blocker.component';
 
 
 @NgModule({
-  declarations: [AppComponent, ItemSelectComponent, AmountPickerComponent, DummyPageComponent, AddressConfirmationComponent, ErrorComponent],
+  declarations: [AppComponent, ItemSelectComponent, AmountPickerComponent, AddressConfirmationComponent, ErrorComponent, EofBlockerComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot({rippleEffect: false, mode: 'ios'}), AppRoutingModule, ReactiveFormsModule, FormsModule, HttpClientModule, CommonModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ItemSelectComponent, HomePage, AppComponent],
