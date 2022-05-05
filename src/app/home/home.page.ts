@@ -103,8 +103,6 @@ export class HomePage implements OnInit {
 
     this.appComponent.logActions("Submit clicked", this.actionLocation);
 
-    this.submitCount++;
-
     this.presendLoadingForDobAndZipValidation();
   }
 
@@ -164,7 +162,7 @@ export class HomePage implements OnInit {
       cssClass: 'loading-patient-data',
     });
 
-    if (this.submitCount >= 0 && this.submitCount <= 3) {
+    if (this.submitCount >= 0 && this.submitCount < 3) {
       await loading.present();
 
       this.homeService.validateDobAndZip(this.registrationForm.value.dateOfBirth, this.registrationForm.value.zipcode, this.userCode).subscribe({
@@ -185,6 +183,7 @@ export class HomePage implements OnInit {
         },
         error: (error) => {
           loading.dismiss();
+          this.submitCount++;
           localStorage.setItem("messageKey", error.error);
           this.router.navigate(['/message']);
         }
@@ -192,7 +191,7 @@ export class HomePage implements OnInit {
 
     } else {
       localStorage.setItem("messageKey", "THREEATTEMPTS");
-      this.router.navigate(['/message']);
+      this.router.navigate(['/eof-blocker']);
     }
 
   }
