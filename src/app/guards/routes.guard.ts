@@ -8,11 +8,12 @@ import { AppComponent } from '../app.component';
 })
 export class RoutesGuardGuard implements CanActivate {
 
-  constructor(private router: Router, private appComponent: AppComponent) { }
+  constructor(private router: Router) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
     return new Promise((resolve, reject) => {
       console.log("IS IT VALID " + localStorage.getItem("isValid"));
       if (localStorage.getItem("isValid") === "true") {
@@ -24,6 +25,7 @@ export class RoutesGuardGuard implements CanActivate {
         resolve(false);
       }
     });
+
   }
   
 }
