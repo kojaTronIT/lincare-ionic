@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AddressConfirmationComponent } from './address-confirmation/address-confirmation.component';
 import { AmountPickerComponent } from './amount-picker/amount-picker.component';
 import { DeliveryDateComponent } from './delivery-date/delivery-date.component';
-import { DummyPageComponent } from './dummy-page/dummy-page.component';
+import { EofBlockerComponent } from './eof-blocker/eof-blocker.component';
 import { ErrorComponent } from './error/error.component';
 import { RoutesGuardGuard } from './guards/routes.guard';
 import { ItemSelectComponent } from './item-select/item-select.component';
@@ -33,8 +33,8 @@ const routes: Routes = [
     canActivate: [RoutesGuardGuard]
   },
   {
-    path: 'dummy',
-    component: DummyPageComponent,
+    path: 'eof-blocker',
+    component: EofBlockerComponent,
     canActivate: [RoutesGuardGuard]
   },
   {
