@@ -20,10 +20,12 @@ export class HomePage implements OnInit {
   zipValue = '';
 
   submitted = false;
-  // zipcodeValidation = false;
 
   currentDate;
   zipResponse;
+
+  currentTimeForValidation;
+  passedTimeForValidation;
 
   submitCount = 0;
   actionLocation = "home-page";
@@ -57,9 +59,13 @@ export class HomePage implements OnInit {
       console.log(this.userCode);
     });
 
+    this.getIPAddress();
+
     this.validateUrl();
 
     this.currentDate = formatDate(new Date, 'yyyy-MM-dd', 'en');
+
+    this.currentTimeForValidation = new Date().getMinutes();
   }
 
   get dateOfBirth() {
@@ -153,6 +159,12 @@ export class HomePage implements OnInit {
     });
   }
 
+  getIPAddress() {
+    this.homeService.getIPAddress().subscribe((res: any) => {
+      localStorage.setItem("ipAddress", res.ip);
+    });
+  }
+
   async presendLoadingForDobAndZipValidation() {
 
     const loading = await this.loadingController.create({
@@ -162,7 +174,7 @@ export class HomePage implements OnInit {
       cssClass: 'loading-patient-data',
     });
 
-    if (this.submitCount >= 0 && this.submitCount < 3) {
+    if (this.submitCount >= 0 && this.submitCount < 5) {
       await loading.present();
 
       this.homeService.validateDobAndZip(this.registrationForm.value.dateOfBirth, this.registrationForm.value.zipcode, this.userCode).subscribe({
@@ -190,27 +202,22 @@ export class HomePage implements OnInit {
       });
 
     } else {
-      localStorage.setItem("messageKey", "THREEATTEMPTS");
+      this.passedTimeForValidation = new Date().getMinutes();
+
+      if(this.passedTimeForValidation - this.currentTimeForValidation < 1) {
+        this.homeService.maxAttempts(localStorage.getItem("ipAddress")).subscribe({
+         next: () => console.log("SENT"),
+          error: () => { 
+            localStorage.setItem("messageKey", "CUSTOMMESSAGE");
+           this.router.navigate(['/eof-blocker']);
+          }
+        })
+      }
+
+      localStorage.setItem("messageKey", "MAXATTEMPTS");
       this.router.navigate(['/eof-blocker']);
     }
 
   }
-
-  // validateZipcode() {
-  //   if (this.zipValue.length === 5) {
-  //     this.homeService.validateZip(this.zipValue).subscribe({
-  //       next: (data) => {
-  //         console.log(data, data.length),
-  //           this.zipResponse = data
-  //         if (!(data.length === 0)) {
-  //           this.zipcodeValidation = true;
-  //         } else {
-  //           this.zipcodeValidation = false;
-  //         }
-  //       },
-  //       error: (error) => console.log(error.message)
-  //     })
-  //   }
-  // }
 
 }
