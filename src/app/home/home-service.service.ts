@@ -85,4 +85,21 @@ export class HomeServiceService {
       );
   }
 
+  public getIPAddress() {
+    return this.http.get("http://api.ipify.org/?format=json");
+  }
+
+  public maxAttempts(ipAddress: any) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("emailBody", ipAddress);
+    return this.http.post(this.api_path + "/api/v1/max-attempts", {}, { params: queryParams })
+      .pipe(
+        map((data: any) => {
+          return data;
+        }), catchError(error => {
+          return throwError(error);
+        })
+      );
+  }
+
 }
