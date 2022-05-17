@@ -30,7 +30,7 @@ export class AmountPickerComponent implements OnInit {
 
     try {
 
-      if (this.router.getCurrentNavigation().extras.state.order != null) {
+      if (this.router.getCurrentNavigation().extras.state.order !== null) {
         this.order = this.router.getCurrentNavigation().extras.state.order;
       }
       
@@ -118,7 +118,7 @@ export class AmountPickerComponent implements OnInit {
 
       this.homeService.sendOrder(this.order, this.selectedAmountEmpty, this.selectedAmountFull).subscribe({
         next: (data) => console.log(data),
-        error: (error) => console.log(error.error)
+        error: (error) => console.log(error)
       })
 
       this.router.navigate(['/delivery-date']);
