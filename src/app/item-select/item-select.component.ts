@@ -46,8 +46,6 @@ export class ItemSelectComponent implements OnInit {
     const result = this.appComponent.item_select_list.filter(obj => obj.checked === true).map(obj => obj.value);
 
     this.sendOrder(result);
-
-    localStorage.setItem("order_items", JSON.stringify(result));
   }
 
   async onCancel() {
@@ -89,7 +87,7 @@ export class ItemSelectComponent implements OnInit {
     } else {
       this.homeService.sendOrder(orderResult).subscribe({
         next: (data) => console.log(data),
-        error: (error) => console.log(error.error)
+        error: (error) => console.log(error)
       });
       this.router.navigate(['/delivery-date'])
     }
