@@ -75,7 +75,7 @@ export class HomeServiceService {
   }
 
   public sendOrder(itemsList: any, emptyAmount?: number, fullAmount?: number) {
-    return this.http.post(this.api_path + "/api/v1/order", { items: itemsList, emptyAmount: emptyAmount, fullAmount: fullAmount })
+    return this.http.post(this.api_path + "/api/v1/order", { items: itemsList, emptyAmount: emptyAmount, fullAmount: fullAmount }, { responseType: 'text' })
       .pipe(
         map((data: any) => {
           return data;
@@ -92,7 +92,7 @@ export class HomeServiceService {
   public maxAttempts(ipAddress: any) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("emailBody", ipAddress);
-    return this.http.post(this.api_path + "/api/v1/max-attempts", {}, { params: queryParams })
+    return this.http.post(this.api_path + "/api/v1/max-attempts", { }, { params: queryParams })
       .pipe(
         map((data: any) => {
           return data;
