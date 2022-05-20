@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, ToastController  } from '@ionic/angular';
+import { AlertController  } from '@ionic/angular';
 import { AppComponent } from '../app.component';
 import { HomeServiceService } from '../home/home-service.service';
 
