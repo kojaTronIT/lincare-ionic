@@ -1,0 +1,39 @@
+<ion-content id="main-content">
+  <ion-toolbar>
+    <ion-title align="center">
+      <img src="../../assets/images/Lincare_White.png" alt="logo">
+    </ion-title>
+  </ion-toolbar>
+
+  <div class="wrapper">
+
+    <div id="subtitle" align="center">
+      <p> Select the item(s) you would like to order </p>
+    </div>
+
+    <form class="form-container" (ngSubmit)="onSubmit()">
+      <ion-list>
+        <ion-radio-group class="item-options" allow-empty-selection="true" name="radio-group" #radioGroup>
+          <ion-card
+            *ngFor="let item of this.appComponent.item_select_list; let i = index; trackBy:this.appComponent.indexTracker;"
+            (ionFocus)="radioFocus()" (ionBlur)="radioBlur()" (ionChange)="radioGroupChange($event, i)">
+            <ion-item lines="none">
+              <ion-label>{{item.text}}</ion-label>
+              <ion-checkbox name="{{item.name}}" value="{{item.value}}"></ion-checkbox>
+            </ion-item>
+          </ion-card>
+        </ion-radio-group>
+      </ion-list>
+
+      <div id="buttons">
+        <ion-button expand="block" class="form-action-button" type="submit">
+          Submit
+        </ion-button>
+
+        <ion-button expand="block" id="cancel-button" class="form-action-button" (click)="onCancel()" type="reset">
+          Cancel
+        </ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

@@ -1,0 +1,23 @@
+ion-toolbar {
+    --min-height: 9vh;
+}
+
+ion-title img {
+    height: 6vh;
+}
+
+#delivery-content {
+    text-align: center;
+}
+
+#delivery-card {
+    text-align: center;
+    height: fit-content;
+    margin-top: 22vh;
+    box-shadow: 5px 10px 10px rgb(1, 34, 65);
+}
+
+p {
+    font-size: 3ch;
+    color: rgb(1, 34, 65);
+}

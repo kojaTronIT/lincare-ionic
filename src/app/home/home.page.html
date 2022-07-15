@@ -1,0 +1,85 @@
+<ion-content id="main-content">
+    <ion-toolbar>
+      <ion-title align="center">
+        <img src="../../assets/images/Lincare_White.png" alt="logo">
+      </ion-title>
+    </ion-toolbar>
+
+  <div class="wrapper">
+
+    <div id="subtitle" align="center">
+      <p> Lincare Oxygen Ordering </p>
+      <br>
+    </div>
+    
+    <form class="form-container" [formGroup]="registrationForm">
+
+      <ion-card id="open-modal" class="form-elements">
+
+        <div class="form-element" align="center">
+          <ion-modal trigger="open-modal">
+            <ng-template>
+              <ion-content id="date-select">
+                <ion-datetime min="1892-01-01" color="dark" [max]="currentDate" value="1940-01-01" presentation="date" #popoverDatetime (ionChange)="onDateChange(formatDate(popoverDatetime.value))">
+                  <ion-buttons slot="buttons">
+                    <ion-button color="danger" (click)="closeDatePicker()">Close</ion-button>
+                    <ion-button (click)="confirmDate()">Confirm</ion-button>
+                  </ion-buttons>
+                </ion-datetime>
+              </ion-content>
+            </ng-template>
+          </ion-modal>
+
+          <ion-input id="dob-input" align="center" placeholder="Please enter your date of birth" formControlName="dateOfBirth" [value]="dateValue" readonly>
+          </ion-input>
+        </div>
+
+        <div align="center" class="error-field" *ngFor="let error of errorMessages.dateOfBirth">
+          <ng-container *ngIf="(dateOfBirth.hasError(error.type) && dateOfBirth.touched) || (dateOfBirth.hasError(error.type) && submitted)">
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+
+      </ion-card>
+    
+      <ion-card id="zipcode" class="form-elements">
+
+        <div class="zip-input" align="center">
+          <ion-input align="center" placeholder="Please enter your zip code" readonly></ion-input>
+
+          <div align="center">
+            <div align="center" id="zip-input-wrapper">
+              <ion-input align="center" placeholder="#####" type="text" inputmode="numeric" maxlength="5"
+                (ionInput)="onZipChange(zip.value)" id="zip-underline" formControlName="zipcode" #zip></ion-input>
+            </div>
+          </div>        
+        </div>
+    
+        <div align="center" class="error-field" *ngFor="let error of errorMessages.zipcode">
+          <ng-container *ngIf="(zipcode.hasError(error.type) && (zipcode.dirty || zipcode.touched)) || (zipcode.hasError(error.type) && submitted)">
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+
+        <!-- <div align="center" class="error-field" id="american-zipcode">
+          <ng-container
+            *ngIf="(zipcodeValidation == false) && (zipcode.dirty)">
+            <small class="error-message"> Not a valid zip code </small>
+          </ng-container>
+        </div> -->
+      </ion-card>
+    
+      <div id="buttons" align="center">
+        <ion-button expand="block" id="submit-button" type="submit" (click)="onSubmit()" [disabled]="!registrationForm.valid">
+          Submit
+        </ion-button>
+    
+        <ion-button id="cancel-button" expand="block" (click)="onCancel()">
+          Cancel
+        </ion-button>
+      </div>
+    
+    </form>
+    
+  </div>
+</ion-content>
